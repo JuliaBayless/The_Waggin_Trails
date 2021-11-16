@@ -13,14 +13,14 @@ CREATE TABLE "user" (
 
 
 
-CREATE TABLE "favorites-junction-table" (
-	"id" serial NOT NULL,
-	"user_id" int NOT NULL,
-	"dog_park_id" int NOT NULL,
-	CONSTRAINT "favorites-junction-table_pk" PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
+-- CREATE TABLE "favorites-junction-table" (
+-- 	"id" serial NOT NULL,
+-- 	"user_id" int NOT NULL ON DELETE CASCADE,
+-- 	"dog_park_id" int NOT NULL ON DELETE CASCADE,
+-- 	CONSTRAINT "favorites-junction-table_pk" PRIMARY KEY ("id")
+-- ) WITH (
+--   OIDS=FALSE
+-- );
 
 
 
@@ -49,8 +49,8 @@ CREATE TABLE "tags" (
 
 CREATE TABLE "dog_park_tags" (
 	"id" serial NOT NULL,
-	"dog_park_id" int NOT NULL,
-	"tag_id" int NOT NULL,
+	"dog_park_id" int NOT NULL ON DELETE CASCADE,
+	"tag_id" int NOT NULL ON DELETE CASCADE,
 	CONSTRAINT "dog_park_tags_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

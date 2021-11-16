@@ -52,13 +52,17 @@ router.post('/', (req, res) => {
       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
       pool.query(insertDogParkTagsQuery, [createdParkId, req.body.tag_id])
         .then(result => {
-          res.send(201);
+          res.sendStatus(201);
         }).catch((error) => {
           console.log(error);
           res.sendStatus(500);
         });
 
-    });
+      // Catch for first query
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
 }); //end POST
 
 
