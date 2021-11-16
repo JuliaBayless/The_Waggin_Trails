@@ -32,7 +32,7 @@ export default function AddDogParkForm(props) {
 
 
   //store
-  const store = useSelector((store) => store.parkTags);
+  const parkTags = useSelector((store) => store.allTags);
   const [dogPark, setDogPark] = useState(dogParkDummyData);
 
 
@@ -50,7 +50,7 @@ export default function AddDogParkForm(props) {
     history.push('/DogParkList')
   }//end handSubmitNewPark
 
-
+console.log('THIS IS PARK TAGS', parkTags);
   return (
     <>
       <h2>Add a New Dog Park Here</h2>
@@ -101,15 +101,15 @@ export default function AddDogParkForm(props) {
                   setDogPark({ ...dogPark, image_url: event.target.value })}
               />
             </Grid>
-            {/* <FormControl sx={{ m: 1, minWidth: 220 }}>
-              <InputLabel id="demo-simple-select-label">Choose Tag!</InputLabel>
+            <FormControl sx={{ m: 1, minWidth: 220 }}>
+              <InputLabel id="tag shooser">Choose Tag!</InputLabel>
               <Select value={dogPark.tag_id}
                 sx={{ minWidth: 120 }}
                 onChange={(event) =>
                   setDogPark({ ...dogPark, tag_id: event.target.value })}>
 
 
-                {parkTags.map((tags) => {
+                {parkTags.allTags?.map((tags) => {
                   return (
                     <MenuItem key={tags.id} value={tags.id}>
                       {tags.tag}
@@ -117,7 +117,7 @@ export default function AddDogParkForm(props) {
                   );
                 })}
               </Select>
-            </FormControl> */}
+            </FormControl>
 
             <Grid item xs={12}>
               <Button
