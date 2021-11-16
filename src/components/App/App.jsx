@@ -5,12 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
-
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 //page imports
@@ -23,6 +18,14 @@ import FavoriteHomePage from '../FavoriteHomePage/FavoriteHomePage';
 import './App.css';
 import AddDogParkForm from '../AddParkForm/AddParkForm';
 import DogParkList from '../DogParkList/DogParkList';
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
+
+//mui imports
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 
 function App() {
