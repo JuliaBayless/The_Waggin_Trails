@@ -21,7 +21,7 @@ export default function DogParkList(props) {
 console.log(DogParkList)
   return (
     <Container>
-                <h1 className="movieListHeader">Movie List</h1>
+                <h1 className="movieListHeader">Dog Park List</h1>
                 <Grid container justifyContent="center"
                     sx={{ flexGrow: 1 }} container spacing={4}>
                     {DogParkList.dogParks?.map(dogPark => {
