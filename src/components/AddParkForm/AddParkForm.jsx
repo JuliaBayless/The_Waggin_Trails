@@ -39,13 +39,11 @@ export default function AddDogParkForm(props) {
   const handleSubmitNewPark = (event) => {
     //prevent page from refreshing
     event.preventDefault();
-    console.log('IN FORM TEST');
-    //dispatch new information off to saga
-    // dispatch({
-    //   type: 'ADD_NEW_DOG_PARK',
-    //   payload: dogPark
-    // })
-
+    // dispatch new information off to saga
+    dispatch({
+      type: 'ADD_NEW_DOG_PARK',
+      payload: dogPark
+    })
     //send user to the list to see their dog park
     history.push('/DogParkList')
   }//end handSubmitNewPark
