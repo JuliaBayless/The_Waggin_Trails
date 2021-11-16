@@ -13,14 +13,17 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+//page imports
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
+import FavoriteHomePage from '../FavoriteHomePage/FavoriteHomePage';
 import './App.css';
+import AddDogParkForm from '../AddParkForm/AddParkForm';
+import DogParkList from '../DogParkList/DogParkList';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -55,9 +58,9 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/user"
+            path="/FavoriteHomePage"
           >
-            <UserPage />
+            <FavoriteHomePage />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -66,6 +69,22 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/addParkForm"
+          >
+            <AddDogParkForm />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/DogParkList"
+          >
+            <DogParkList />
           </ProtectedRoute>
 
           <Route
@@ -115,6 +134,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
+        <footer>&copy; Prime Digital Academy</footer>
         <Footer />
       </div>
     </Router>
