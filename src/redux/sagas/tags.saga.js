@@ -21,6 +21,24 @@ function* fetchAllTags() {
 } //end fetchAllTags
 
 
+//GET tags specific to dog park
+function* fetchSpecificDogParkTags(action) {
+
+    try {
+        const response = yield axios.get(`/api/tagList/${action.payload}`);
+        console.log('This is genre GET', response.data.data);
+        yield put({
+            type: 'SET_SPECIFIC_DOG_PARK_TAGS',
+            payload: response.data
+        });
+
+    } catch {
+        console.log('get all error');
+        yield put({ type: 'ERROR_IN_FETCH_DOG_PARK_TAGS'})
+    }
+}//end fetchDogParkTags
+
+
 
 
 
@@ -29,6 +47,7 @@ function* fetchAllTags() {
 
 //listener for 
 function* parkTagSaga() {
+    yield takeLatest('FETCH_DOG_PARK_TAGS', fetchSpecificDogParkTags);
     yield takeLatest('FETCH_ALL_TAGS', fetchAllTags);
   } //end parkTagSaga
   
