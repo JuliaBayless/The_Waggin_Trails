@@ -5,9 +5,32 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 //-----RATINGS, COMMENTS and ISFAV ROUTER------
 
-router.get('/:id',  (req, res) => {
+//Get all data from Ratings
+router.get('/',  (req, res) => {
   console.log('IN GET /ratings');
-  console.log('THIS IS PARAMS', req.params.id);
+  console.log('THIS IS PARAMS', req.params.AvgId);
+  
+  // console.log('is authenticated?', req.isAuthenticated());
+
+  //grab average ratings from from dog park
+  let queryText = `
+    SELECT * FROM "ratings" 
+    `;
+
+  pool.query(queryText)
+    .then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+}); //end GET
+
+
+//Get average rating 
+router.get('/:AvgId',  (req, res) => {
+  console.log('IN GET /ratings');
+  console.log('THIS IS PARAMS', req.params.AvgId);
   
   // console.log('is authenticated?', req.isAuthenticated());
 
@@ -17,7 +40,7 @@ router.get('/:id',  (req, res) => {
     WHERE "dog_park_id" = $1;
     `;
 
-  pool.query(queryText, [req.params.id])
+  pool.query(queryText, [req.params.AvgId])
     .then((result) => {
       res.send(result.rows);
     }).catch((error) => {
@@ -51,21 +74,21 @@ console.log('THIS IS REQ.USER', req.user);
     });
 });
 
-//**** NOT YET TESTED */
-//for ADMIN use only to edit dog parks
-router.put('/:id', rejectUnauthenticated, (req, res) => {
+
+router.put('/:id', (req, res) => {
   const idToUpdate = req.params.id
   console.log('This is what we are Updating -->', idToUpdate);
   console.log('this is req.', req.params);
   console.log('user', req.user);
 
-  //update the dog parks with this query AND check access level with $6
-  let queryText= `UPDATE "dog_parks"
-  SET "name"=$1, "location"=$2, "description" = $3, "image_url" = $4
-  WHERE "id" = $5 AND $6 > 0;`;
+  //user can update their rating
+
+  let queryText= `UPDATE "ratings"
+  SET "ratings"= $1, 
+  WHERE "id" = $2 AND "user_id" = 3;`;
 
 
-  let values = [req.body.name, req.body.location, req.body.description, req.body.image_url, idToUpdate, req.user.access_level]
+  let values = [req.body.ratings, idToUpdate, req.user.id]
   pool.query(queryText, values)
   .then(respond => {
     res.send(200);
