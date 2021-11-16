@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch, } from 'react-redux';
 import { useHistory } from "react-router";
 import InputLabel from '@mui/material/InputLabel';
@@ -14,6 +14,9 @@ import Grid from '@mui/material/Grid';
 
 export default function AddDogParkForm(props) {
   //object for state to start out with
+  //hooks
+  const history = useHistory();
+  const dispatch = useDispatch();
   const dogParkDummyData = {
     name: '',
     location: '',
@@ -21,9 +24,13 @@ export default function AddDogParkForm(props) {
     image_url: '',
     tag_id: ''
   }
-  //hooks
-  const history = useHistory();
-  const dispatch = useDispatch();
+
+  //fetch tags on page load
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ALL_TAGS' })
+  }, [])
+
+
   //store
   const store = useSelector((store) => store.parkTags);
   const [dogPark, setDogPark] = useState(dogParkDummyData);

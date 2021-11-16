@@ -28,7 +28,7 @@ function* fetchAllTags() {
 
 
 function* parkTagSaga() {
-    yield takeEvery('FETCH_ALL_TAGS', fetchAllTags);
+    yield takeLatest('FETCH_ALL_TAGS', fetchAllTags);
 
   }
   
