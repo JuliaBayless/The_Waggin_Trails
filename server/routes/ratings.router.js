@@ -47,7 +47,7 @@ router.get('/:AvgId',  (req, res) => {
       console.log(error);
       res.sendStatus(500);
     });
-}); //end GET
+}); //end GET/AvgId
 
 
 //POST for ratings route!
@@ -72,7 +72,7 @@ console.log('THIS IS REQ.USER', req.user);
       console.log(error);
       res.sendStatus(500);
     });
-});
+}); //end POST
 
 
 router.put('/:id', (req, res) => {
@@ -95,30 +95,11 @@ router.put('/:id', (req, res) => {
     console.log('ERROR IN UPDATE', error);
     res.sendStatus(500);
   })
-  // endpoint functionality
-});
+}); //end PUT
 
-//**** NOT YET TESTED */
-//for ADMIN use only to delete dog parks
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  const idToDelete = req.params.id
-  console.log('This is what we are deleting -->', idToDelete, idUser);
 
-  //query text to delete dog park if access_level is greater than 0
-  let queryText = `
-  DELETE FROM "dog_parks"
-  WHERE "id" = $1 AND $2 > 0"
-  `;
+//No DELETE YET, will have to delete when dog park is deleted
 
-  pool.query(queryText, [idToDelete, req.user.access_level])
-    .then(respond => {
-      res.send(200);
-    })
-    .catch(error => {
-      console.log('ERROR IN DELETE', error);
-      res.sendStatus(500);
-    })
-  // endpoint functionality
-});
+
 
 module.exports = router;

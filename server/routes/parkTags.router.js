@@ -52,7 +52,7 @@ router.post('/:parkId', (req, res) => {
       console.log('ERROR IN POST PARK TAGS', error);
       res.sendStatus(500);
     });
-});
+}); //end POST
 
 /* not yet tested fully, may need to tweak based on front end code, otherwise tested with postman*/
 router.delete('/:id', (req, res) => {
@@ -74,6 +74,5 @@ router.delete('/:id', (req, res) => {
       console.log('ERROR IN DELETE', error);
       res.sendStatus(500);
     })
-  // endpoint functionality
-});
+}); //end delete
 module.exports = router;

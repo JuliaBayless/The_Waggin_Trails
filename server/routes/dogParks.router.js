@@ -5,7 +5,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 //-----DOG PARK ROUTER------
 
-router.get('/',  (req, res) => {
+
+router.get('/', (req, res) => {
   console.log('IN GET /dogParks');
   // console.log('is authenticated?', req.isAuthenticated());
 
@@ -24,26 +25,43 @@ router.get('/',  (req, res) => {
 }); //end GET
 
 
+
 router.post('/', (req, res) => {
   // POST route code here
-console.log('This is REQ.BODY', req.body);
-// console.log('is authenticated?', req.isAuthenticated());
+  console.log('This is REQ.BODY', req.body);
+  // console.log('is authenticated?', req.isAuthenticated());
 
-//post to the dog_parks table in the DB
+  //post to the dog_parks table in the DB and return ID for tags
   const queryText = `
     INSERT INTO "dog_parks" ("name", "location", "description", "image_url")
-    VALUES ($1, $2, $3, $4);
+    VALUES ($1, $2, $3, $4)
+    RETURNING "id";
     `;
 
   pool.query(queryText, [req.body.name, req.body.location, req.body.description, req.body.image_url])
     .then((result) => {
-      res.send(201);
-    }).catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
+      //add in a row for for the dog_park_tags table
+      console.log('New Dog Park Id:', result.rows[0].id); //The new park ID is returned here
 
-});
+      const createdParkId = result.rows[0].id //and made into this variable
+
+      const insertDogParkTagsQuery = `
+        INSERT INTO "movies_genres" ("dog_park_id", "tag_id")
+        VALUES  ($1, $2);
+        `
+      // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
+      pool.query(insertDogParkTagsQuery, [createdParkId, req.body.genre_id])
+        .then(result => {
+          res.send(201);
+        }).catch((error) => {
+          console.log(error);
+          res.sendStatus(500);
+        });
+
+    });
+}); //end POST
+
+
 
 //**** NOT YET TESTED */
 //for ADMIN use only to edit dog parks
@@ -54,21 +72,21 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('user', req.user);
 
   //update the dog parks with this query AND check access level with $6
-  let queryText= `UPDATE "dog_parks"
+  let queryText = `UPDATE "dog_parks"
   SET "name"=$1, "location"=$2, "description" = $3, "image_url" = $4
   WHERE "id" = $5 AND $6 > 0;`;
 
 
   let values = [req.body.name, req.body.location, req.body.description, req.body.image_url, idToUpdate, req.user.access_level]
   pool.query(queryText, values)
-  .then(respond => {
-    res.send(200);
-  }).catch(error => {
-    console.log('ERROR IN UPDATE', error);
-    res.sendStatus(500);
-  })
-  // endpoint functionality
-});
+    .then(respond => {
+      res.send(200);
+    }).catch(error => {
+      console.log('ERROR IN UPDATE', error);
+      res.sendStatus(500);
+    })
+}); //END PUT
+
 
 //**** NOT YET TESTED */
 //for ADMIN use only to delete dog parks
@@ -90,8 +108,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       console.log('ERROR IN DELETE', error);
       res.sendStatus(500);
     })
-  // endpoint functionality
-});
+}); //end DELETE
 
 
 
