@@ -62,7 +62,7 @@ CREATE TABLE "ratings" (
 	"user_id" int NOT NULL,
 	"dog_park_id" int NOT NULL,
 	"comments" varchar(350),
-	"ratings" decimal NOT NULL,
+	"ratings" decimal,
 	"isFav" boolean DEFAULT false,
 	CONSTRAINT "ratings_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -105,3 +105,4 @@ INSERT INTO "dog_park_tags" ("dog_park_id", "tag_id")
 VALUES
 (1, 2), (1, 5), (1, 6), (1, 11), (1, 12), 
 (1, 13), (1, 15), (2, 1), (2, 2), (2, 4), (2, 6), (2, 12);
+

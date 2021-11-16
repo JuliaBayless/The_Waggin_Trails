@@ -5,7 +5,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 //-----Router for the tags associated with a specific park------
 
-router.get('/:parkId', rejectUnauthenticated, (req, res) => {
+//Get all the tags specific to the parks
+router.get('/:parkId',  (req, res) => {
         console.log('IN GET /parkTags');
         parkId = req.params.parkId
         // console.log('is authenticated?', req.isAuthenticated());
@@ -28,9 +29,11 @@ router.get('/:parkId', rejectUnauthenticated, (req, res) => {
 }); //end GET
 
 
-router.post('/:parkId', rejectUnauthenticated, (req, res) => {
+router.post('/:parkId', (req, res) => {
   // POST route code here
   console.log('IN GET /parkTags');
+  console.log(req.params.parkId, req.body.tagNumber);
+  
   parkId = req.params.parkId
   tagNumber = req.body.tagNumber
   // console.log('is authenticated?', req.isAuthenticated());
@@ -51,4 +54,26 @@ router.post('/:parkId', rejectUnauthenticated, (req, res) => {
     });
 });
 
+/* not yet tested fully, may need to tweak based on front end code, otherwise tested with postman*/
+router.delete('/:id', (req, res) => {
+  const idToDelete = req.params.id
+  console.log('This is what we are deleting -->', idToDelete);
+
+  //query text to delete a tag 
+  //need to figure out how to get both DogPark ID and genre ID******
+  let queryText = `
+  DELETE FROM "dog_park_tags"
+  WHERE "id" = $1 
+  `;
+
+  pool.query(queryText, [idToDelete])
+    .then(respond => {
+      res.send(200);
+    })
+    .catch(error => {
+      console.log('ERROR IN DELETE', error);
+      res.sendStatus(500);
+    })
+  // endpoint functionality
+});
 module.exports = router;
