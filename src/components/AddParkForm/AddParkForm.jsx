@@ -48,7 +48,7 @@ export default function AddDogParkForm(props) {
     history.push('/DogParkList')
   }//end handSubmitNewPark
 
-console.log('THIS IS PARK TAGS', parkTags);
+
   return (
     <>
       <h2>Add a New Dog Park Here</h2>

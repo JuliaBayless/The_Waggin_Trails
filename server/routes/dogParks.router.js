@@ -46,11 +46,11 @@ router.post('/', (req, res) => {
       const createdParkId = result.rows[0].id //and made into this variable
 
       const insertDogParkTagsQuery = `
-        INSERT INTO "movies_genres" ("dog_park_id", "tag_id")
+        INSERT INTO "dog_park_tags" ("dog_park_id", "tag_id")
         VALUES  ($1, $2);
         `
       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-      pool.query(insertDogParkTagsQuery, [createdParkId, req.body.genre_id])
+      pool.query(insertDogParkTagsQuery, [createdParkId, req.body.tag_id])
         .then(result => {
           res.send(201);
         }).catch((error) => {
