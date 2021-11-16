@@ -78,14 +78,13 @@ console.log('THIS IS REQ.USER', req.user);
 router.put('/:id', (req, res) => {
   const idToUpdate = req.params.id
   console.log('This is what we are Updating -->', idToUpdate);
-  console.log('this is req.', req.params);
   console.log('user', req.user);
 
   //user can update their rating
 
   let queryText= `UPDATE "ratings"
-  SET "ratings"= $1, 
-  WHERE "id" = $2 AND "user_id" = 3;`;
+  SET "ratings"= $1 
+  WHERE "dog_park_id" = $2 AND "user_id" = $3;`;
 
 
   let values = [req.body.ratings, idToUpdate, req.user.id]
