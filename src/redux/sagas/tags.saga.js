@@ -22,14 +22,14 @@ function* fetchAllTags() {
 
 
 //GET tags specific to dog park
-function* fetchSpecificDogParkTags(action) {
+function* fetchSpecificDogParkTags() {
 
     try {
-        const response = yield axios.get(`/api/tagList/${action.payload}`);
-        console.log('This is genre GET', response.data.data);
+        const response = yield axios.get(`/api/parkTags`);
+        console.log('This is specific tags GET', response);
         yield put({
             type: 'SET_SPECIFIC_DOG_PARK_TAGS',
-            payload: response.data
+            payload: response
         });
 
     } catch {

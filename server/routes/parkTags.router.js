@@ -6,20 +6,18 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 //-----Router for the tags associated with a specific park------
 
 //Get all the tags specific to the parks
-router.get('/:parkId',  (req, res) => {
+router.get('/',  (req, res) => {
         console.log('IN GET /parkTags');
-        parkId = req.params.parkId
         // console.log('is authenticated?', req.isAuthenticated());
       
         //grab the tags specific to each dog park
         let queryText = `
-        SELECT "tag" from "tags"
-        JOIN "dog_park_tags" ON "dog_park_tags".tag_id = "tags".id
-        WHERE "dog_park_tags".dog_park_id = $1;
+        SELECT * from "tags"
+        JOIN "dog_park_tags" ON "dog_park_tags".tag_id = "tags".id;
           `;
 
 
-        pool.query(queryText, [parkId])
+        pool.query(queryText)
           .then((result) => {
             res.send(result.rows);
           }).catch((error) => {

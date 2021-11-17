@@ -8,6 +8,15 @@ const allTags = (state = [], action) => {
         //all tags for user interaction
         case 'SET_All_TAGS':
             return action.payload
+        default:
+            return state
+    }
+}
+
+
+const specificTags = (state = [], action) => {
+    console.log('IN SPECIFIC TAGS REDUCER')
+    switch (action.type) {
             //specific tags that go with the dog park
         case 'SET_SPECIFIC_DOG_PARK_TAGS' :
             return action.payload
@@ -17,10 +26,8 @@ const allTags = (state = [], action) => {
 }
 
 
-
-
-
 export default combineReducers({
     //reducers go here
-    allTags
+    allTags, 
+    specificTags
 });

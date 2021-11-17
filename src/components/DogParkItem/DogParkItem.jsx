@@ -19,24 +19,26 @@ import Typography from '@mui/material/Typography';
 
 export default function DogParkItem({ dogPark }) {
   // const { image } = useStyles();
-  // const store = useSelector((store) => store);
+  const dogParkTags = useSelector((store) => store.tags);
+  const dispatch = useDispatch();
   const [heading, setHeading] = useState('Functional Component');
 
-  //   useEffect(() => {
-  //     dispatch({
-  //         type: 'FETCH_DOG_PARK_TAGS',
-  //         payload: dogPark.id
-  //     })
-  // }, [])
+
+  //fetch all dog park ids
+    useEffect(() => {
+      console.log();
+      dispatch({
+          type: 'FETCH_DOG_PARK_TAGS',
+      })
+  }, [])
 
 
   const handleSubmitDetails = () => {
     console.log(dogPark);
-
   }
 
 
-
+console.log('Tags for dog park', dogPark.id, dogParkTags);
   return (
 
     <Card sx={{ maxWidth: 400 }}
@@ -56,7 +58,13 @@ export default function DogParkItem({ dogPark }) {
           image={dogPark.image_url}
           alt={dogPark.name} />
         <CardContent>
-          Tags here
+        {/* {?.map(dogPark => {
+                        return (
+                            <Grid item key={dogPark.id} xs={12} sm={6} md={5} lg={4}>
+                                <DogParkItem dogPark={dogPark}/>
+                            </Grid>
+                        )
+                    })} */}
         </CardContent>
       </CardActionArea>
     </Card>

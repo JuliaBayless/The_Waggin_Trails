@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-import allTags from './tags.reducer'
+import tags from './tags.reducer'
 import dogParks from './dogParks.reducer'
 
 // rootReducer is the primary reducer for our entire project
@@ -13,7 +13,7 @@ import dogParks from './dogParks.reducer'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  allTags,
+  tags,
   dogParks,
 });
 
