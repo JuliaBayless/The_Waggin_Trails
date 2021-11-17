@@ -11,6 +11,7 @@ import { pink } from '@mui/material/colors';
 import PetsIcon from '@mui/icons-material/Pets';
 import Typography from '@mui/material/Typography';
 
+
 // const useStyles = makeStyles(() => ({
 //   image:{
 //       height: "150px",
@@ -21,7 +22,7 @@ export default function DogParkItem({ dogPark }) {
   // const { image } = useStyles();
   const dogParkTags = useSelector((store) => store.tags);
   const dispatch = useDispatch();
-  const [heading, setHeading] = useState('Functional Component');
+  const [tags, setTags] = useState('Functional Component');
 
 
   //fetch all dog park ids
@@ -37,8 +38,20 @@ export default function DogParkItem({ dogPark }) {
     console.log(dogPark);
   }
 
+  // const filterTags = () => {
+  //  let newTags =  dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
+  //     console.log('This is newTags', newTags)
 
-console.log('Tags for dog park', dogPark.id, dogParkTags);
+  //   newTags?.map(tag => {
+  //     return(
+  //       <Box key={tag.id}>{tag.tag}</Box>
+  //     )
+  //   })//end map
+  // } //end filterTags
+
+  let newTags =  dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
+      console.log('This is newTags', newTags)
+
   return (
 
     <Card sx={{ maxWidth: 400 }}
@@ -58,13 +71,11 @@ console.log('Tags for dog park', dogPark.id, dogParkTags);
           image={dogPark.image_url}
           alt={dogPark.name} />
         <CardContent>
-        {/* {?.map(dogPark => {
-                        return (
-                            <Grid item key={dogPark.id} xs={12} sm={6} md={5} lg={4}>
-                                <DogParkItem dogPark={dogPark}/>
-                            </Grid>
-                        )
-                    })} */}
+        {newTags?.map(tag => {
+          return(
+            <div key={tag.id}><p>{tag.tag}</p></div>
+          )
+        })}
         </CardContent>
       </CardActionArea>
     </Card>

@@ -29,7 +29,7 @@ function* fetchSpecificDogParkTags() {
         console.log('This is specific tags GET', response);
         yield put({
             type: 'SET_SPECIFIC_DOG_PARK_TAGS',
-            payload: response
+            payload: response.data
         });
 
     } catch {
