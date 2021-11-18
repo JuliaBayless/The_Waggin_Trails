@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { MenuItem, TextareaAutosize, Button, Input} from "@material-ui/core";
+import { MenuItem, TextareaAutosize, Button, Input } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
 import { Paper, Box, makeStyles } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
@@ -23,20 +23,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function DogParkDetailsEditView({ dogParkDetails }) {
     const [dogParkEdit, setDogParkEdit] = useState(dogParkDetails)
-    const {  iconLayout, layout } = useStyles();
+    const { iconLayout, layout } = useStyles();
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+
     const handleEditSubmit = () => {
-
         event.preventDefault();
+        console.log('edit dog park', dogParkEdit)
 
-        // console.log('edit dog park')
-        // dispatch({
-        //     type: 'THIS_DOG_PARK_TO_EDIT_PAGE',
-        //     payload: dogParkDetails
-        // })
-
+        //send this stuff to edit this park
+        dispatch({
+            type: 'EDIT_THIS_DOG_PARK',
+            payload: dogParkEdit
+        })
+        //push the admin back to the list page *for now until details sticks*
+        history.push('/DogParkList')
     }
 
-    console.log(dogParkDetails)
     return (
         <>
             <Grid container spacing={2}>
@@ -49,11 +53,11 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                             multiline
                             rows={2}
                             type="text"
-                            style = {{width: 300}}
+                            style={{ width: 300 }}
                             placeholder="Name"
                             value={dogParkEdit.name}
                             onChange={(event) =>
-                                setDogPark({ ...dogParkEdit, name: event.target.value })}
+                                setDogParkEdit({ ...dogParkEdit, name: event.target.value })}
                         />
                         <Grid item xs={12}>
                         </Grid>
@@ -63,11 +67,11 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                             label="Location"
                             multiline
                             rows={4}
-                            style = {{width: 300}}
+                            style={{ width: 300 }}
                             type="text"
                             value={dogParkEdit.location}
                             onChange={(event) =>
-                                setDogPark({ ...dogParkEdit, location: event.target.value })}
+                                setDogParkEdit({ ...dogParkEdit, location: event.target.value })}
                         />
                         <Grid item xs={12}>
                         </Grid>
@@ -77,12 +81,12 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                             label="Image Url"
                             multiline
                             rows={4}
-                            style = {{width: 300}}
+                            style={{ width: 300 }}
                             type="text"
                             placeholder="image Url"
                             value={dogParkEdit.image_url}
                             onChange={(event) =>
-                                setDogPark({ ...dogParkEdit, image_url: event.target.value })}
+                                setDogParkEdit({ ...dogParkEdit, image_url: event.target.value })}
                         />
                         <Grid item xs={12}>
                         </Grid>
@@ -92,18 +96,18 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                             label="Description"
                             multiline
                             rows={4}
-                            style = {{width: 300}}
+                            style={{ width: 300 }}
                             type="text"
                             placeholder="description"
                             value={dogParkEdit.description}
                             onChange={(event) =>
-                                setDogPark({ ...dogParkEdit, description: event.target.value })}
+                                setDogParkEdit({ ...dogParkEdit, description: event.target.value })}
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <Button
                             variant="outlined"
-                            type="submit">Submit Edit</Button>
+                            onClick={handleEditSubmit}>Submit Edit</Button>
                     </Grid>
 
                 </form>

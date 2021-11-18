@@ -81,10 +81,11 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   WHERE "id" = $5 AND $6 > 0;`;
 
 
-  let values = [req.body.name, req.body.location, req.body.description, req.body.image_url, idToUpdate, req.user.access_level]
+  let values = [req.body.name, req.body.location, req.body.description, 
+    req.body.image_url, idToUpdate, req.user.access_level]
   pool.query(queryText, values)
     .then(respond => {
-      res.send(200);
+      res.sendStatus(200);
     }).catch(error => {
       console.log('ERROR IN UPDATE', error);
       res.sendStatus(500);

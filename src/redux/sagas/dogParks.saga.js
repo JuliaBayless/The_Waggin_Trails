@@ -42,20 +42,24 @@ function* deleteThisDogPark(action) {
 } //end addNewDogPark
 
 
-// function* FetchThisODogPark(action) {
-//   try {
-//     axios.post('/api/dogParks', action.payload)
-//     //FETCH the new DB
-//     yield put({ type: 'FETCH_ALL_DOG_PARKS' });
-//   } catch (error) {
-//     yield put({ type: 'ERROR_IN_ADD_NEW_DOG_PARK' })
-//   }
-// }
+function* editThisDogPark(action) {
+  console.log('IN THE EDIT SAGA', action.payload)
+
+  try {
+    axios.put(`/api/dogParks/${action.payload.id}`, action.payload)
+    //FETCH the new DB
+    yield put({ type: 'FETCH_ALL_DOG_PARKS' });
+  } catch (error) {
+    yield put({ type: 'ERROR_IN_ADD_NEW_DOG_PARK' })
+  }
+  
+}
 
 function* dogParkSaga() {
   yield takeLatest('ADD_NEW_DOG_PARK', addNewDogPark);
   yield takeLatest('FETCH_ALL_DOG_PARKS', fetchAllDogParks);
   yield takeLatest('DELETE_THIS_DOG_PARK', deleteThisDogPark);
+  yield takeLatest('EDIT_THIS_DOG_PARK', editThisDogPark)
 }
 
 export default dogParkSaga;
