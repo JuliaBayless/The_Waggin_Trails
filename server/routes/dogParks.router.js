@@ -25,6 +25,26 @@ router.get('/', (req, res) => {
 }); //end GET
 
 
+router.get('/:id', (req, res) => {
+  console.log('IN GET /dogParks/:id', req.params.id);
+  // console.log('is authenticated?', req.isAuthenticated());
+
+  //grab the info from the dog_park
+  let queryText = `
+        SELECT * FROM "dog_parks"
+        WHERE "id" = $1
+    `;
+
+
+  pool.query(queryText, [req.params.id])
+    .then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+}); //end GET
+
 
 router.post('/', (req, res) => {
   // POST route code here

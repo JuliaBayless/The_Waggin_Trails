@@ -15,7 +15,7 @@ const dogParks = (state = [], action) => {
 const dogParkDetails = (state = [], action) => {
     switch (action.type) {
         case 'SET_DOG_PARK_DETAIL':
-            return action.payload
+            return action.payload[0]
         default:
             return state
     }

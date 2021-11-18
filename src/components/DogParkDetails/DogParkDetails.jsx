@@ -1,4 +1,4 @@
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router";
 import { useEffect, useState } from 'react';
@@ -42,18 +42,27 @@ const useStyles = makeStyles(theme => ({
 
 //view of specific dog park with edit and delete admin views
 export default function dogParkDetails() {
-    //grabbing the specific dog park in the store
-    const dogParkDetailsArray = useSelector((store) => store.soManyDogParks);
+    //grabbing the stores
+    const soManyDogParks = useSelector((store) => store.soManyDogParks);
+    //making the variable easier to drill in to.
     const userId = useSelector((store) => store.user);
+
+    //hooks and state
     const dispatch = useDispatch();
     const history = useHistory();
+    const { dp_id } = useParams();
     const [toggleViewEdit, setToggleViewEdit] = useState(true)
 
     //styles
     const { root, rowLayout, iconLayout, layout } = useStyles();
 
-    //making the variable easier to drill in to.
-    let dogParkDetails = dogParkDetailsArray.dogParkDetails
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_DOG_PARK_DETAIL_VIEW',
+            payload: dp_id
+        })
+        dispatch({ type: 'FETCH_ALL_TAGS' })
+    }, [])
 
     //delete dog park
     const deleteDogPark = () => {
@@ -65,22 +74,15 @@ export default function dogParkDetails() {
     } //end deleteDogPark
 
 
+    //function to edit toggle view between detail and edit
     const editPageMode = () => {
-
         setToggleViewEdit(!toggleViewEdit)
+    } //end editPageMode
 
-        // console.log('edit dog park')
-        // dispatch({
-        //     type: 'THIS_DOG_PARK_TO_EDIT_PAGE',
-        //     payload: dogParkDetails
-        // })
-    }
-
-
-    console.log('This is user', userId.access_level)
-    console.log('These are dogParkDetails', dogParkDetails);
+    let dogParkDetails = soManyDogParks.dogParkDetails
     return (
         <>
+        
             <Grid container spacing={2} >
 
                 {/* toggle the edit view */}
@@ -91,15 +93,15 @@ export default function dogParkDetails() {
 
                 {/* buttons appear for administrators */}
                 {userId.access_level > 0 &&
-                <Box className={iconLayout}>
-                    <Grid item xs={12} className={iconLayout}>
-                        <DeleteForeverRoundedIcon
-                            onClick={deleteDogPark} />
-                        <ModeEditIcon
+                    <Box className={iconLayout}>
+                        <Grid item xs={12} className={iconLayout}>
+                            <DeleteForeverRoundedIcon
+                                onClick={deleteDogPark} />
+                            <ModeEditIcon
 
-                            onClick={editPageMode} />
-                    </Grid>
-                </Box>}
+                                onClick={editPageMode} />
+                        </Grid>
+                    </Box>}
             </Grid>
         </>
     )

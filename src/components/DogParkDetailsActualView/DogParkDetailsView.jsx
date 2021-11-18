@@ -39,23 +39,22 @@ const useStyles = makeStyles(theme => ({
 
 export default function DogParkDetailsView({ dogParkDetails }) {
     const { root, rowLayout, iconLayout, layout } = useStyles();
+    const parkTags = useSelector((store) => store.tags);
+    const dispatch = useDispatch();
+
+//call the tags
+useEffect(() => {
+    dispatch({ type: 'FETCH_ALL_TAGS' })
+}, [])
 
 
-console.log('THIS IS DETAILS', dogParkDetails)
-
-
-
-
-
+//filter out specific tags to dog park
+let newTags = dogParkDetails.filter(tag => tag.dog_park_id === dogParkDetails.id)
 
     return (
         <>
             <Grid item xs={10}>
-                {/*conditional render to send user back to home page if 
-            no movie has been chosen */}
-                {dogParkDetails.name === undefined ? <p> No dog park has been selected,
-                    please go back to <Link to="/FavoriteHomePage">home</Link> page.
-                </p> : <h1>{dogParkDetails.name}</h1>}
+                 <h1>{dogParkDetails.name}</h1>
             </Grid>
             <Grid item xs={2}>
                 <PetsOutlinedIcon />
@@ -81,6 +80,11 @@ console.log('THIS IS DETAILS', dogParkDetails)
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
+                {/* {newTags?.map(tag => {
+          return (
+            <div key={tag.id}><p>{tag.tag}</p></div> */}
+          {/* )
+        })} */}
 
                 </Grid>  
         </>

@@ -36,10 +36,7 @@ export default function DogParkItem({ dogPark }) {
 
   const handleSubmitDetails = () => {
     console.log('In handle submit')
-    dispatch({
-      type: 'SET_DOG_PARK_DETAIL',
-      payload: dogPark
-    })
+
     history.push(`/dogParkDetails/${dogPark.id}`)
   }
 
