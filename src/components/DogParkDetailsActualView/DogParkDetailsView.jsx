@@ -44,13 +44,15 @@ export default function DogParkDetailsView({ dogParkDetails }) {
 
 //call the tags
 useEffect(() => {
-    dispatch({ type: 'FETCH_ALL_TAGS' })
+    dispatch({
+        type: 'FETCH_DOG_PARK_TAGS',
+      })
 }, [])
 
-
+console.log(parkTags, dogParkDetails)
 //filter out specific tags to dog park
-let newTags = dogParkDetails.filter(tag => tag.dog_park_id === dogParkDetails.id)
-
+let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.id)
+console.log(newTags)
     return (
         <>
             <Grid item xs={10}>
@@ -80,11 +82,11 @@ let newTags = dogParkDetails.filter(tag => tag.dog_park_id === dogParkDetails.id
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
-                {/* {newTags?.map(tag => {
+                {newTags?.map(tag => {
           return (
-            <div key={tag.id}><p>{tag.tag}</p></div> */}
-          {/* )
-        })} */}
+            <div key={tag.id}><p>{tag.tag}</p></div>
+          )
+        })}
 
                 </Grid>  
         </>
