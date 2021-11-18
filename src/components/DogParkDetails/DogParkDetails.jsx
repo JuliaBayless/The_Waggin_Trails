@@ -61,7 +61,7 @@ export default function dogParkDetails() {
             type: 'DELETE_THIS_DOG_PARK',
             payload: dogParkDetails.id
         })
-        history.push('/DogParkList')
+        history.push(`/DogParkList`)
     } //end deleteDogPark
 
 

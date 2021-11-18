@@ -40,7 +40,7 @@ export default function DogParkItem({ dogPark }) {
       type: 'SET_DOG_PARK_DETAIL',
       payload: dogPark
     })
-    history.push('/dogParkDetails')
+    history.push(`/dogParkDetails/${dogPark.id}`)
   }
 
 
