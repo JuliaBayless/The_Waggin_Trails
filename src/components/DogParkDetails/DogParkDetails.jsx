@@ -16,6 +16,7 @@ import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DogParkDetailsView from '../DogParkDetailsActualView/DogParkDetailsView';
+import DogParkDetailsEditView from '../DogParkDetailsEditView/DogParkDetailsEditView';
 
 
 
@@ -43,17 +44,19 @@ const useStyles = makeStyles(theme => ({
 export default function dogParkDetails() {
     //grabbing the specific dog park in the store
     const dogParkDetailsArray = useSelector((store) => store.soManyDogParks);
+    const userId = useSelector((store) => store.user);
     const dispatch = useDispatch();
     const history = useHistory();
+    const [toggleViewEdit, setToggleViewEdit] = useState(true)
+
+    //styles
     const { root, rowLayout, iconLayout, layout } = useStyles();
+
     //making the variable easier to drill in to.
     let dogParkDetails = dogParkDetailsArray.dogParkDetails
 
     //delete dog park
-    // delete dog park is not rendering right away on dog list page -> need to look closer
     const deleteDogPark = () => {
-        console.log('In delete dog park', dogParkDetails.id);
-
         dispatch({
             type: 'DELETE_THIS_DOG_PARK',
             payload: dogParkDetails.id
@@ -63,24 +66,31 @@ export default function dogParkDetails() {
 
 
     const editPageMode = () => {
-        console.log('edit dog park')
-        dispatch({
-            type: 'THIS_DOG_PARK_TO_EDIT_PAGE',
-            payload: dogParkDetails
-        })
+
+        setToggleViewEdit(!toggleViewEdit)
+
+        // console.log('edit dog park')
+        // dispatch({
+        //     type: 'THIS_DOG_PARK_TO_EDIT_PAGE',
+        //     payload: dogParkDetails
+        // })
     }
 
 
-
+    console.log('This is user', userId.access_level)
     console.log('These are dogParkDetails', dogParkDetails);
     return (
         <>
             <Grid container spacing={2} >
 
+                {/* toggle the edit view */}
+                {toggleViewEdit ?
+                    <DogParkDetailsView dogParkDetails={dogParkDetails} /> :
+                    <DogParkDetailsEditView dogParkDetails={dogParkDetails} />}
 
-                <DogParkDetailsView dogParkDetails={dogParkDetails} />
 
-
+                {/* buttons appear for administrators */}
+                {userId.access_level > 0 &&
                 <Box className={iconLayout}>
                     <Grid item xs={12} className={iconLayout}>
                         <DeleteForeverRoundedIcon
@@ -89,51 +99,7 @@ export default function dogParkDetails() {
 
                             onClick={editPageMode} />
                     </Grid>
-                </Box>
-
-
-                {/* <Grid item xs={10}>
-                  
-                    {dogParkDetails.name === undefined ? <p> No dog park has been selected,
-                        please go back to <Link to="/FavoriteHomePage">home</Link> page.
-                    </p> : <h1>{dogParkDetails.name}</h1>}
-                </Grid>
-                <Grid item xs={2}>
-                    <PetsOutlinedIcon />
-                </Grid>
-
-                <Grid item xs={12}>
-
-                    <Typography
-                        variant="h6"
-                        gutterBottom
-                        component="div"
-                    >
-                        {dogParkDetails.location}
-                    </Typography>
-
-
-                </Grid>
-                <Grid item xs={12}>
-                     conditional to stop empty img tag from render 
-                    {dogParkDetails.image_url === undefined ? "" : <img src={dogParkDetails.image_url} alt={dogParkDetails.name}
-                    />}
-                </Grid>
-                <Grid Item xs={12} className={layout}>
-                    <Typography variant="h5" gutterBottom component="div" >
-                        {dogParkDetails.description}
-                    </Typography>
-                    <Box>
-                        <Grid item xs={5} className={layout}>
-                            <DeleteForeverRoundedIcon  
-                            onClick={deleteDogPark}/>
-                                <ModeEditIcon 
-                                onClick={editPageMode}/>
-                        </Grid>
-                    </Box>
-
-                </Grid> */}
-                {/* close grid container */}
+                </Box>}
             </Grid>
         </>
     )
