@@ -9,10 +9,21 @@ const dogParks = (state = [], action) => {
         default:
             return state
     }
-}
+} //end dog parks
+
+//separate reducer for dog park details
+const dogParkDetails = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_DOG_PARK_DETAIL':
+            return action.payload
+        default:
+            return state
+    }
+} //end dogParkDetails
 
 
 export default combineReducers({
     //reducers go here
+    dogParkDetails,
     dogParks
 });

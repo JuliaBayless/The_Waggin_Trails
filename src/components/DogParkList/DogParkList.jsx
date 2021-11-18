@@ -11,7 +11,7 @@ import DogParkItem from '../DogParkItem/DogParkItem'
 export default function DogParkList(props) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const DogParkList = useSelector((store) => store.dogParks);
+  const DogParkList = useSelector((store) => store.soManyDogParks);
   const [heading, setHeading] = useState('Functional Component');
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function DogParkList(props) {
 console.log(DogParkList)
   return (
     <Container>
-                <h1 className="movieListHeader">Dog Park List</h1>
+                <h1>Dog Park List</h1>
                 <Grid container justifyContent="center"
                     sx={{ flexGrow: 1 }} container spacing={4}>
                     {DogParkList.dogParks?.map(dogPark => {

@@ -22,63 +22,58 @@ export default function DogParkItem({ dogPark }) {
   // const { image } = useStyles();
   const dogParkTags = useSelector((store) => store.tags);
   const dispatch = useDispatch();
-  const [tags, setTags] = useState('Functional Component');
+  const history = useHistory();
 
 
   //fetch all dog park ids
-    useEffect(() => {
-      console.log();
-      dispatch({
-          type: 'FETCH_DOG_PARK_TAGS',
-      })
+  useEffect(() => {
+    console.log();
+    dispatch({
+      type: 'FETCH_DOG_PARK_TAGS',
+    })
   }, [])
 
 
   const handleSubmitDetails = () => {
-    console.log(dogPark);
+    console.log('In handle submit')
+    dispatch({
+      type: 'SET_DOG_PARK_DETAIL',
+      payload: dogPark
+    })
+    history.push('/dogParkDetails')
   }
 
-  // const filterTags = () => {
-  //  let newTags =  dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
-  //     console.log('This is newTags', newTags)
 
-  //   newTags?.map(tag => {
-  //     return(
-  //       <Box key={tag.id}>{tag.tag}</Box>
-  //     )
-  //   })//end map
-  // } //end filterTags
+let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
+console.log('This is newTags', newTags)
 
-  let newTags =  dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
-      console.log('This is newTags', newTags)
+return (
 
-  return (
-
-    <Card sx={{ maxWidth: 400 }}
-      elevation={6}
-      onClick={() => { handleSubmitDetails(dogPark) }}
-      sx={{ height: 400, width: 300 }}>
-      <CardActionArea>
-        <CardHeader
-          title={dogPark.name}
-          subheader={dogPark.location}
-          action={<PetsIcon />} />
-        <Box display='flex' flexGrow={1}>
-        </Box>
-        <CardMedia
-          component="img"
-          sx={{ height: 150, width: 300 }}
-          image={dogPark.image_url}
-          alt={dogPark.name} />
-        <CardContent>
+  <Card sx={{ maxWidth: 400 }}
+    elevation={6}
+    onClick={() => { handleSubmitDetails(dogPark) }}
+    sx={{ height: 400, width: 300 }}>
+    <CardActionArea>
+      <CardHeader
+        title={dogPark.name}
+        subheader={dogPark.location}
+        action={<PetsIcon />} />
+      <Box display='flex' flexGrow={1}>
+      </Box>
+      <CardMedia
+        component="img"
+        sx={{ height: 150, width: 300 }}
+        image={dogPark.image_url}
+        alt={dogPark.name} />
+      <CardContent>
         {newTags?.map(tag => {
-          return(
+          return (
             <div key={tag.id}><p>{tag.tag}</p></div>
           )
         })}
-        </CardContent>
-      </CardActionArea>
-    </Card>
-  );
+      </CardContent>
+    </CardActionArea>
+  </Card>
+);
 }
 

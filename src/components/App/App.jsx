@@ -20,12 +20,14 @@ import AddDogParkForm from '../AddParkForm/AddParkForm';
 import DogParkList from '../DogParkList/DogParkList';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
+import DogParkDetails from '../DogParkDetails/DogParkDetails';
 
 //mui imports
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+
 
 
 function App() {
@@ -66,6 +68,7 @@ function App() {
             <FavoriteHomePage />
           </ProtectedRoute>
 
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -73,6 +76,7 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -82,6 +86,7 @@ function App() {
             <AddDogParkForm />
           </ProtectedRoute>
 
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -89,6 +94,16 @@ function App() {
           >
             <DogParkList />
           </ProtectedRoute>
+
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/DogParkDetails"
+          >
+            <DogParkDetails />
+          </ProtectedRoute>
+
 
           <Route
             exact
@@ -104,6 +119,7 @@ function App() {
             }
           </Route>
 
+
           <Route
             exact
             path="/registration"
@@ -117,6 +133,7 @@ function App() {
               <RegisterPage />
             }
           </Route>
+
 
           <Route
             exact
@@ -132,10 +149,13 @@ function App() {
             }
           </Route>
 
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
+
+
         </Switch>
         <footer>&copy; Prime Digital Academy</footer>
         <Footer />

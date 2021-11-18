@@ -32,7 +32,7 @@ export default function AddDogParkForm(props) {
 
 
   //store
-  const parkTags = useSelector((store) => store.allTags);
+  const parkTags = useSelector((store) => store.tags);
   const [dogPark, setDogPark] = useState(dogParkDummyData);
 
 
