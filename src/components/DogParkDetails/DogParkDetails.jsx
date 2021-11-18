@@ -15,6 +15,7 @@ import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import DogParkDetailsView from '../DogParkDetailsActualView/DogParkDetailsView';
 
 
 
@@ -32,7 +33,7 @@ const useStyles = makeStyles(theme => ({
         margin: '40px'
     },
     layout: {
-        margin : '20px'
+        margin: '20px'
     }
 }));
 
@@ -48,36 +49,51 @@ export default function dogParkDetails() {
     //making the variable easier to drill in to.
     let dogParkDetails = dogParkDetailsArray.dogParkDetails
 
-//delete dog park
-// delete dog park is not rendering right away on dog list page -> need to look closer
-const deleteDogPark = () => {
-    console.log('In delete dog park', dogParkDetails.id);
+    //delete dog park
+    // delete dog park is not rendering right away on dog list page -> need to look closer
+    const deleteDogPark = () => {
+        console.log('In delete dog park', dogParkDetails.id);
 
-    dispatch({
-        type: 'DELETE_THIS_DOG_PARK',
-        payload: dogParkDetails.id
-    })
-    history.push('/DogParkList')
-} //end deleteDogPark
+        dispatch({
+            type: 'DELETE_THIS_DOG_PARK',
+            payload: dogParkDetails.id
+        })
+        history.push('/DogParkList')
+    } //end deleteDogPark
 
 
-const editPageMode = () => {
-    console.log('edit dog park')
-    dispatch({
-        type: 'THIS_DOG_PARK_TO_EDIT_PAGE',
-        payload: dogParkDetails
-    })
-}
+    const editPageMode = () => {
+        console.log('edit dog park')
+        dispatch({
+            type: 'THIS_DOG_PARK_TO_EDIT_PAGE',
+            payload: dogParkDetails
+        })
+    }
 
 
 
     console.log('These are dogParkDetails', dogParkDetails);
     return (
         <>
-            <Grid container spacing={2} className={root, rowLayout}>
-                <Grid item xs={10}>
-                    {/*conditional render to send user back to home page if 
-            no movie has been chosen */}
+            <Grid container spacing={2} >
+
+
+                <DogParkDetailsView dogParkDetails={dogParkDetails} />
+
+
+                <Box className={iconLayout}>
+                    <Grid item xs={12} className={iconLayout}>
+                        <DeleteForeverRoundedIcon
+                            onClick={deleteDogPark} />
+                        <ModeEditIcon
+
+                            onClick={editPageMode} />
+                    </Grid>
+                </Box>
+
+
+                {/* <Grid item xs={10}>
+                  
                     {dogParkDetails.name === undefined ? <p> No dog park has been selected,
                         please go back to <Link to="/FavoriteHomePage">home</Link> page.
                     </p> : <h1>{dogParkDetails.name}</h1>}
@@ -99,7 +115,7 @@ const editPageMode = () => {
 
                 </Grid>
                 <Grid item xs={12}>
-                    {/* conditional to stop empty img tag from render */}
+                     conditional to stop empty img tag from render 
                     {dogParkDetails.image_url === undefined ? "" : <img src={dogParkDetails.image_url} alt={dogParkDetails.name}
                     />}
                 </Grid>
@@ -116,7 +132,7 @@ const editPageMode = () => {
                         </Grid>
                     </Box>
 
-                </Grid>
+                </Grid> */}
                 {/* close grid container */}
             </Grid>
         </>

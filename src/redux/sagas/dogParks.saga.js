@@ -34,8 +34,8 @@ function* addNewDogPark(action) {
 function* deleteThisDogPark(action) {
   try {
     axios.delete(`/api/dogParks/${action.payload}`)
-    //FETCH the new DB
-    // yield put({ type: 'FETCH_ALL_DOG_PARKS' });
+    //FETCH the new DB 
+  
   } catch (error) {
     yield put({ type: 'ERROR_IN_ADD_NEW_DOG_PARK' })
   }

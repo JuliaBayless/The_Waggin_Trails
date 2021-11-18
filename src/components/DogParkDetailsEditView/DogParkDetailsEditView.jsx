@@ -1,13 +1,17 @@
-export default function DogParkDetailsView() {
+
+
+
+
+export default function DogParkDetailsEditView() {
 
 
 
 
     return (
-<>   
+        <>
 
+<p>This is edit page</p>
 
-
-</>
-    ) 
-} //end DogParkDetailsView
+        </>
+    )
+} //end DogParkDetailsEditView
