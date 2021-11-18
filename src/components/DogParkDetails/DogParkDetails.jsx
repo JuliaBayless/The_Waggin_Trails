@@ -14,22 +14,27 @@ import { CardActionArea } from '@mui/material';
 import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-      flexGrow: 1,
-      width: '100%'
+        flexGrow: 1,
+        width: '100%'
     },
     rowLayout: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center' // To be vertically aligned
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center' // To be vertically aligned
     },
     iconLayout: {
         margin: '40px'
+    },
+    layout: {
+        margin : '20px'
     }
-  }));
+}));
 
 
 
@@ -37,9 +42,34 @@ const useStyles = makeStyles(theme => ({
 export default function dogParkDetails() {
     //grabbing the specific dog park in the store
     const dogParkDetailsArray = useSelector((store) => store.soManyDogParks);
-    const { root, rowLayout, iconLayout } = useStyles();
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const { root, rowLayout, iconLayout, layout } = useStyles();
     //making the variable easier to drill in to.
     let dogParkDetails = dogParkDetailsArray.dogParkDetails
+
+//delete dog park
+// delete dog park is not rendering right away on dog list page -> need to look closer
+const deleteDogPark = () => {
+    console.log('In delete dog park', dogParkDetails.id);
+
+    dispatch({
+        type: 'DELETE_THIS_DOG_PARK',
+        payload: dogParkDetails.id
+    })
+    history.push('/DogParkList')
+} //end deleteDogPark
+
+
+const editPageMode = () => {
+    console.log('edit dog park')
+    dispatch({
+        type: 'THIS_DOG_PARK_TO_EDIT_PAGE',
+        payload: dogParkDetails
+    })
+}
+
+
 
     console.log('These are dogParkDetails', dogParkDetails);
     return (
@@ -73,13 +103,16 @@ export default function dogParkDetails() {
                     {dogParkDetails.image_url === undefined ? "" : <img src={dogParkDetails.image_url} alt={dogParkDetails.name}
                     />}
                 </Grid>
-                <Grid Item xs={12} >
-                    <Typography variant="h5" gutterBottom component="div">
+                <Grid Item xs={12} className={layout}>
+                    <Typography variant="h5" gutterBottom component="div" >
                         {dogParkDetails.description}
                     </Typography>
                     <Box>
-                        <Grid item xs={12}>
-                            <DeleteForeverRoundedIcon className={iconLayout}/>
+                        <Grid item xs={5} className={layout}>
+                            <DeleteForeverRoundedIcon  
+                            onClick={deleteDogPark}/>
+                                <ModeEditIcon 
+                                onClick={editPageMode}/>
                         </Grid>
                     </Box>
 

@@ -96,12 +96,12 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 //for ADMIN use only to delete dog parks
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const idToDelete = req.params.id
-  console.log('This is what we are deleting -->', idToDelete, idUser);
+  console.log('This is what we are deleting -->', idToDelete, req.user.access_level);
 
   //query text to delete dog park if access_level is greater than 0
   let queryText = `
   DELETE FROM "dog_parks"
-  WHERE "id" = $1 AND $2 > 0"
+  WHERE "id" = $1 AND $2 > 0
   `;
 
   pool.query(queryText, [idToDelete, req.user.access_level])
