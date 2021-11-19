@@ -12,9 +12,9 @@ router.get('/', (req, res) => {
 
   //grab the info from dog_parks
   let queryText = `
-  SELECT * FROM "ratings" 
-  FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id;
-  `;
+      SELECT * FROM "ratings" 
+      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id;
+      `;
 
 
   pool.query(queryText)
@@ -33,9 +33,10 @@ router.get('/:id', (req, res) => {
 
   //grab the info from the dog_park
   let queryText = `
-  SELECT * FROM "dog_parks"
-        WHERE "id" = $1
-    `;
+      SELECT * FROM "dog_parks"
+      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id;
+      WHERE "id" = $1
+      `;
 
 
   pool.query(queryText, [req.params.id])
@@ -55,10 +56,10 @@ router.post('/', (req, res) => {
 
   //post to the dog_parks table in the DB and return ID for tags
   const queryText = `
-    INSERT INTO "dog_parks"("name", "location", "description", "image_url")
-  VALUES($1, $2, $3, $4)
-    RETURNING "id";
-  `;
+      INSERT INTO "dog_parks"("name", "location", "description", "image_url")
+      VALUES($1, $2, $3, $4)
+      RETURNING "id";
+      `;
 
   pool.query(queryText, [req.body.name, req.body.location, req.body.description, req.body.image_url])
     .then((result) => {
@@ -69,8 +70,8 @@ router.post('/', (req, res) => {
 
       const insertDogParkTagsQuery = `
         INSERT INTO "dog_park_tags"("dog_park_id", "tag_id")
-  VALUES($1, $2);
-  `
+        VALUES($1, $2);
+         `
       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
       pool.query(insertDogParkTagsQuery, [createdParkId, req.body.tag_id])
         .then(result => {
@@ -98,13 +99,14 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('user', req.user);
 
   //update the dog parks with this query AND check access level with $6
-  let queryText = `UPDATE "dog_parks"
-  SET "name" = $1, "location" = $2, "description" = $3, "image_url" = $4
-  WHERE "id" = $5 AND $6 > 0; `;
+  let queryText = `
+      UPDATE "dog_parks"
+      SET "name" = $1, "location" = $2, "description" = $3, "image_url" = $4
+      WHERE "id" = $5 AND $6 > 0; `;
 
 
-  let values = [req.body.name, req.body.location, req.body.description, 
-    req.body.image_url, idToUpdate, req.user.access_level]
+  let values = [req.body.name, req.body.location, req.body.description,
+  req.body.image_url, idToUpdate, req.user.access_level]
   pool.query(queryText, values)
     .then(respond => {
       res.sendStatus(200);
@@ -123,9 +125,9 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
   //query text to delete dog park if access_level is greater than 0
   let queryText = `
-  DELETE FROM "dog_parks"
-  WHERE "id" = $1 AND $2 > 0
-    `;
+      DELETE FROM "dog_parks"
+      WHERE "id" = $1 AND $2 > 0
+      `;
 
   pool.query(queryText, [idToDelete, req.user.access_level])
     .then(respond => {

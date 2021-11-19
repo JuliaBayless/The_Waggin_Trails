@@ -64,6 +64,7 @@ export default function dogParkDetails() {
         dispatch({ type: 'FETCH_ALL_TAGS' })
     }, [])
 
+
     //delete dog park
     const deleteDogPark = () => {
         dispatch({
@@ -72,7 +73,6 @@ export default function dogParkDetails() {
         })
         history.push(`/DogParkList`)
     } //end deleteDogPark
-
 
     //function to edit toggle view between detail and edit
     const editPageMode = () => {

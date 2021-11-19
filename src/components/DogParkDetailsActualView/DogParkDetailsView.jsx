@@ -9,7 +9,8 @@ import { styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,17 +44,31 @@ export default function DogParkDetailsView({ dogParkDetails }) {
         })
     }, [])
 
-    console.log(parkTags, dogParkDetails)
+
+    //function to toggle fav boolean value
+    const toggleFavBoolean = () => {
+        dispatch({
+            type: 'TOGGLE_ISFAV_BOOLEAN_VALUE',
+            payload: dogParkDetails.id
+        })
+    } //end toggleFavBoolean
+
+    console.log('THIS IS DOGPARKDETAILS', dogParkDetails)
+    
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.id)
-    console.log(newTags)
     return (
         <>
             <Grid item xs={10}>
                 <h1>{dogParkDetails.name}</h1>
             </Grid>
             <Grid item xs={2}>
-                <PetsOutlinedIcon />
+
+                {}
+                <FavoriteIcon
+                sx={{ color: pink[300] }}
+                onClick={toggleFavBoolean}
+                        />
             </Grid>
 
             <Grid item xs={12}>
@@ -76,17 +91,17 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
-                <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding:'10px'}}>
-            {newTags?.map(tag => {
-                return (
-                <Chip 
-                key={tag.id}
-                // sx={{margin: '10px'}} Not working!
-                color="success" 
-                label={tag.tag} />
-            )
-            })}
-            </Stack>
+                <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
+                    {newTags?.map(tag => {
+                        return (
+                            <Chip
+                                key={tag.id}
+                                // sx={{margin: '10px'}} Not working!
+                                color="success"
+                                label={tag.tag} />
+                        )
+                    })}
+                </Stack>
             </Grid>
         </>
     )
