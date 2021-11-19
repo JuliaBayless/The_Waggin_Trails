@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 //component for each card on the favorites page
 export default function FavoritesItem({ favPark }) {
     // const { image } = useStyles();
-    const dogParkTags = useSelector((store) => store.tags);
+    const dogParkTags = useSelector((store) => store.tagReducer);
     const dispatch = useDispatch();
     const history = useHistory();
   
@@ -28,16 +28,12 @@ export default function FavoritesItem({ favPark }) {
     }, [])
   
   
-    const handleSubmitDetails = () => {
-      console.log('In handle submit')
-  
+    const handleSubmitDetails = () => {  
       history.push(`/dogParkDetails/${favPark.id}`)
     }
   
   
-    let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === favPark.id)
-    console.log('This is newTags', newTags)
-  
+    let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === favPark.id)  
     return (
   
       <Card sx={{ maxWidth: 400 }}

@@ -3,7 +3,6 @@ import { combineReducers } from 'redux';
 
 //reducer for park tags
 const allTags = (state = [], action) => {
-    console.log('IN ALL TAGS REDUCER')
     switch (action.type) {
         //all tags for user interaction
         case 'SET_All_TAGS':
@@ -15,7 +14,6 @@ const allTags = (state = [], action) => {
 
 
 const specificTags = (state = [], action) => {
-    console.log('IN SPECIFIC TAGS REDUCER')
     switch (action.type) {
             //specific tags that go with the dog park
         case 'SET_SPECIFIC_DOG_PARK_TAGS' :

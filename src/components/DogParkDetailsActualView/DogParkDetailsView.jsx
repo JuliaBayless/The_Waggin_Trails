@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function DogParkDetailsView({ dogParkDetails }) {
     const { root, rowLayout, iconLayout, layout } = useStyles();
-    const parkTags = useSelector((store) => store.tags);
+    const parkTags = useSelector((store) => store.tagReducer);
     const dispatch = useDispatch();
 
     //call the tags
@@ -46,7 +46,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     console.log(parkTags, dogParkDetails)
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.id)
-    console.log(newTags)
+ 
     return (
         <>
             <Grid item xs={10}>

@@ -19,7 +19,7 @@ import Typography from '@mui/material/Typography';
 
 export default function DogParkItem({ dogPark }) {
   // const { image } = useStyles();
-  const dogParkTags = useSelector((store) => store.tags);
+  const dogParkTags = useSelector((store) => store.tagReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -34,15 +34,11 @@ export default function DogParkItem({ dogPark }) {
 
 
   const handleSubmitDetails = () => {
-    console.log('In handle submit')
-
     history.push(`/dogParkDetails/${dogPark.id}`)
   }
 
 
   let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
-  console.log('This is newTags', newTags)
-
   return (
 
     <Card sx={{ maxWidth: 400 }}

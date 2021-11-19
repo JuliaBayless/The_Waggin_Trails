@@ -11,7 +11,7 @@ import DogParkItem from '../DogParkItem/DogParkItem'
 export default function DogParkList(props) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const DogParkList = useSelector((store) => store.soManyDogParks);
+  const DogParkList = useSelector((store) => store.parkReducer);
   const [heading, setHeading] = useState('Functional Component');
 
   useEffect(() => {
@@ -24,7 +24,7 @@ console.log(DogParkList)
                 <h1>Dog Park List</h1>
                 <Grid container justifyContent="center"
                     sx={{ flexGrow: 1 }} container spacing={4}>
-                    {DogParkList.dogParks?.map(dogPark => {
+                    {DogParkList.allDogParksInDB?.map(dogPark => {
                         return (
                             <Grid item key={dogPark.id} xs={12} sm={6} md={5} lg={4}>
                                 <DogParkItem dogPark={dogPark}/>

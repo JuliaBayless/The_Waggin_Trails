@@ -7,7 +7,6 @@ import axios from 'axios';
 function* fetchAllDogParks() {
   try {
     const response = yield axios.get(`/api/dogParks`);
-    console.log('GET ALL DOG PARKS', response.data);
     yield put({
       type: 'SET_All_DOG_PARKS',
       payload: response.data
@@ -20,7 +19,6 @@ function* fetchAllDogParks() {
 
 //GET a specific dog park for details page
 function* fetchSpecificDogPark(action) {
-  console.log('This is fetchSpecificDogPark', action.payload)
   try {
     const response = yield axios.get(`/api/dogParks/${action.payload}`);
     console.log('GET YO DOG PARK', response.data);

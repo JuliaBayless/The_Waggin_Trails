@@ -9,7 +9,6 @@ function* fetchAllTags() {
     // get genre from the DB as response
     try {
         const response = yield axios.get(`/api/tagList`);
-        console.log('GET ALL TAGS', response.data);
         yield put({
             type: 'SET_All_TAGS',
             payload: response.data
@@ -26,7 +25,6 @@ function* fetchSpecificDogParkTags() {
 
     try {
         const response = yield axios.get(`/api/parkTags`);
-        console.log('This is specific tags GET', response);
         yield put({
             type: 'SET_SPECIFIC_DOG_PARK_TAGS',
             payload: response.data

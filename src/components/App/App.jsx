@@ -10,7 +10,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 //page imports
 import AboutPage from '../AboutPage/AboutPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -70,17 +69,9 @@ function App() {
           </ProtectedRoute>
 
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
-          </ProtectedRoute>
-
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows the add form else shows LoginPage
             exact
             path="/addParkForm"
           >
