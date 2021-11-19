@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 
 //reducer for park tags
-const dogParks = (state = [], action) => {
+const allDogParksInDB = (state = [], action) => {
     switch (action.type) {
         case 'SET_All_DOG_PARKS':
             return action.payload
@@ -24,6 +24,6 @@ const dogParkDetails = (state = [], action) => {
 
 export default combineReducers({
     //reducers go here
-    dogParkDetails,
-    dogParks
+    allDogParksInDB,
+    dogParkDetails
 });

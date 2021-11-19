@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 //view of specific dog park with edit and delete admin views
 export default function dogParkDetails() {
     //grabbing the stores
-    const soManyDogParks = useSelector((store) => store.soManyDogParks);
+    const parkReducer = useSelector((store) => store.parkReducer);
     //making the variable easier to drill in to.
     const userId = useSelector((store) => store.user);
 
@@ -79,7 +79,7 @@ export default function dogParkDetails() {
         setToggleViewEdit(!toggleViewEdit)
     } //end editPageMode
 
-    let dogParkDetails = soManyDogParks.dogParkDetails
+    let dogParkDetails = parkReducer.dogParkDetails
     return (
         <>
         

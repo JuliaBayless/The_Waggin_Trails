@@ -7,7 +7,6 @@ import axios from 'axios';
 function* fetchAllDogParks() {
   try {
     const response = yield axios.get(`/api/dogParks`);
-    console.log('GET ALL DOG PARKS', response.data);
     yield put({
       type: 'SET_All_DOG_PARKS',
       payload: response.data

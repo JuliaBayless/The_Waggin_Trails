@@ -16,7 +16,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 //component for each card on the favorites page
 export default function FavoritesItem({ favPark }) {
     // const { image } = useStyles();
-    const dogParkTags = useSelector((store) => store.tags);
+    const dogParkTags = useSelector((store) => store.tagReducer);
     const dispatch = useDispatch();
     const history = useHistory();
   
@@ -28,27 +28,12 @@ export default function FavoritesItem({ favPark }) {
       })
     }, [])
   
-
-    //function to toggle fav boolean value
-    const toggleFavBoolean = () => {
-        dispatch({
-            type: 'TOGGLE_ISFAV_BOOLEAN_VALUE',
-            payload: favPark.id
-        })
-    } //end toggleFavBoolean
-
-
-    //takes the user to the favorite view for this specific dog park
-    const handleSubmitDetails = () => {
-      console.log('In handle submit')
   
+    const handleSubmitDetails = () => {  
       history.push(`/dogParkDetails/${favPark.id}`)
     } //end handleSubmit
   
-    //filtering out tags to match this specific dog park in component 
-    let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === favPark.id)
-
-
+    let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === favPark.id)  
     return (
       <Card sx={{ maxWidth: 400 }}
         elevation={6}

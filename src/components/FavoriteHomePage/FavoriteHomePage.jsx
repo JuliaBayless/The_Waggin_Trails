@@ -14,7 +14,7 @@ function FavoriteHomePage() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
   const dispatch = useDispatch();
-  const DogParkList = useSelector((store) => store.soManyDogParks);
+  const DogParkList = useSelector((store) => store.parkReducer);
 
 
   useEffect(() => {
@@ -22,13 +22,12 @@ function FavoriteHomePage() {
   }, [])
 
   //filtering out the fav dog parks by the isFav boolean value
-  let favDogParks = DogParkList.dogParks.filter(park => park.isFav === true)
+  let favDogParks = DogParkList.allDogParksInDB.filter(park => park.isFav === true)
  
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-     
       <Container>
                 <h1>Your Favorite Dog Parks</h1>
                 <Grid container justifyContent="center"
