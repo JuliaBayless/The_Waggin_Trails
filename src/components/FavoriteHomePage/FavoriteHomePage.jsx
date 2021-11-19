@@ -28,7 +28,7 @@ function FavoriteHomePage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+     
       <Container>
                 <h1>Your Favorite Dog Parks</h1>
                 <Grid container justifyContent="center"
@@ -42,6 +42,7 @@ function FavoriteHomePage() {
                     })}
                 </Grid>
             </Container>
+            <LogOutButton className="btn" />
     </div>
   );
 }

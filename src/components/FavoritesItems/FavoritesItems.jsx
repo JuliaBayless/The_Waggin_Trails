@@ -9,6 +9,8 @@ import {
 import { pink } from '@mui/material/colors';
 import PetsIcon from '@mui/icons-material/Pets';
 import Typography from '@mui/material/Typography';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 //component for each card on the favorites page
@@ -19,27 +21,35 @@ export default function FavoritesItem({ favPark }) {
     const history = useHistory();
   
   
-    //fetch all dog park ids
+    //fetch all dog park tags
     useEffect(() => {
-      console.log();
       dispatch({
         type: 'FETCH_DOG_PARK_TAGS',
       })
     }, [])
   
-  
+
+    //function to toggle fav boolean value
+    const toggleFavBoolean = () => {
+        dispatch({
+            type: 'TOGGLE_ISFAV_BOOLEAN_VALUE',
+            payload: favPark.id
+        })
+    } //end toggleFavBoolean
+
+
+    //takes the user to the favorite view for this specific dog park
     const handleSubmitDetails = () => {
       console.log('In handle submit')
   
       history.push(`/dogParkDetails/${favPark.id}`)
-    }
+    } //end handleSubmit
   
-  
+    //filtering out tags to match this specific dog park in component 
     let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === favPark.id)
-    console.log('This is newTags', newTags)
-  
+
+
     return (
-  
       <Card sx={{ maxWidth: 400 }}
         elevation={6}
         onClick={handleSubmitDetails}
@@ -48,7 +58,10 @@ export default function FavoritesItem({ favPark }) {
           <CardHeader
             title={favPark.name}
             subheader={favPark.location}
-            action={<PetsIcon />} />
+            action={<FavoriteIcon
+                sx={{ color: pink[300] }}
+                onClick={toggleFavBoolean}
+                        />} />
           <Box display='flex' flexGrow={1}>
           </Box>
           <CardMedia

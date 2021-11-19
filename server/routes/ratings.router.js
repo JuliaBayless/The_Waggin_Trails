@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 
 
 //Get average rating 
-router.get('/:AvgId', (req, res) => {
+router.get('/Avg/:Id', (req, res) => {
   console.log('IN GET /ratings');
   console.log('THIS IS PARAMS', req.params.AvgId);
 

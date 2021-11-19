@@ -20,7 +20,6 @@ function* fetchAllDogParks() {
 
 //GET a specific dog park for details page
 function* fetchSpecificDogPark(action) {
-  console.log('This is fetchSpecificDogPark', action.payload)
   try {
     const response = yield axios.get(`/api/dogParks/${action.payload}`);
     console.log('GET YO DOG PARK', response.data);
@@ -52,16 +51,14 @@ function* deleteThisDogPark(action) {
   try {
     axios.delete(`/api/dogParks/${action.payload}`)
     //FETCH the new DB 
-
   } catch (error) {
     yield put({ type: 'ERROR_IN_ADD_NEW_DOG_PARK' })
   }
 } //end addNewDogPark
 
 
+//admin edit dog park route
 function* editThisDogPark(action) {
-  console.log('IN THE EDIT SAGA', action.payload)
-
   try {
     axios.put(`/api/dogParks/${action.payload.id}`, action.payload)
     //FETCH the new DB
@@ -69,9 +66,10 @@ function* editThisDogPark(action) {
   } catch (error) {
     yield put({ type: 'ERROR_IN_ADD_NEW_DOG_PARK' })
   }
+}//end editThisGodPark
 
-}
 
+//listeners for actions
 function* dogParkSaga() {
   yield takeLatest('ADD_NEW_DOG_PARK', addNewDogPark);
   yield takeLatest('FETCH_ALL_DOG_PARKS', fetchAllDogParks);
@@ -79,5 +77,6 @@ function* dogParkSaga() {
   yield takeLatest('EDIT_THIS_DOG_PARK', editThisDogPark);
   yield takeLatest('FETCH_DOG_PARK_DETAIL_VIEW', fetchSpecificDogPark)
 }
+
 
 export default dogParkSaga;
