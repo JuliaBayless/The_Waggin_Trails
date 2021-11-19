@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 
 
 //component for each card on the favorites page
-export default function FavoritesItem({ dogPark }) {
+export default function FavoritesItem({ favPark }) {
     // const { image } = useStyles();
     const dogParkTags = useSelector((store) => store.tags);
     const dispatch = useDispatch();
@@ -31,31 +31,31 @@ export default function FavoritesItem({ dogPark }) {
     const handleSubmitDetails = () => {
       console.log('In handle submit')
   
-      history.push(`/dogParkDetails/${dogPark.id}`)
+      history.push(`/dogParkDetails/${favPark.id}`)
     }
   
   
-    let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
+    let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === favPark.id)
     console.log('This is newTags', newTags)
   
     return (
   
       <Card sx={{ maxWidth: 400 }}
         elevation={6}
-        onClick={() => { handleSubmitDetails(dogPark) }}
+        onClick={handleSubmitDetails}
         sx={{ height: 400, width: 300 }}>
         <CardActionArea>
           <CardHeader
-            title={dogPark.name}
-            subheader={dogPark.location}
+            title={favPark.name}
+            subheader={favPark.location}
             action={<PetsIcon />} />
           <Box display='flex' flexGrow={1}>
           </Box>
           <CardMedia
             component="img"
             sx={{ height: 150, width: 300 }}
-            image={dogPark.image_url}
-            alt={dogPark.name} />
+            image={favPark.image_url}
+            alt={favPark.name} />
           <CardContent>
             <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
               {newTags?.map(tag => {
