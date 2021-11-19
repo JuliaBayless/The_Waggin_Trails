@@ -12,8 +12,10 @@ router.get('/', (req, res) => {
 
   //grab the info from dog_parks
   let queryText = `
-        SELECT * FROM "dog_parks"
-    `;
+  SELECT * FROM "ratings" 
+  FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id;
+  `;
+
 
   pool.query(queryText)
     .then((result) => {
@@ -31,7 +33,7 @@ router.get('/:id', (req, res) => {
 
   //grab the info from the dog_park
   let queryText = `
-        SELECT * FROM "dog_parks"
+  SELECT * FROM "dog_parks"
         WHERE "id" = $1
     `;
 
@@ -53,10 +55,10 @@ router.post('/', (req, res) => {
 
   //post to the dog_parks table in the DB and return ID for tags
   const queryText = `
-    INSERT INTO "dog_parks" ("name", "location", "description", "image_url")
-    VALUES ($1, $2, $3, $4)
+    INSERT INTO "dog_parks"("name", "location", "description", "image_url")
+  VALUES($1, $2, $3, $4)
     RETURNING "id";
-    `;
+  `;
 
   pool.query(queryText, [req.body.name, req.body.location, req.body.description, req.body.image_url])
     .then((result) => {
@@ -66,9 +68,9 @@ router.post('/', (req, res) => {
       const createdParkId = result.rows[0].id //and made into this variable
 
       const insertDogParkTagsQuery = `
-        INSERT INTO "dog_park_tags" ("dog_park_id", "tag_id")
-        VALUES  ($1, $2);
-        `
+        INSERT INTO "dog_park_tags"("dog_park_id", "tag_id")
+  VALUES($1, $2);
+  `
       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
       pool.query(insertDogParkTagsQuery, [createdParkId, req.body.tag_id])
         .then(result => {
@@ -97,8 +99,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
   //update the dog parks with this query AND check access level with $6
   let queryText = `UPDATE "dog_parks"
-  SET "name"=$1, "location"=$2, "description" = $3, "image_url" = $4
-  WHERE "id" = $5 AND $6 > 0;`;
+  SET "name" = $1, "location" = $2, "description" = $3, "image_url" = $4
+  WHERE "id" = $5 AND $6 > 0; `;
 
 
   let values = [req.body.name, req.body.location, req.body.description, 
@@ -123,7 +125,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   let queryText = `
   DELETE FROM "dog_parks"
   WHERE "id" = $1 AND $2 > 0
-  `;
+    `;
 
   pool.query(queryText, [idToDelete, req.user.access_level])
     .then(respond => {

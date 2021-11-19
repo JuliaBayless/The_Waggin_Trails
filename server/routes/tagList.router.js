@@ -24,6 +24,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 }); //end GET
 
 
+
+//****** HAVENT BUILT YET */
 //Add a tag to the Tags list for admin *stretch goal
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('IN POST /tagList', req.user.access_level, req.body);
