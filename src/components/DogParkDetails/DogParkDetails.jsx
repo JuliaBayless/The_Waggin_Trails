@@ -10,7 +10,7 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, ButtonGroup } from '@mui/material';
 import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
@@ -93,15 +93,18 @@ export default function dogParkDetails() {
 
                 {/* buttons appear for administrators */}
                 {userId.access_level > 0 &&
-                    <Box className={iconLayout}>
-                        <Grid item xs={12} className={iconLayout}>
-                            <DeleteForeverRoundedIcon
-                                onClick={deleteDogPark} />
-                            <ModeEditIcon
-
+                    <ButtonGroup
+                    sx={{ display: 'flex', justifyContent: 'center', mt: '20px', marginLeft:'40px' }}
+                  >
+                        <Grid item xs={12}>
+                        <ModeEditIcon
                                 onClick={editPageMode} />
+                            <DeleteForeverRoundedIcon
+                                sx={{marginLeft:'30px'}}
+                                onClick={deleteDogPark} />
+                           
                         </Grid>
-                    </Box>}
+                    </ButtonGroup>}
             </Grid>
         </>
     )

@@ -98,6 +98,28 @@ router.put('/:id', (req, res) => {
 }); //end PUT
 
 
+router.put('/isFav/:id', (req, res) => {
+  const idToUpdate = req.params.id
+  console.log('This is what we are Updating -->', idToUpdate);
+  console.log('user', req.user);
+
+  //user can update their rating
+
+  let queryText= `UPDATE "ratings"
+  SET "isFav"= NOT "isFav" 
+  WHERE "dog_park_id" = $2 AND "user_id" = $3;`;
+
+
+  let values = [req.body.ratings, idToUpdate, req.user.id]
+  pool.query(queryText, values)
+  .then(respond => {
+    res.send(200);
+  }).catch(error => {
+    console.log('ERROR IN UPDATE', error);
+    res.sendStatus(500);
+  })
+}); //end PUT
+
 //No DELETE YET, will have to delete when dog park is deleted
 
 

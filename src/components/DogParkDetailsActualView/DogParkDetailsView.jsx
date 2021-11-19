@@ -4,16 +4,10 @@ import { useHistory } from "react-router";
 import { useEffect, useState } from 'react';
 import { Container, Paper, Box, makeStyles } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import { Typography, Chip, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import { CardActionArea } from '@mui/material';
 import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
-import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 
@@ -42,21 +36,21 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     const parkTags = useSelector((store) => store.tags);
     const dispatch = useDispatch();
 
-//call the tags
-useEffect(() => {
-    dispatch({
-        type: 'FETCH_DOG_PARK_TAGS',
-      })
-}, [])
+    //call the tags
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_DOG_PARK_TAGS',
+        })
+    }, [])
 
-console.log(parkTags, dogParkDetails)
-//filter out specific tags to dog park
-let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.id)
-console.log(newTags)
+    console.log(parkTags, dogParkDetails)
+    //filter out specific tags to dog park
+    let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.id)
+    console.log(newTags)
     return (
         <>
             <Grid item xs={10}>
-                 <h1>{dogParkDetails.name}</h1>
+                <h1>{dogParkDetails.name}</h1>
             </Grid>
             <Grid item xs={2}>
                 <PetsOutlinedIcon />
@@ -82,13 +76,18 @@ console.log(newTags)
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
-                {newTags?.map(tag => {
-          return (
-            <div key={tag.id}><p>{tag.tag}</p></div>
-          )
-        })}
-
-                </Grid>  
+                <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding:'10px'}}>
+            {newTags?.map(tag => {
+                return (
+                <Chip 
+                key={tag.id}
+                // sx={{margin: '10px'}} Not working!
+                color="success" 
+                label={tag.tag} />
+            )
+            })}
+            </Stack>
+            </Grid>
         </>
     )
 } //end DogParkDetailsView

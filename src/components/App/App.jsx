@@ -21,7 +21,7 @@ import DogParkList from '../DogParkList/DogParkList';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import DogParkDetails from '../DogParkDetails/DogParkDetails';
-import EditParkPage from '../EditParkPage/EditParkPage';
+
 
 //mui imports
 import '@fontsource/roboto/300.css';
@@ -103,14 +103,6 @@ function App() {
             path="/DogParkDetails/:dp_id"
           >
             <DogParkDetails />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/editMode"
-          >
-           <EditParkPage />
           </ProtectedRoute>
 
 
