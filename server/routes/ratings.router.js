@@ -29,9 +29,9 @@ router.get('/', (req, res) => {
 
 
 //Get average rating 
-router.get('/Avg/:Id', (req, res) => {
+router.get('/Avg/:id', (req, res) => {
   console.log('IN GET /ratings');
-  console.log('THIS IS PARAMS', req.params.AvgId);
+  console.log('THIS IS PARAMS', req.params.id);
 
   // console.log('is authenticated?', req.isAuthenticated());
 
@@ -41,7 +41,7 @@ router.get('/Avg/:Id', (req, res) => {
     WHERE "dog_park_id" = $1;
     `;
 
-  pool.query(queryText, [req.params.AvgId])
+  pool.query(queryText, [req.params.id])
     .then((result) => {
       res.send(result.rows);
     }).catch((error) => {

@@ -57,12 +57,11 @@ export default function dogParkDetails() {
     const { root, rowLayout, iconLayout, layout } = useStyles();
 
     useEffect(() => {
-     
+        
         dispatch({
-            type: 'FETCH_DOG_PARK_DETAIL_VIEW',
-            payload: dp_id
-        })
+            type: 'FETCH_DOG_PARK_DETAIL_VIEW', payload: dp_id })
         dispatch({ type: 'FETCH_ALL_TAGS' })
+        dispatch({type: 'FETCH_AVERAGE_RATING', payload: dp_id })
     }, [])
 
 
