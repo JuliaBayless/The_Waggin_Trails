@@ -33,7 +33,6 @@ function* fetchFavDogParks(action) {
 function* fetchSpecificDogPark(action) {
   try {
     const response = yield axios.get(`/api/dogParks/${action.payload}`);
-    console.log('GET YO DOG PARK', response.data);
     yield put({
       type: 'SET_DOG_PARK_DETAIL',
       payload: response.data

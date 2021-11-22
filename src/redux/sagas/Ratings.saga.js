@@ -16,6 +16,7 @@ function* toggleIsFav(action) {
 function* fetchAverageRating(action) {
     try {
         const response = yield axios.get(`/api/ratings/Avg/${action.payload}`)
+        console.log('=============', response.data)
         yield put({
             type: 'SET_AVERAGE_RATING_ON_PARK',
             payload: response.data

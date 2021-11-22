@@ -5,7 +5,7 @@ import { combineReducers } from 'redux';
 const averageRating = (state = [], action) => {
     switch (action.payload) {
         case 'SET_AVERAGE_RATING_ON_PARK':
-            return action.payload
+            return action.payload[0]
         default: 
             return state;
     }
