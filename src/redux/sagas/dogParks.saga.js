@@ -16,6 +16,18 @@ function* fetchAllDogParks() {
   }
 } //end fetchAllTags
 
+//GET for FAV DOG PARKS
+function* fetchFavDogParks(action) {
+  try {
+    const response = yield axios.get(`/api/dogParks/favoriteDP`);
+    yield put({
+      type: 'SET_FAV_DOG_PARKS',
+      payload: response.data
+    });
+  } catch (error) {
+    yield put({ type: 'ERROR_IN_SET_All_DOG_PARKS' })
+  }
+} //end fetchAllTags
 
 //GET a specific dog park for details page
 function* fetchSpecificDogPark(action) {
@@ -75,6 +87,7 @@ function* dogParkSaga() {
   yield takeLatest('DELETE_THIS_DOG_PARK', deleteThisDogPark);
   yield takeLatest('EDIT_THIS_DOG_PARK', editThisDogPark);
   yield takeLatest('FETCH_DOG_PARK_DETAIL_VIEW', fetchSpecificDogPark)
+  yield takeLatest('FETCH_FAV_DOG_PARKS', fetchFavDogParks);
 }
 
 

@@ -6,16 +6,17 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 //-----DOG PARK ROUTER------
 
 
+//GET ALL DOG PARKS
 router.get('/', (req, res) => {
-  console.log('IN GET /dogParks');
+  console.log('IN GET /ratings');
+  console.log('THIS IS PARAMS', req.params.AvgId);
+
   // console.log('is authenticated?', req.isAuthenticated());
 
-  //grab the info from dog_parks
+  //grab ALL dog parks
   let queryText = `
-      SELECT * FROM "ratings" 
-      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id;
-      `;
-
+    SELECT * FROM "dog_parks";
+    `;
 
   pool.query(queryText)
     .then((result) => {
@@ -27,6 +28,30 @@ router.get('/', (req, res) => {
 }); //end GET
 
 
+//GET favorite dog parks for the user
+router.get('/favoriteDP', (req, res) => {
+  console.log('IN GET /dogParks');
+  // console.log('is authenticated?', req.isAuthenticated());
+
+  //grab the info from dog_parks
+  let queryText = `
+      SELECT * FROM "ratings" 
+      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id
+      WHERE "ratings".user_id = $1;
+      `;
+
+ 
+  pool.query(queryText, [req.user.id])
+    .then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+}); //end GET
+
+
+//GET specific dog park
 router.get('/:id', (req, res) => {
   console.log('IN GET /dogParks/:id', req.params.id);
   // console.log('is authenticated?', req.isAuthenticated());

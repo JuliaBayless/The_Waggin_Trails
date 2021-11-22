@@ -6,6 +6,8 @@ const allDogParksInDB = (state = [], action) => {
     switch (action.type) {
         case 'SET_All_DOG_PARKS':
             return action.payload
+        case 'SET_FAV_DOG_PARKS' :
+            return action.payload
         default:
             return state
     }
@@ -21,9 +23,18 @@ const dogParkDetails = (state = [], action) => {
     }
 } //end dogParkDetails
 
+// const FAVParks = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_All_DOG_PARKS':
+//             return action.payload
+//         default:
+//             return state
+//     }
+// } //end dog parks
 
 export default combineReducers({
     //reducers go here
     allDogParksInDB,
-    dogParkDetails
+    dogParkDetails,
+    // FAVParks
 });

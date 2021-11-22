@@ -18,7 +18,7 @@ function FavoriteHomePage() {
 
 
   useEffect(() => {
-    dispatch({type: 'FETCH_ALL_DOG_PARKS'})
+    dispatch({type: 'FETCH_FAV_DOG_PARKS'})
   }, [])
 
   //filtering out the fav dog parks by the isFav boolean value
