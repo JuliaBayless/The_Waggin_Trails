@@ -3,9 +3,9 @@ import { combineReducers } from 'redux';
 
 //Set the average rating for each dog park
 const averageRating = (state = [], action) => {
-    switch (action.payload) {
+    switch (action.type) {
         case 'SET_AVERAGE_RATING_ON_PARK':
-            return action.payload[0]
+            return action.payload
         default: 
             return state;
     }
