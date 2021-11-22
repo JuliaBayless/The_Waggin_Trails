@@ -59,8 +59,8 @@ router.get('/:id', (req, res) => {
   //grab the info from the dog_park
   let queryText = `
       SELECT * FROM "dog_parks"
-      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id;
-      WHERE "id" = $1
+      FULL OUTER JOIN "ratings" ON "dog_parks".id = "ratings".dog_park_id
+      WHERE "dog_parks".id  = $1;
       `;
 
 
