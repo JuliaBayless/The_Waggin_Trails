@@ -18,7 +18,7 @@ function* toggleIsFav(action) {
 
 
 function* Favorites() {
-    yield takeLatest('TOGGLE_ISFAV_BOOLEAN_VALUE', toggleIsFav);
+    yield takeLatest('TOGGLE_ISFAV_BOOLEAN_VALUE', toggleIsFav) 
 }
 
 export default Favorites;

@@ -45,7 +45,7 @@ export default function FavoritesItem({ favPark }) {
             subheader={favPark.location}
             action={<FavoriteIcon
                 sx={{ color: pink[300] }}
-                onClick={toggleFavBoolean}
+                // onClick={toggleFavBoolean}
                         />} />
           <Box display='flex' flexGrow={1}>
           </Box>
