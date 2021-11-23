@@ -23,35 +23,19 @@ const dogParkDetails = (state = [], action) => {
     }
 } //end dogParkDetails
 
-const dogParkDummyData = {
-    name: '',
-    location: '',
-    description: '',
-    image_url: '',
-    tag_id: []
-  }
+
 
 
 //hold new dog park info until ready to send
-const addDogPark = (state = dogParkDummyData, action ) => {
+const addDogPark = (state = [], action ) => {
     switch (action.type) {
-        case 'ADD_DOG_PARK' :
-            //adding to the object for add new dog park
-            return {
-                ...state,
-                [action.payload.property] : action.payload.value
-            }
             //adding the tags array to the data?
         case 'ADD_TAG' :
             console.log('in ADD_TAG', action.payload);
-            state.tag_id.push(action.payload);
-            return {
-                ...state,
-            }  
+            state.push(action.payload);
+            return state  
         case 'DELETE_TAG' :
-            return {
-                tag_id : state.tag_id.filter(tag => tag !== action.payload)
-            }
+            return  state.filter(tag => tag !== action.payload)
         default :
             return state
     }

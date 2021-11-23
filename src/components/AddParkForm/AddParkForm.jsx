@@ -33,7 +33,7 @@ export default function AddDogParkForm(props) {
 
 
   //store
-  const parkTags = useSelector((store) => store.tagReducer);
+  const userSelectedTags = useSelector((store) => store.parkReducer)
   const [dogPark, setDogPark] = useState(dogParkDummyData);
 
 
@@ -49,10 +49,10 @@ export default function AddDogParkForm(props) {
     history.push('/DogParkList')
   }//end handSubmitNewPark
 
-
+console.log('===This is user selected Tags===', userSelectedTags.addDogPark)
   return (
     <>
-      <Typography variant="h5">
+      <Typography variant="h5" sx={{ mt: '10px', mb: '40px' }}>
         Add a New Dog Park Here</Typography>
       <Grid container spacing={2} >
         <Grid item xs={12}>
@@ -102,23 +102,6 @@ export default function AddDogParkForm(props) {
               />
             </Grid>
             <ParkTagsForm />
-            {/* <FormControl sx={{ m: 1, minWidth: 220 }}>
-              <InputLabel id="tag shooser">Choose Tag!</InputLabel>
-              <Select value={dogPark.tag_id}
-                sx={{ minWidth: 120 }}
-                onChange={(event) =>
-                  setDogPark({ ...dogPark, tag_id: event.target.value })}>
-
-
-                {parkTags.allTags?.map((tags) => {
-                  return (
-                    <MenuItem key={tags.id} value={tags.id}>
-                      {tags.tag}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl> */}
 
             <Grid item xs={12}>
               <Button
