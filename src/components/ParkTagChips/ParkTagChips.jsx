@@ -4,7 +4,6 @@ import { useState } from 'react'
 function ParkTagChip({ deleteParkTag, parkTag, addParkTag }) {
     const [chipStatus, setChipStatus] = useState(false)
     //conditional render 
-    console.log(chipStatus, parkTag.id)
     return (
         <>
             {chipStatus ?

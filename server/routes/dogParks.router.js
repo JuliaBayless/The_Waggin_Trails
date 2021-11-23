@@ -76,7 +76,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // POST route code here
-  console.log('This is REQ.BODY', req.body);
+  console.log('This is REQ.BODY', req.body, req.body.tag_id);
   // console.log('is authenticated?', req.isAuthenticated());
 
   //post to the dog_parks table in the DB and return ID for tags
@@ -91,14 +91,19 @@ router.post('/', (req, res) => {
       //add in a row for for the dog_park_tags table
       console.log('New Dog Park Id:', result.rows[0].id); //The new park ID is returned here
 
-      const createdParkId = result.rows[0].id //and made into this variable
+      const createdParkId = result.rows[0].id //ID is made into this variable
 
-      const insertDogParkTagsQuery = `
+      let insertDogParkTagsQuery = `
         INSERT INTO "dog_park_tags"("dog_park_id", "tag_id")
-        VALUES($1, $2);
+        VALUES($1, $2)
          `
+      //loop for every new    
+         for ( let i = 1; i < req.body.tag_id.length; i++ ) {
+          insertDogParkTagsQuery += `, ($1, $${i+2})`;
+        }
+
       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-      pool.query(insertDogParkTagsQuery, [createdParkId, req.body.tag_id])
+      pool.query(insertDogParkTagsQuery, [createdParkId, ...req.body.tag_id])
         .then(result => {
           res.sendStatus(201);
         }).catch((error) => {
@@ -115,7 +120,7 @@ router.post('/', (req, res) => {
 
 
 
-//**** NOT YET TESTED */
+
 //for ADMIN use only to edit dog parks
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const idToUpdate = req.params.id
@@ -142,7 +147,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 }); //END PUT
 
 
-//**** NOT YET TESTED */
+
 //for ADMIN use only to delete dog parks
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const idToDelete = req.params.id

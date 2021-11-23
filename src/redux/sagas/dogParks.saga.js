@@ -48,8 +48,8 @@ function* fetchSpecificDogPark(action) {
 function* addNewDogPark(action) {
   try {
     axios.post('/api/dogParks', action.payload)
-    //FETCH the new DB
-    // yield put({ type: 'FETCH_ALL_DOG_PARKS' });
+    // //CLEAR reducer holding tag information
+    // yield put({ type: 'CLEAR_USER_SELECTED_TAGS_ON_FORM' });
   } catch (error) {
     yield put({ type: 'ERROR_IN_ADD_NEW_DOG_PARK' })
   }

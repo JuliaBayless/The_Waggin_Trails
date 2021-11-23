@@ -33,7 +33,7 @@ export default function AddDogParkForm(props) {
 
 
   //store
-  const userSelectedTags = useSelector((store) => store.parkReducer)
+  let userSelectedTagsReducer = useSelector((store) => store.parkReducer)
   const [dogPark, setDogPark] = useState(dogParkDummyData);
 
 
@@ -43,13 +43,24 @@ export default function AddDogParkForm(props) {
     // dispatch new information off to saga
     dispatch({
       type: 'ADD_NEW_DOG_PARK',
-      payload: dogPark
+      payload: {
+        name: dogPark.name,
+        location: dogPark.location,
+        description: dogPark.description,
+        image_url: dogPark.image_url,
+        tag_id: userSelectedTags
+      }
     })
+    //clear reducer holding dog tags selected by user
+    dispatch({ type: 'CLEAR_USER_SELECTED_TAGS_ON_FORM'})
     //send user to the list to see their dog park
     history.push('/DogParkList')
   }//end handSubmitNewPark
 
-console.log('===This is user selected Tags===', userSelectedTags.addDogPark)
+
+let userSelectedTags = userSelectedTagsReducer.addTagsToDogPark
+console.log('===This is user selected Tags===', userSelectedTagsReducer.addTagsToDogPark)
+
   return (
     <>
       <Typography variant="h5" sx={{ mt: '10px', mb: '40px' }}>

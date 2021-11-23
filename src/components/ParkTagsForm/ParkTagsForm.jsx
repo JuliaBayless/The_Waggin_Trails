@@ -27,12 +27,10 @@ function ParkTagsForm() {
 
   // delete this parkTag on the server
   const deleteParkTag = (parkTag) => {
-    console.log('in delete tags, tag is', parkTag);
     dispatch({ type: 'DELETE_TAG', payload: parkTag });
   };
 
   const addParkTag = (parkTag) => {
-      console.log('in add tag, tag is', parkTag);
       dispatch({ type: 'ADD_TAG', payload: parkTag})
   }
 

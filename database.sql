@@ -62,7 +62,7 @@ CREATE TABLE "ratings" (
 	"user_id" int NOT NULL,
 	"dog_park_id" int NOT NULL,
 	"comments" varchar(350),
-	"ratings" decimal,
+	"ratings" decimal DEFAULT 0,
 	"isFav" boolean DEFAULT false,
 	CONSTRAINT "ratings_pk" PRIMARY KEY ("id")
 ) WITH (

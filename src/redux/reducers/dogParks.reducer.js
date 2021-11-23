@@ -27,15 +27,18 @@ const dogParkDetails = (state = [], action) => {
 
 
 //hold new dog park info until ready to send
-const addDogPark = (state = [], action ) => {
+const addTagsToDogPark = (state = [], action ) => {
     switch (action.type) {
-            //adding the tags array to the data?
+            //adding the to the tags array that goes to that database 
         case 'ADD_TAG' :
-            console.log('in ADD_TAG', action.payload);
             state.push(action.payload);
             return state  
+            //delete from the tags array
         case 'DELETE_TAG' :
             return  state.filter(tag => tag !== action.payload)
+            //empty reducer after park is submitted
+        case 'CLEAR_USER_SELECTED_TAGS_ON_FORM' :
+            return []
         default :
             return state
     }
@@ -47,6 +50,5 @@ export default combineReducers({
     //reducers go here
     allDogParksInDB,
     dogParkDetails,
-    addDogPark
-
+    addTagsToDogPark
 });
