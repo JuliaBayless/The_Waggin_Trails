@@ -33,77 +33,32 @@ function ParkTagsForm() {
   // delete this parkTag on the server
   const deleteParkTag = (parkTag) => {
     console.log('in delete tags, tag is', parkTag);
-    dispatch({ type: 'DELETE_TAG', payload: parkTag });
+    // dispatch({ type: 'DELETE_TAG', payload: parkTag });
   };
 
   const addParkTag = (parkTag) => {
       console.log('in add tag, tag is', parkTag);
-      dispatch({ type: 'ADD_TAG', payload: parkTag })
+    //   dispatch({ type: 'ADD_TAG', payload: parkTag })
   }
 
-  console.log(`in ParkTagsForm and tags = `, );
   return (
-    <Container sx={{ mt: '20px', display: 'flex', justifyContent: 'center' }}>
-      <Paper
-        elevation={12}
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-        //   justifyContent: 'space-between',
-          width: '600px',
-          p: '30px',
-        }}
-      >
-        <Typography variant="h5">Add Tag</Typography>
-        <FormControl>
-          <TextField
-            sx={{ m: '10px' }}
-            type="text"
-            variant="standard"
-            label="Add Tag"
-            required
-            value={tag}
-            onChange={(event) => setTag(event.target.value)}
-          />
-        </FormControl>
-        <ButtonGroup
-          sx={{ display: 'flex', justifyContent: 'right', mt: '40px' }}
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              dispatch({
-                type: 'ADD_TAG',
-                payload: tag,
-              });
-              // reset the input field
-              setTag('');
-            }}
-          >
-            Add Tag
-          </Button>
-        </ButtonGroup>
-        <Typography variant="h4" sx={{ mt: '40px', mb: '40px' }}>
-          Remove Tags
+    <Container sx={{ mt: '20px', display: 'flex', justifyContent: 'center', flexDirection: 'column', }}>
+        <Typography variant="h5" sx={{ mt: '40px', mb: '40px' }}>
+          Add Tags
         </Typography>
         <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
           {parkTags.allTags?.map((parkTag) => (
-            <ParkTagChip key={parkTag.id} parkTag={parkTag} deleteParkTag={deleteParkTag} />
+            <ParkTagChip 
+            key={parkTag.id} 
+            parkTag={parkTag} 
+            deleteParkTag={deleteParkTag} 
+            addParkTag={addParkTag}/>
           ))}
         </Stack>
         <ButtonGroup
           sx={{ display: 'flex', justifyContent: 'right', mt: '40px' }}
         >
-          <Button
-            variant="contained"
-            color="error"
-            onClick={() => history.push('/')}
-          >
-            Return
-          </Button>
         </ButtonGroup>
-      </Paper>
     </Container>
   );
 }

@@ -24,6 +24,29 @@ const dogParkDetails = (state = [], action) => {
 } //end dogParkDetails
 
 
+//hold new dog park info until ready to send
+const addDogPark = (state = {}, action ) => {
+    switch (action.type) {
+        case 'ADD_DOG_PARK' :
+            //adding to the object for add new dog park
+            return {
+                ...state,
+                [action.payload.property] : action.payload.value
+            }
+            //adding the tags array to the data?
+        case 'ADD_TAG' :
+            return {
+                ...state,
+                [action.payload.property] : [...action.payload.value]
+            }  
+        case 'DELETE_TAG' :
+            return //.splice?
+        default :
+            return state
+    }
+
+}
+
 
 export default combineReducers({
     //reducers go here

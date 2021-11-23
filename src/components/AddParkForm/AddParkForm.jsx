@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { MenuItem, TextareaAutosize, Button, Input } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
-import { Paper, Box, makeStyles } from '@material-ui/core';
+import { Paper, Box, makeStyles, Typography } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import ParkTagsForm from '../ParkTagsForm/ParkTagsForm';
 
@@ -52,8 +52,9 @@ export default function AddDogParkForm(props) {
 
   return (
     <>
-      <h2>Add a New Dog Park Here</h2>
-      <Grid container spacing={2}>
+      <Typography variant="h5">
+        Add a New Dog Park Here</Typography>
+      <Grid container spacing={2} >
         <Grid item xs={12}>
           <form onSubmit={handleSubmitNewPark}>
             <Grid item xs={12}>
