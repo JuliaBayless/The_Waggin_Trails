@@ -84,7 +84,7 @@ function ParkTagsForm() {
         </Typography>
         <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
           {parkTags.map((parkTag) => (
-            <ParkTagChips key={parkTag.id} parkTag={parkTag} deleteParkTag={deleteParkTag} />
+            <ParkTagChip key={parkTag.id} parkTag={parkTag} deleteParkTag={deleteParkTag} />
           ))}
         </Stack>
         <ButtonGroup
