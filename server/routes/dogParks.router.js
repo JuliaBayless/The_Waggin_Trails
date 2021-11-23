@@ -6,16 +6,17 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 //-----DOG PARK ROUTER------
 
 
+//GET ALL DOG PARKS
 router.get('/', (req, res) => {
-  console.log('IN GET /dogParks');
+  console.log('IN GET /ratings');
+  console.log('THIS IS PARAMS', req.params.AvgId);
+
   // console.log('is authenticated?', req.isAuthenticated());
 
-  //grab the info from dog_parks
+  //grab ALL dog parks
   let queryText = `
-      SELECT * FROM "ratings" 
-      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id;
-      `;
-
+    SELECT * FROM "dog_parks";
+    `;
 
   pool.query(queryText)
     .then((result) => {
@@ -27,6 +28,30 @@ router.get('/', (req, res) => {
 }); //end GET
 
 
+//GET favorite dog parks for the user
+router.get('/favoriteDP', (req, res) => {
+  console.log('IN GET /dogParks');
+  // console.log('is authenticated?', req.isAuthenticated());
+
+  //grab the info from dog_parks
+  let queryText = `
+      SELECT * FROM "ratings" 
+      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id
+      WHERE "ratings".user_id = $1;
+      `;
+
+
+  pool.query(queryText, [req.user.id])
+    .then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+}); //end GET
+
+
+//GET specific dog park
 router.get('/:id', (req, res) => {
   console.log('IN GET /dogParks/:id', req.params.id);
   // console.log('is authenticated?', req.isAuthenticated());
@@ -34,8 +59,8 @@ router.get('/:id', (req, res) => {
   //grab the info from the dog_park
   let queryText = `
       SELECT * FROM "dog_parks"
-      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id;
-      WHERE "id" = $1
+      FULL OUTER JOIN "ratings" ON "dog_parks".id = "ratings".dog_park_id
+      WHERE "dog_parks".id  = $1;
       `;
 
 
@@ -51,7 +76,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // POST route code here
-  console.log('This is REQ.BODY', req.body);
+  console.log('This is REQ.BODY', req.body, req.body.tag_id, 'THIS IS REQ.USER', req.user.id);
   // console.log('is authenticated?', req.isAuthenticated());
 
   //post to the dog_parks table in the DB and return ID for tags
@@ -66,16 +91,33 @@ router.post('/', (req, res) => {
       //add in a row for for the dog_park_tags table
       console.log('New Dog Park Id:', result.rows[0].id); //The new park ID is returned here
 
-      const createdParkId = result.rows[0].id //and made into this variable
+      const createdParkId = result.rows[0].id //ID is made into this variable
 
-      const insertDogParkTagsQuery = `
+      let insertDogParkTagsQuery = `
         INSERT INTO "dog_park_tags"("dog_park_id", "tag_id")
-        VALUES($1, $2);
+        VALUES($1, $2)
          `
-      // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-      pool.query(insertDogParkTagsQuery, [createdParkId, req.body.tag_id])
+      //loop for every new    
+      for (let i = 1; i < req.body.tag_id.length; i++) {
+        insertDogParkTagsQuery += `, ($1, $${i + 2})`;
+      }
+
+      // SECOND QUERY ADDS TAGS FOR NEW DOG PARK
+      pool.query(insertDogParkTagsQuery, [createdParkId, ...req.body.tag_id])
         .then(result => {
-          res.sendStatus(201);
+
+          let insertRatingsQuery = `
+          INSERT INTO "ratings" ("user_id", "dog_park_id", "ratings")
+          VALUES($1, $2, $3)
+           `
+          let ratings = 1;
+
+          //THIRD QUERY ADDS RATINGS ROW 
+          pool.query(insertRatingsQuery, [req.user.id, createdParkId, ratings])
+            .then(result => {
+
+              res.sendStatus(201);
+            })
         }).catch((error) => {
           console.log(error);
           res.sendStatus(500);
@@ -90,7 +132,7 @@ router.post('/', (req, res) => {
 
 
 
-//**** NOT YET TESTED */
+
 //for ADMIN use only to edit dog parks
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const idToUpdate = req.params.id
@@ -117,28 +159,54 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 }); //END PUT
 
 
-//**** NOT YET TESTED */
+
 //for ADMIN use only to delete dog parks
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const idToDelete = req.params.id
   console.log('This is what we are deleting -->', idToDelete, req.user.access_level);
 
-  //query text to delete dog park if access_level is greater than 0
-  let queryText = `
-      DELETE FROM "dog_parks"
-      WHERE "id" = $1 AND $2 > 0
-      `;
+  let queryDogParkTags = `
+  DELETE FROM "dog_park_tags"
+  WHERE "dog_park_id" = $1 AND $2 > 0
+  `
 
-  pool.query(queryText, [idToDelete, req.user.access_level])
+  pool.query(queryDogParkTags, [idToDelete, req.user.access_level])
     .then(respond => {
-      res.send(200);
+
+      //SECOND QUERY TO delete dog park if access_level is greater than 0
+      let queryRatingsText = `
+          DELETE FROM "ratings"
+          WHERE "dog_park_id" = $1 AND $2 > 0;`
+
+
+      pool.query(queryRatingsText, [idToDelete, req.user.access_level])
+        .then(respond => {
+
+          let queryText = `
+          DELETE FROM "dog_parks"
+          WHERE "id" = $1 AND $2 > 0
+          `;
+    
+          pool.query(queryText, [idToDelete, req.user.access_level])
+            .then(respond => {
+              res.sendStatus(200);
+            })
+            .catch(error => {
+              console.log('ERROR IN DELETE from dog park table', error);
+              res.sendStatus(500);
+            })
+        })
+        .catch(error => {
+          console.log('ERROR IN DELETE from ratings table', error);
+          res.sendStatus(500);
+        })
     })
     .catch(error => {
-      console.log('ERROR IN DELETE', error);
+      console.log('ERROR IN DELETE from junction table', error);
       res.sendStatus(500);
-    })
-}); //end DELETE
 
+    });
 
+}) //end DELETE
 
 module.exports = router;

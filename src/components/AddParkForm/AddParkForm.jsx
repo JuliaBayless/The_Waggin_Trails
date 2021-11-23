@@ -6,8 +6,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { MenuItem, TextareaAutosize, Button, Input } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
-import { Paper, Box, makeStyles } from '@material-ui/core';
+import { Paper, Box, makeStyles, Typography } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
+import ParkTagsForm from '../ParkTagsForm/ParkTagsForm';
 
 
 
@@ -32,7 +33,7 @@ export default function AddDogParkForm(props) {
 
 
   //store
-  const parkTags = useSelector((store) => store.tagReducer);
+  let userSelectedTagsReducer = useSelector((store) => store.parkReducer)
   const [dogPark, setDogPark] = useState(dogParkDummyData);
 
 
@@ -42,17 +43,29 @@ export default function AddDogParkForm(props) {
     // dispatch new information off to saga
     dispatch({
       type: 'ADD_NEW_DOG_PARK',
-      payload: dogPark
+      payload: {
+        name: dogPark.name,
+        location: dogPark.location,
+        description: dogPark.description,
+        image_url: dogPark.image_url,
+        tag_id: userSelectedTags
+      }
     })
+    //clear reducer holding dog tags selected by user
+    dispatch({ type: 'CLEAR_USER_SELECTED_TAGS_ON_FORM'})
     //send user to the list to see their dog park
     history.push('/DogParkList')
   }//end handSubmitNewPark
 
 
+let userSelectedTags = userSelectedTagsReducer.addTagsToDogPark
+console.log('===This is user selected Tags===', userSelectedTagsReducer.addTagsToDogPark)
+
   return (
     <>
-      <h2>Add a New Dog Park Here</h2>
-      <Grid container spacing={2}>
+      <Typography variant="h5" sx={{ mt: '10px', mb: '40px' }}>
+        Add a New Dog Park Here</Typography>
+      <Grid container spacing={2} >
         <Grid item xs={12}>
           <form onSubmit={handleSubmitNewPark}>
             <Grid item xs={12}>
@@ -99,23 +112,7 @@ export default function AddDogParkForm(props) {
                   setDogPark({ ...dogPark, image_url: event.target.value })}
               />
             </Grid>
-            <FormControl sx={{ m: 1, minWidth: 220 }}>
-              <InputLabel id="tag shooser">Choose Tag!</InputLabel>
-              <Select value={dogPark.tag_id}
-                sx={{ minWidth: 120 }}
-                onChange={(event) =>
-                  setDogPark({ ...dogPark, tag_id: event.target.value })}>
-
-
-                {parkTags.allTags?.map((tags) => {
-                  return (
-                    <MenuItem key={tags.id} value={tags.id}>
-                      {tags.tag}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
+            <ParkTagsForm />
 
             <Grid item xs={12}>
               <Button
