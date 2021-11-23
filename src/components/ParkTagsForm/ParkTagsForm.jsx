@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   Container,
-  Paper,
   Typography,
-  FormControl,
-  TextField,
-  ButtonGroup,
-  Button,
   Stack,
 } from '@mui/material';
 import { useHistory } from 'react-router-dom';
@@ -25,7 +20,7 @@ function ParkTagsForm() {
   const parkTags = useSelector((store) => store.tagReducer);
 
 
-  // grab all tags on page render
+  // grab all tags to render
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_TAGS' });
   }, []);
@@ -33,12 +28,12 @@ function ParkTagsForm() {
   // delete this parkTag on the server
   const deleteParkTag = (parkTag) => {
     console.log('in delete tags, tag is', parkTag);
-    // dispatch({ type: 'DELETE_TAG', payload: parkTag });
+    dispatch({ type: 'DELETE_TAG', payload: parkTag });
   };
 
   const addParkTag = (parkTag) => {
       console.log('in add tag, tag is', parkTag);
-    //   dispatch({ type: 'ADD_TAG', payload: parkTag })
+      dispatch({ type: 'ADD_TAG', payload: parkTag})
   }
 
   return (
@@ -55,10 +50,6 @@ function ParkTagsForm() {
             addParkTag={addParkTag}/>
           ))}
         </Stack>
-        <ButtonGroup
-          sx={{ display: 'flex', justifyContent: 'right', mt: '40px' }}
-        >
-        </ButtonGroup>
     </Container>
   );
 }

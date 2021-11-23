@@ -23,9 +23,17 @@ const dogParkDetails = (state = [], action) => {
     }
 } //end dogParkDetails
 
+const dogParkDummyData = {
+    name: '',
+    location: '',
+    description: '',
+    image_url: '',
+    tag_id: []
+  }
+
 
 //hold new dog park info until ready to send
-const addDogPark = (state = {}, action ) => {
+const addDogPark = (state = dogParkDummyData, action ) => {
     switch (action.type) {
         case 'ADD_DOG_PARK' :
             //adding to the object for add new dog park
@@ -35,12 +43,15 @@ const addDogPark = (state = {}, action ) => {
             }
             //adding the tags array to the data?
         case 'ADD_TAG' :
+            console.log('in ADD_TAG', action.payload);
+            state.tag_id.push(action.payload);
             return {
                 ...state,
-                [action.payload.property] : [...action.payload.value]
             }  
         case 'DELETE_TAG' :
-            return //.splice?
+            return {
+                tag_id : state.tag_id.filter(tag => tag !== action.payload)
+            }
         default :
             return state
     }
@@ -52,4 +63,6 @@ export default combineReducers({
     //reducers go here
     allDogParksInDB,
     dogParkDetails,
+    addDogPark
+
 });
