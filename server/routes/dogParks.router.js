@@ -40,7 +40,7 @@ router.get('/favoriteDP', (req, res) => {
       WHERE "ratings".user_id = $1;
       `;
 
- 
+
   pool.query(queryText, [req.user.id])
     .then((result) => {
       res.send(result.rows);
@@ -76,7 +76,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // POST route code here
-  console.log('This is REQ.BODY', req.body, req.body.tag_id);
+  console.log('This is REQ.BODY', req.body, req.body.tag_id, 'THIS IS REQ.USER', req.user.id);
   // console.log('is authenticated?', req.isAuthenticated());
 
   //post to the dog_parks table in the DB and return ID for tags
@@ -98,14 +98,26 @@ router.post('/', (req, res) => {
         VALUES($1, $2)
          `
       //loop for every new    
-         for ( let i = 1; i < req.body.tag_id.length; i++ ) {
-          insertDogParkTagsQuery += `, ($1, $${i+2})`;
-        }
+      for (let i = 1; i < req.body.tag_id.length; i++) {
+        insertDogParkTagsQuery += `, ($1, $${i + 2})`;
+      }
 
-      // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
+      // SECOND QUERY ADDS TAGS FOR NEW DOG PARK
       pool.query(insertDogParkTagsQuery, [createdParkId, ...req.body.tag_id])
         .then(result => {
-          res.sendStatus(201);
+
+          let insertRatingsQuery = `
+          INSERT INTO "ratings" ("user_id", "dog_park_id", "ratings")
+          VALUES($1, $2, $3)
+           `
+          let ratings = 1;
+
+          //THIRD QUERY ADDS RATINGS ROW 
+          pool.query(insertRatingsQuery, [req.user.id, createdParkId, ratings])
+            .then(result => {
+
+              res.sendStatus(201);
+            })
         }).catch((error) => {
           console.log(error);
           res.sendStatus(500);
@@ -153,22 +165,48 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const idToDelete = req.params.id
   console.log('This is what we are deleting -->', idToDelete, req.user.access_level);
 
-  //query text to delete dog park if access_level is greater than 0
-  let queryText = `
-      DELETE FROM "dog_parks"
-      WHERE "id" = $1 AND $2 > 0
-      `;
+  let queryDogParkTags = `
+  DELETE FROM "dog_park_tags"
+  WHERE "dog_park_id" = $1 AND $2 > 0
+  `
 
-  pool.query(queryText, [idToDelete, req.user.access_level])
+  pool.query(queryDogParkTags, [idToDelete, req.user.access_level])
     .then(respond => {
-      res.send(200);
+
+      //SECOND QUERY TO delete dog park if access_level is greater than 0
+      let queryRatingsText = `
+          DELETE FROM "ratings"
+          WHERE "dog_park_id" = $1 AND $2 > 0;`
+
+
+      pool.query(queryRatingsText, [idToDelete, req.user.access_level])
+        .then(respond => {
+
+          let queryText = `
+          DELETE FROM "dog_parks"
+          WHERE "id" = $1 AND $2 > 0
+          `;
+    
+          pool.query(queryText, [idToDelete, req.user.access_level])
+            .then(respond => {
+              res.sendStatus(200);
+            })
+            .catch(error => {
+              console.log('ERROR IN DELETE from dog park table', error);
+              res.sendStatus(500);
+            })
+        })
+        .catch(error => {
+          console.log('ERROR IN DELETE from ratings table', error);
+          res.sendStatus(500);
+        })
     })
     .catch(error => {
-      console.log('ERROR IN DELETE', error);
+      console.log('ERROR IN DELETE from junction table', error);
       res.sendStatus(500);
-    })
-}); //end DELETE
 
+    });
 
+}) //end DELETE
 
 module.exports = router;
