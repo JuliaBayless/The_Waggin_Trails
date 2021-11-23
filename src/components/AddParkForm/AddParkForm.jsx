@@ -8,6 +8,7 @@ import { MenuItem, TextareaAutosize, Button, Input } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
 import { Paper, Box, makeStyles } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
+import ParkTagsForm from '../ParkTagsForm/ParkTagsForm';
 
 
 
@@ -99,7 +100,8 @@ export default function AddDogParkForm(props) {
                   setDogPark({ ...dogPark, image_url: event.target.value })}
               />
             </Grid>
-            <FormControl sx={{ m: 1, minWidth: 220 }}>
+            <ParkTagsForm />
+            {/* <FormControl sx={{ m: 1, minWidth: 220 }}>
               <InputLabel id="tag shooser">Choose Tag!</InputLabel>
               <Select value={dogPark.tag_id}
                 sx={{ minWidth: 120 }}
@@ -115,7 +117,7 @@ export default function AddDogParkForm(props) {
                   );
                 })}
               </Select>
-            </FormControl>
+            </FormControl> */}
 
             <Grid item xs={12}>
               <Button

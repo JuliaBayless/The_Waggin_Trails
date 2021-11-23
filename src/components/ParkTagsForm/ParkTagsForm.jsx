@@ -36,20 +36,25 @@ function ParkTagsForm() {
     dispatch({ type: 'DELETE_TAG', payload: parkTag });
   };
 
+  const addParkTag = (parkTag) => {
+      console.log('in add tag, tag is', parkTag);
+      dispatch({ type: 'ADD_TAG', payload: parkTag })
+  }
+
   console.log(`in ParkTagsForm and tags = `, );
   return (
-    <Container sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
+    <Container sx={{ mt: '20px', display: 'flex', justifyContent: 'center' }}>
       <Paper
         elevation={12}
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
-          width: '700px',
-          p: '50px',
+        //   justifyContent: 'space-between',
+          width: '600px',
+          p: '30px',
         }}
       >
-        <Typography variant="h4">Add Tag</Typography>
+        <Typography variant="h5">Add Tag</Typography>
         <FormControl>
           <TextField
             sx={{ m: '10px' }}
@@ -83,7 +88,7 @@ function ParkTagsForm() {
           Remove Tags
         </Typography>
         <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-          {parkTags.map((parkTag) => (
+          {parkTags.allTags?.map((parkTag) => (
             <ParkTagChip key={parkTag.id} parkTag={parkTag} deleteParkTag={deleteParkTag} />
           ))}
         </Stack>
