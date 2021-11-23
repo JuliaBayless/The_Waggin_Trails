@@ -9,6 +9,8 @@ import {
 import { pink } from '@mui/material/colors';
 import PetsIcon from '@mui/icons-material/Pets';
 import Typography from '@mui/material/Typography';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 
 // const useStyles = makeStyles(() => ({
@@ -43,21 +45,24 @@ export default function DogParkItem({ dogPark }) {
 
     <Card sx={{ maxWidth: 400 }}
       elevation={6}
-      onClick={() => { handleSubmitDetails(dogPark) }}
-      sx={{ height: 400, width: 300 }}>
+      sx={{ height: 500, width: 300 }}>
       <CardActionArea>
         <CardHeader
           title={dogPark.name}
           subheader={dogPark.location}
-          action={<PetsIcon />} />
+          onClick={() => { handleSubmitDetails(dogPark) }}
+        />
         <Box display='flex' flexGrow={1}>
         </Box>
         <CardMedia
+          onClick={() => { handleSubmitDetails(dogPark) }}
           component="img"
           sx={{ height: 150, width: 300 }}
           image={dogPark.image_url}
           alt={dogPark.name} />
         <CardContent>
+        <PetsIcon /> 
+        <Box sx={{margin: '10px'}}>
           <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
             {newTags?.map(tag => {
               return (
@@ -65,6 +70,7 @@ export default function DogParkItem({ dogPark }) {
               )
             })}
           </Stack>
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>

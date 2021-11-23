@@ -15,8 +15,8 @@ import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import DogParkDetailsView from '../DogParkDetailsActualView/DogParkDetailsView';
-import DogParkDetailsEditView from '../DogParkDetailsEditView/DogParkDetailsEditView';
+import DogParkDetailsView from './DetailsView';
+import DogParkDetailsEditView from './EditView';
 
 
 
