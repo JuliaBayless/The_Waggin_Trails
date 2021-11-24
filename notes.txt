@@ -1,0 +1,11 @@
+inline styling
+sx={{}}
+
+use inline to test, then put it in makestyles
+
+can import makestyles**
+
+made a jsx file with all maketyles -> wrap ---------- label
+
+
+Heroku -> makestyles takes pre

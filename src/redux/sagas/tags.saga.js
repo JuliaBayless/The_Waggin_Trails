@@ -53,9 +53,11 @@ function* addTagInEditMode(action) {
 
 //delete tags associated with specific dog parks
 function* deleteTagInEditMode(action) {
+    console.log('IN DELETE SAGA', action.payload)
     try {
-        axios.delete(`/api/parkTags`, action.payload)
-        //reset reducer
+        axios.delete(`/api/parkTags`, {
+            data: action.payload
+        })
         // yield put({
         //     type: 'FETCH_DOG_PARK_TAGS'
         // })
