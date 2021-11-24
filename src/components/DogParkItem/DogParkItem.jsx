@@ -11,7 +11,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 // const useStyles = makeStyles(() => ({
 //   image:{
@@ -24,7 +24,7 @@ export default function DogParkItem({ dogPark }) {
   const dogParkTags = useSelector((store) => store.tagReducer);
   const dispatch = useDispatch();
   const history = useHistory();
-
+ 
 
   //fetch all dog park ids
   useEffect(() => {
@@ -61,15 +61,15 @@ export default function DogParkItem({ dogPark }) {
           image={dogPark.image_url}
           alt={dogPark.name} />
         <CardContent>
-        <PetsIcon /> 
-        <Box sx={{margin: '10px'}}>
-          <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            {newTags?.map(tag => {
-              return (
-                <Chip key={tag.id} color="success" label={tag.tag} />
-              )
-            })}
-          </Stack>
+          <PetsIcon />
+          <Box sx={{ margin: '10px' }}>
+              <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                {newTags?.map(tag => {
+                  return (
+                    <Chip key={tag.id} color="success" label={tag.tag} />
+                  )
+                })}
+              </Stack> 
           </Box>
         </CardContent>
       </CardActionArea>

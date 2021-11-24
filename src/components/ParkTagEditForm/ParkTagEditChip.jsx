@@ -1,7 +1,7 @@
 import { Chip } from '@mui/material';
 import { useState } from 'react'
 
-function ParkTagChip({ deleteParkTag, parkTag, addParkTag }) {
+function ParkTagEditChip({ deleteParkTag, parkTag, addParkTag }) {
     const [chipStatus, setChipStatus] = useState(false)
     //conditional render 
     return (
@@ -21,4 +21,4 @@ function ParkTagChip({ deleteParkTag, parkTag, addParkTag }) {
     );
 }
 
-export default ParkTagChip;
+export default ParkTagEditChip;

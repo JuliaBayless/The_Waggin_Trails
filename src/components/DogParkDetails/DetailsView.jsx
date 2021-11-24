@@ -34,8 +34,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function DogParkDetailsView({ dogParkDetails }) {
     const { root, rowLayout, iconLayout, layout } = useStyles();
+    //grab park tags from the store
     const parkTags = useSelector((store) => store.tagReducer);
+    //grab hooks
     const dispatch = useDispatch();
+    //set useState for toggle
+    const [toggleViewEdit, setToggleViewEdit] = useState(true)
 
     //call the tags
     useEffect(() => {
@@ -56,8 +60,8 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     console.log('THIS IS DOGPARKDETAILS', dogParkDetails)
     
     //filter out specific tags to dog park
-    let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.id)
- 
+    let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
+   
     return (
         <>
             <Grid item xs={10}>

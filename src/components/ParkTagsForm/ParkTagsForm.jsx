@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ParkTagChip from '../ParkTagChips/ParkTagChips';
+import ParkTagChips from './ParkTagChips';
 
 function ParkTagsForm() {
   // local state to keep track of user input

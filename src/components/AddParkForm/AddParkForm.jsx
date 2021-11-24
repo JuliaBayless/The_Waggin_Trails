@@ -57,9 +57,8 @@ export default function AddDogParkForm(props) {
     history.push('/DogParkList')
   }//end handSubmitNewPark
 
-
+// rename selected tags variable
 let userSelectedTags = userSelectedTagsReducer.addTagsToDogPark
-console.log('===This is user selected Tags===', userSelectedTagsReducer.addTagsToDogPark)
 
   return (
     <>
