@@ -49,6 +49,13 @@ export default function DogParkDetailsView({ dogParkDetails }) {
         })
     }, [])
 
+    const handleToggleChange = () => {
+        dispatch({
+            type: 'FETCH_DOG_PARK_TAGS',
+        })
+        setToggleViewEdit(!toggleViewEdit)
+    }
+
 
     //function to toggle fav boolean value
     const toggleFavBoolean = () => {
@@ -56,6 +63,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             type: 'TOGGLE_ISFAV_BOOLEAN_VALUE',
             payload: dogParkDetails.id
         })
+
     } //end toggleFavBoolean
     
     
@@ -97,7 +105,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                     {dogParkDetails.description}
                 </Typography>
                 <ModeEditIcon 
-                onClick={() => setToggleViewEdit(!toggleViewEdit)}/>
+                onClick={() => handleToggleChange()}/>
                 {/* toggle for edit chip view */}
                 {toggleViewEdit ?
                 <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
@@ -112,7 +120,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                     })}
                 </Stack> 
                     :
-                <ParkTagEditForm newTags={newTags} dogParkDetails={dogParkDetails.dog_park_id}/>
+                <ParkTagEditForm newTags={newTags} parkTags={parkTags} dogParkDetails={dogParkDetails.dog_park_id}/>
                 }
             </Grid>
         </>

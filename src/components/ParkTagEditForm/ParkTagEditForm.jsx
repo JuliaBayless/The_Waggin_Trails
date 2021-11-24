@@ -22,14 +22,12 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
     // Grab the parkTags from the store
     const parkTags = useSelector(store => store.tagReducer);
     const updatedTags = useSelector(store => store.parkReducer)
-
+    const [tags, setTags] = useState('')
 
     // grab all tags to render
     useEffect(() => {
         dispatch({ type: 'FETCH_ALL_TAGS' });
     }, []);
-
-    
 
     // delete park tag from reducer
     const deleteParkTag = (parkTag) => {

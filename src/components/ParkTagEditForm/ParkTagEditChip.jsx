@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 //component that handles each category for the dog tags associated with parks
 function ParkTagEditChip({ deleteParkTag, parkTag, addParkTag, newTags }) {
     const [chipStatus, setChipStatus] = useState(false)
+    const [stateStatus, setState] = useState('')
+
     //conditional render 
 
     useEffect(() => {
@@ -18,6 +20,7 @@ function ParkTagEditChip({ deleteParkTag, parkTag, addParkTag, newTags }) {
             }
         }
     }
+
 
     return (
         <>

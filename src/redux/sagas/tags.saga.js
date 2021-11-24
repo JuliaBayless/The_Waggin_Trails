@@ -40,10 +40,10 @@ function* fetchSpecificDogParkTags() {
 function* addTagInEditMode(action) {
     try {
         axios.post('/api/parkTags', action.payload)
-        //reset reducer  
-        // yield put({
-        //     type: 'FETCH_DOG_PARK_TAGS'
-        // })
+        // reset reducer  
+        yield put({
+            type: 'FETCH_DOG_PARK_TAGS'
+        })
     } catch {
         console.log('error');
         yield put({ type: 'ERROR_IN_ADD_TAG_IN_EDIT_MODE' })
