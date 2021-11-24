@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ParkTagEditChip from './ParkTagEditChip';
 
-function ParkTagEditForm({ dogPark, newTags }) {
+function ParkTagEditForm({ newTags, dogParkDetails }) {
     // local state to keep track of user input
     const [tag, setTag] = useState('');
 
@@ -40,7 +40,7 @@ function ParkTagEditForm({ dogPark, newTags }) {
 
     // delete park tag from reducer
     const deleteParkTag = (parkTag) => {
-        dispatch({ type: 'DELETE_TAG', payload: parkTag });
+        // dispatch({ type: 'DELETE_TAG', payload: parkTag });
     };
 
     //add park tag to reducer 
@@ -49,7 +49,7 @@ function ParkTagEditForm({ dogPark, newTags }) {
     }
 
 
-console.log(newTags, dogPark)
+console.log('=========', newTags, dogParkDetails)
     return (
         <Container sx={{ mt: '20px', display: 'flex', justifyContent: 'center', flexDirection: 'column', }}>
             <Typography variant="h6">
@@ -61,7 +61,8 @@ console.log(newTags, dogPark)
                         key={parkTag.id}
                         parkTag={parkTag}
                         deleteParkTag={deleteParkTag}
-                        addParkTag={addParkTag} />
+                        addParkTag={addParkTag} 
+                        newTags={newTags}/>
                 ))}
             </Stack>
             <ButtonGroup

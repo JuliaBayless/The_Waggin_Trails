@@ -11,6 +11,7 @@ import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -56,8 +57,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             payload: dogParkDetails.id
         })
     } //end toggleFavBoolean
-
-    console.log('THIS IS DOGPARKDETAILS', dogParkDetails)
+    
     
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
