@@ -40,13 +40,25 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
     // delete park tag from reducer
     const deleteParkTag = (parkTag) => {
         console.log('==In DELETE==', parkTag, dogParkDetails)
-        // dispatch({ type: 'DELETE_TAG_IN_EDIT_MODE', payload: parkTag });
+        dispatch({  
+            type: 'DELETE_TAG_IN_EDIT_MODE', 
+            payload: {
+                tag_id: parkTag.id,
+                dog_park_id: dogParkDetails
+            }
+        })
     };
 
     //add park tag to reducer 
     const addParkTag = (parkTag) => {
         console.log('==In ADD==', parkTag, dogParkDetails)
-        // dispatch({ type: 'ADD_TAG_IN_EDIT_MODE', payload: parkTag })
+        dispatch({  
+            type: 'ADD_TAG_IN_EDIT_MODE', 
+            payload: {
+                tag_id: parkTag.id,
+                dog_park_id: dogParkDetails
+            }
+        })
     }
 
 

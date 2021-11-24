@@ -39,7 +39,7 @@ function* fetchSpecificDogParkTags() {
 //add tags associated with specific dog parks
 function* addTagInEditMode (action) {
     try {
-        axios.post('/api/dogParks', action.payload)
+        axios.post('/api/parkTags', action.payload)
 
     } catch {
         console.log('error');
@@ -51,7 +51,7 @@ function* addTagInEditMode (action) {
 //delete tags associated with specific dog parks
 function* deleteTagInEditMode (action) {
     try {
-        axios.delete(`/api/dogParks`, action.payload)
+        axios.delete(`/api/parkTags`, action.payload)
 
     } catch {
         console.log('error');
