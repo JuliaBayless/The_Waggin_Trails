@@ -12,7 +12,7 @@ import ParkTagsForm from '../ParkTagsForm/ParkTagsForm';
 
 
 
-
+//FORM to add a dog park. Calls Park Tag Form for dog tags associated with parks
 export default function AddDogParkForm(props) {
   //object for state to start out with
   //hooks

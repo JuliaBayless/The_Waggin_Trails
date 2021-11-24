@@ -10,6 +10,9 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ParkTagEditChip from './ParkTagEditChip';
 
+
+//FOR EDIT MODE***
+//component to parent each dog tag and handles delete/add
 function ParkTagEditForm({ newTags, dogParkDetails }) {
 
     // set up hooks
@@ -27,15 +30,6 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
     }, []);
 
     
-
-    //send the edited dog tags to reducer
-    const editTags = () => {
-        console.log('updated tags', updatedTags.addTagsToDogPark);
-        // dispatch({
-        //     type: 'EDIT_PARK_TAGS',
-        //     payload: updatedTags.addTagsToDogPark
-        // })
-    }
 
     // delete park tag from reducer
     const deleteParkTag = (parkTag) => {
@@ -62,7 +56,6 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
     }
 
 
-console.log('=========', newTags, dogParkDetails)
     return (
         <Container sx={{ mt: '20px', display: 'flex', justifyContent: 'center', flexDirection: 'column', }}>
             <Typography variant="h6">
