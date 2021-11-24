@@ -5,6 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 //-----TAGS LIST ROUTER------
 
+//grabs all tags for rendering
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('IN GET /tagList');
   console.log('is authenticated?', req.isAuthenticated());

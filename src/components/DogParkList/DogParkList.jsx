@@ -7,7 +7,7 @@ import { positions } from '@mui/system';
 import DogParkItem from '../DogParkItem/DogParkItem'
 
 
-
+//component that parents the main dog list
 export default function DogParkList(props) {
   const history = useHistory();
   const dispatch = useDispatch();

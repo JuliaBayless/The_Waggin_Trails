@@ -1,7 +1,10 @@
 import { Chip } from '@mui/material';
 import { useState } from 'react'
 
-function ParkTagChip({ deleteParkTag, parkTag, addParkTag }) {
+//FOR ADD PARK FORM**
+//component housing single chip associated with dog tags for the parks
+
+function ParkTagChips({ deleteParkTag, parkTag, addParkTag }) {
     const [chipStatus, setChipStatus] = useState(false)
     //conditional render 
     return (
@@ -21,4 +24,4 @@ function ParkTagChip({ deleteParkTag, parkTag, addParkTag }) {
     );
 }
 
-export default ParkTagChip;
+export default ParkTagChips;

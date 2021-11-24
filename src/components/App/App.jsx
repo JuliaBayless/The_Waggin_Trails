@@ -19,7 +19,7 @@ import AddDogParkForm from '../AddParkForm/AddParkForm';
 import DogParkList from '../DogParkList/DogParkList';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-import DogParkDetails from '../DogParkDetails/DogParkDetails';
+import DogParkDetails from '../DogParkDetails/_DogParkDetails';
 
 
 //mui imports

@@ -11,6 +11,7 @@ import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,8 +35,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function DogParkDetailsView({ dogParkDetails }) {
     const { root, rowLayout, iconLayout, layout } = useStyles();
+    //grab park tags from the store
     const parkTags = useSelector((store) => store.tagReducer);
+    //grab hooks
     const dispatch = useDispatch();
+    //set useState for toggle
+    const [toggleViewEdit, setToggleViewEdit] = useState(true)
 
     //call the tags
     useEffect(() => {
@@ -52,12 +57,11 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             payload: dogParkDetails.id
         })
     } //end toggleFavBoolean
-
-    console.log('THIS IS DOGPARKDETAILS', dogParkDetails)
+    
     
     //filter out specific tags to dog park
-    let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.id)
- 
+    let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
+   
     return (
         <>
             <Grid item xs={10}>
@@ -92,6 +96,10 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
+                <ModeEditIcon 
+                onClick={() => setToggleViewEdit(!toggleViewEdit)}/>
+                {/* toggle for edit chip view */}
+                {toggleViewEdit ?
                 <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
                     {newTags?.map(tag => {
                         return (
@@ -102,7 +110,10 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                                 label={tag.tag} />
                         )
                     })}
-                </Stack>
+                </Stack> 
+                    :
+                <ParkTagEditForm newTags={newTags} dogParkDetails={dogParkDetails.dog_park_id}/>
+                }
             </Grid>
         </>
     )

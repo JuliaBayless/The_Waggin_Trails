@@ -7,7 +7,6 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 //Get all the tags specific to the parks
 router.get('/',  (req, res) => {
-        console.log('IN GET /parkTags');
         // console.log('is authenticated?', req.isAuthenticated());
       
         //grab the tags specific to each dog park
@@ -27,13 +26,35 @@ router.get('/',  (req, res) => {
 }); //end GET
 
 
-router.post('/:parkId', (req, res) => {
-  // POST route code here
-  console.log('IN GET /parkTags');
-  console.log(req.params.parkId, req.body.tagNumber);
+// router.post('/:parkId', (req, res) => {
+//   // POST route code here
+//   console.log('IN GET /parkTags');
+//   console.log(req.params.parkId, req.body.tagNumber);
   
-  parkId = req.params.parkId
-  tagNumber = req.body.tagNumber
+//   parkId = req.params.parkId
+//   tagNumber = req.body.tagNumber
+//   // console.log('is authenticated?', req.isAuthenticated());
+
+//   //grab the tags specific to each dog park
+//   let queryText = `
+//    INSERT INTO "dog_park_tags" ("dog_park_id", "tag_id")
+//    VALUES  ($1, $2);
+//     `;
+
+
+//   pool.query(queryText, [parkId, tagNumber])
+//     .then((result) => {
+//       res.send(result);
+//     }).catch((error) => {
+//       console.log('ERROR IN POST PARK TAGS', error);
+//       res.sendStatus(500);
+//     });
+// }); //end POST
+
+// to add a row from junction table dog_park_tags
+router.post('/', (req, res) => {
+  // POST route code here
+  console.log('THIS IS POST parkTAGS', req.body);
   // console.log('is authenticated?', req.isAuthenticated());
 
   //grab the tags specific to each dog park
@@ -43,7 +64,7 @@ router.post('/:parkId', (req, res) => {
     `;
 
 
-  pool.query(queryText, [parkId, tagNumber])
+  pool.query(queryText, [req.body.dog_park_id, req.body.tag_id])
     .then((result) => {
       res.send(result);
     }).catch((error) => {
@@ -52,19 +73,20 @@ router.post('/:parkId', (req, res) => {
     });
 }); //end POST
 
-/* not yet tested fully, may need to tweak based on front end code, otherwise tested with postman*/
-router.delete('/:id', (req, res) => {
-  const idToDelete = req.params.id
-  console.log('This is what we are deleting -->', idToDelete);
+
+//* to delete a row from junction table dog_park_tags
+router.delete('/', (req, res) => {
+  console.log('This is what we are deleting -->', req.body);
 
   //query text to delete a tag 
-  //need to figure out how to get both DogPark ID and genre ID******
+  //using tag id and dog park id to delete row
   let queryText = `
-  DELETE FROM "dog_park_tags"
-  WHERE "id" = $1 
+    DELETE FROM "dog_park_tags"
+    WHERE "dog_park_id" = $1 AND "tag_id" = $2;
   `;
 
-  pool.query(queryText, [idToDelete])
+
+  pool.query(queryText, [req.body.dog_park_id, req.body.tag_id])
     .then(respond => {
       res.send(200);
     })

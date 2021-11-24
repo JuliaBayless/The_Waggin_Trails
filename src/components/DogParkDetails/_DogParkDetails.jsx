@@ -15,9 +15,9 @@ import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import DogParkDetailsView from '../DogParkDetailsActualView/DogParkDetailsView';
-import DogParkDetailsEditView from '../DogParkDetailsEditView/DogParkDetailsEditView';
-
+import DogParkDetailsView from './DetailsView';
+import DogParkDetailsEditView from './EditView';
+import ParkTagEditForm from "../ParkTagEditForm/ParkTagEditForm";
 
 
 const useStyles = makeStyles(theme => ({
@@ -98,17 +98,16 @@ export default function dogParkDetails() {
                 {/* buttons appear for administrators */}
                 {userId.access_level > 0 &&
                     <ButtonGroup
-                    sx={{ display: 'flex', justifyContent: 'center', mt: '20px', marginLeft:'40px' }}
-                  >
+                    sx={{ display: 'flex', justifyContent: 'center', mt: '20px', marginLeft:'40px' }}>
                         <Grid item xs={12}>
                         <ModeEditIcon
                                 onClick={editPageMode} />
                             <DeleteForeverRoundedIcon
                                 sx={{marginLeft:'30px'}}
                                 onClick={deleteDogPark} />
-                           
                         </Grid>
-                    </ButtonGroup>}
+                    </ButtonGroup>
+                    }
             </Grid>
         </>
     )

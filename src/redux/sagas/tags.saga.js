@@ -13,9 +13,9 @@ function* fetchAllTags() {
             type: 'SET_All_TAGS',
             payload: response.data
         });
-    } catch (error){
-       yield put({ type: 'ERROR_IN_SET_All_TAGS'})
-       console.log(error);
+    } catch (error) {
+        yield put({ type: 'ERROR_IN_SET_All_TAGS' })
+        console.log(error);
     }
 } //end fetchAllTags
 
@@ -32,21 +32,46 @@ function* fetchSpecificDogParkTags() {
 
     } catch {
         console.log('get all error');
-        yield put({ type: 'ERROR_IN_FETCH_DOG_PARK_TAGS'})
+        yield put({ type: 'ERROR_IN_FETCH_DOG_PARK_TAGS' })
     }
 }//end fetchDogParkTags
 
+//add tags associated with specific dog parks
+function* addTagInEditMode(action) {
+    try {
+        axios.post('/api/parkTags', action.payload)
+        //reset reducer  
+        // yield put({
+        //     type: 'FETCH_DOG_PARK_TAGS'
+        // })
+    } catch {
+        console.log('error');
+        yield put({ type: 'ERROR_IN_ADD_TAG_IN_EDIT_MODE' })
+    }
+}//end addTagInEditMode
 
 
-
-
-
+//delete tags associated with specific dog parks
+function* deleteTagInEditMode(action) {
+    try {
+        axios.delete(`/api/parkTags`, action.payload)
+        //reset reducer
+        // yield put({
+        //     type: 'FETCH_DOG_PARK_TAGS'
+        // })
+    } catch {
+        console.log('error');
+        yield put({ type: 'ERROR_IN_DELETE_TAG_IN_EDIT_MODE' })
+    }
+}//end addTagInEditMode
 
 
 //listener for 
 function* parkTagSaga() {
     yield takeLatest('FETCH_DOG_PARK_TAGS', fetchSpecificDogParkTags);
     yield takeLatest('FETCH_ALL_TAGS', fetchAllTags);
-  } //end parkTagSaga
-  
-  export default parkTagSaga;
+    yield takeLatest('DELETE_TAG_IN_EDIT_MODE', deleteTagInEditMode);
+    yield takeLatest('ADD_TAG_IN_EDIT_MODE', addTagInEditMode);
+} //end parkTagSaga
+
+export default parkTagSaga;
