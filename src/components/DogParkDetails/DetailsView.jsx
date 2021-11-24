@@ -96,6 +96,10 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
+                <ModeEditIcon 
+                onClick={() => setToggleViewEdit(!toggleViewEdit)}/>
+                {/* toggle for edit chip view */}
+                {toggleViewEdit ?
                 <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
                     {newTags?.map(tag => {
                         return (
@@ -106,7 +110,10 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                                 label={tag.tag} />
                         )
                     })}
-                </Stack>
+                </Stack> 
+                    :
+                <ParkTagEditForm newTags={newTags} dogParkDetails={dogParkDetails.dog_park_id}/>
+                }
             </Grid>
         </>
     )
