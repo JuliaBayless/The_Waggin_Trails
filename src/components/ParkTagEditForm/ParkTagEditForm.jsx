@@ -33,7 +33,7 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
 
     // delete park tag from reducer
     const deleteParkTag = (parkTag) => {
-        console.log('==In DELETE==', parkTag, dogParkDetails)
+        console.log('==In DELETE==', parkTag.id, dogParkDetails)
         dispatch({  
             type: 'DELETE_TAG_IN_EDIT_MODE', 
             payload: {
