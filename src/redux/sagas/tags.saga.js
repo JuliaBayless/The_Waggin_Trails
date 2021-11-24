@@ -36,17 +36,36 @@ function* fetchSpecificDogParkTags() {
     }
 }//end fetchDogParkTags
 
+//add tags associated with specific dog parks
+function* addTagInEditMode (action) {
+    try {
+        axios.post('/api/dogParks', action.payload)
+
+    } catch {
+        console.log('error');
+        yield put({ type: 'ERROR_IN_ADD_TAG_IN_EDIT_MODE'})
+    }
+}//end addTagInEditMode
 
 
+//delete tags associated with specific dog parks
+function* deleteTagInEditMode (action) {
+    try {
+        axios.delete(`/api/dogParks`, action.payload)
 
-
-
+    } catch {
+        console.log('error');
+        yield put({ type: 'ERROR_IN_DELETE_TAG_IN_EDIT_MODE'})
+    }
+}//end addTagInEditMode
 
 
 //listener for 
 function* parkTagSaga() {
     yield takeLatest('FETCH_DOG_PARK_TAGS', fetchSpecificDogParkTags);
     yield takeLatest('FETCH_ALL_TAGS', fetchAllTags);
+    yield takeLatest('DELETE_TAG_IN_EDIT_MODE', deleteTagInEditMode);
+    yield takeLatest('ADD_TAG_IN_EDIT_MODE', addTagInEditMode);
   } //end parkTagSaga
   
   export default parkTagSaga;

@@ -17,18 +17,17 @@ function ParkTagEditChip({ deleteParkTag, parkTag, addParkTag, newTags }) {
         }
     }
 
-    // console.log('==========', newTags, parkTag.id)
     return (
         <>
             {chipStatus ?
                 <Chip
                     color="success"
                     label={parkTag.tag}
-                    onClick={() => { setChipStatus(!chipStatus), deleteParkTag(parkTag.id) }}
+                    onClick={() => { setChipStatus(!chipStatus), deleteParkTag(parkTag) }}
                 /> :
                 <Chip
                     label={parkTag.tag}
-                    onClick={() => { setChipStatus(!chipStatus), addParkTag(parkTag.id) }}
+                    onClick={() => { setChipStatus(!chipStatus), addParkTag(parkTag) }}
                 />
             }
         </>

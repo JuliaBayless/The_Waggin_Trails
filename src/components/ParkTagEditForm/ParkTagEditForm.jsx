@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import ParkTagEditChip from './ParkTagEditChip';
 
 function ParkTagEditForm({ newTags, dogParkDetails }) {
-    // local state to keep track of user input
-    const [tag, setTag] = useState('');
 
     // set up hooks
     const history = useHistory();
@@ -28,6 +26,7 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
         dispatch({ type: 'FETCH_ALL_TAGS' });
     }, []);
 
+    
 
     //send the edited dog tags to reducer
     const editTags = () => {
@@ -40,12 +39,14 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
 
     // delete park tag from reducer
     const deleteParkTag = (parkTag) => {
-        // dispatch({ type: 'DELETE_TAG', payload: parkTag });
+        console.log('==In DELETE==', parkTag, dogParkDetails)
+        // dispatch({ type: 'DELETE_TAG_IN_EDIT_MODE', payload: parkTag });
     };
 
     //add park tag to reducer 
     const addParkTag = (parkTag) => {
-        dispatch({ type: 'ADD_TAG', payload: parkTag })
+        console.log('==In ADD==', parkTag, dogParkDetails)
+        // dispatch({ type: 'ADD_TAG_IN_EDIT_MODE', payload: parkTag })
     }
 
 

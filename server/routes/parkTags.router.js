@@ -52,19 +52,20 @@ router.post('/:parkId', (req, res) => {
     });
 }); //end POST
 
-/* not yet tested fully, may need to tweak based on front end code, otherwise tested with postman*/
-router.delete('/:id', (req, res) => {
-  const idToDelete = req.params.id
-  console.log('This is what we are deleting -->', idToDelete);
+
+//*
+router.delete('/', (req, res) => {
+  console.log('This is what we are deleting -->', req.body);
 
   //query text to delete a tag 
-  //need to figure out how to get both DogPark ID and genre ID******
+  //using tag id and dog park id to delete row
   let queryText = `
-  DELETE FROM "dog_park_tags"
-  WHERE "id" = $1 
+    DELETE FROM "dog_park_tags"
+    WHERE "dog_park_id" = $1 AND "tag_id" = $2;
   `;
 
-  pool.query(queryText, [idToDelete])
+
+  pool.query(queryText, [req.body.dog_park_id, req.body.tag_id])
     .then(respond => {
       res.send(200);
     })
