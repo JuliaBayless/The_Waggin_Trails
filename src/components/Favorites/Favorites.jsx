@@ -11,7 +11,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 //component handling favorites
 
-export default function Favorite({ dogParkId }) {
+export default function Favorite({ dogParkId, favArray, user }) {
+
 
     //hooks
     const dispatch = useDispatch();
@@ -19,6 +20,24 @@ export default function Favorite({ dogParkId }) {
     //useState for toggleFav
     const [toggleFav, setToggleFav] = useState(false)
 
+
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_ALL_FROM_FAVORITES_TABLE'
+        })
+        changeToggleStatus()
+      }, [])
+  
+      const changeToggleStatus = () => {
+          for (let fav of favArray) {
+              if (fav.user_id === user && fav.dog_park_id === dogParkId) {
+                  setToggleFav(true)
+              }
+          }
+      }
+
+
+    console.log('======== FAVS ==', dogParkId, user, favArray)
     //when value it toggled to TRUE, insert row into favorites table
     const handleToggleTrue = () => {
         dispatch({
@@ -36,7 +55,7 @@ export default function Favorite({ dogParkId }) {
         })
         setToggleFav(false)
     }
-    console.log('=============', toggleFav, dogParkId)
+
     return (
         <>
             {toggleFav ?

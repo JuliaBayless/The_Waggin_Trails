@@ -37,6 +37,8 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     const { root, rowLayout, iconLayout, layout } = useStyles();
     //grab park tags from the store
     const parkTags = useSelector((store) => store.tagReducer);
+    const user = useSelector(store => store.user);
+    const favorites = useSelector(store => store.favoritesReducer)
     //grab hooks
     const dispatch = useDispatch();
     //set useState for toggle
@@ -48,6 +50,9 @@ export default function DogParkDetailsView({ dogParkDetails }) {
         dispatch({
             type: 'FETCH_DOG_PARK_TAGS',
         })
+            dispatch({
+                type: 'FETCH_ALL_FROM_FAVORITES_TABLE'
+            })
     }, [])
 
     const handleToggleChange = () => {
@@ -70,7 +75,6 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     let dogParkId = dogParkDetails.dog_park_id
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
-   console.log('===========', newTags, parkTags.specificTags, dogParkDetails)
     return (
         <>
             <Grid item xs={10}>
@@ -78,7 +82,9 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             </Grid>
             <Grid item xs={2}>
 
-               <Favorites dogParkId={dogParkId}/>
+               <Favorites dogParkId={dogParkId} 
+               favArray={favorites.favorites} 
+               user={user.id} />
                
             </Grid>
 
