@@ -9,9 +9,9 @@ import { styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
+import Favorites from '../Favorites/Favorites';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -37,31 +37,44 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     const { root, rowLayout, iconLayout, layout } = useStyles();
     //grab park tags from the store
     const parkTags = useSelector((store) => store.tagReducer);
+    const user = useSelector(store => store.user);
+    const favorites = useSelector(store => store.favoritesReducer)
     //grab hooks
     const dispatch = useDispatch();
     //set useState for toggle
     const [toggleViewEdit, setToggleViewEdit] = useState(true)
+    
 
     //call the tags
     useEffect(() => {
         dispatch({
             type: 'FETCH_DOG_PARK_TAGS',
         })
+            dispatch({
+                type: 'FETCH_ALL_FROM_FAVORITES_TABLE'
+            })
     }, [])
+
+    const handleToggleChange = () => {
+        dispatch({
+            type: 'FETCH_DOG_PARK_TAGS',
+        })
+        setToggleViewEdit(!toggleViewEdit)
+    }
 
 
     //function to toggle fav boolean value
     const toggleFavBoolean = () => {
         dispatch({
-            type: 'TOGGLE_ISFAV_BOOLEAN_VALUE',
+            type: 'INSERT_INTO_FAV_TABLE',
             payload: dogParkDetails.id
         })
+
     } //end toggleFavBoolean
     
-    
+    let dogParkId = dogParkDetails.dog_park_id
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
-   
     return (
         <>
             <Grid item xs={10}>
@@ -69,11 +82,10 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             </Grid>
             <Grid item xs={2}>
 
-                {}
-                <FavoriteIcon
-                sx={{ color: pink[300] }}
-                onClick={toggleFavBoolean}
-                        />
+               <Favorites dogParkId={dogParkId} 
+               favArray={favorites.favorites} 
+               user={user.id} />
+               
             </Grid>
 
             <Grid item xs={12}>
@@ -97,7 +109,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                     {dogParkDetails.description}
                 </Typography>
                 <ModeEditIcon 
-                onClick={() => setToggleViewEdit(!toggleViewEdit)}/>
+                onClick={() => handleToggleChange()}/>
                 {/* toggle for edit chip view */}
                 {toggleViewEdit ?
                 <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
@@ -112,7 +124,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                     })}
                 </Stack> 
                     :
-                <ParkTagEditForm newTags={newTags} dogParkDetails={dogParkDetails.dog_park_id}/>
+                <ParkTagEditForm newTags={newTags} parkTags={parkTags} dogParkDetails={dogParkDetails.dog_park_id}/>
                 }
             </Grid>
         </>

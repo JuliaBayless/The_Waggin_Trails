@@ -13,7 +13,7 @@ const dogParkRouter = require('./routes/dogParks.router.js');
 const parkTagsRouter = require('./routes/parkTags.router.js');
 const ratingsRouter = require('./routes/ratings.router.js');
 const tagListRouter = require('./routes/tagList.router.js')
-
+const favoritesRouter = require('./routes/favorites.router.js')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -32,6 +32,7 @@ app.use('/api/dogParks', dogParkRouter);
 app.use('/api/parkTags', parkTagsRouter);
 app.use('/api/ratings', ratingsRouter);
 app.use('/api/tagList', tagListRouter);
+app.use('/api/favorites', favoritesRouter)
 
 // Serve static files
 app.use(express.static('build'));

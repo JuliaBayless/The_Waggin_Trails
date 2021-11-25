@@ -4,19 +4,16 @@ import user from './user.reducer';
 import tagReducer from './tags.reducer';
 import parkReducer from './dogParks.reducer';
 import ratingReducer from './rating.reducer';
+import favoritesReducer from './favorites.reducer';
 
-// rootReducer is the primary reducer for our entire project
-// It bundles up all of the other reducers so our project can use them.
-// This is imported in index.js as rootSaga
 
-// Lets make a bigger object for our store, with the objects from our reducers.
-// This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  tagReducer,
-  parkReducer,
-  ratingReducer,
+  tagReducer, //all things tags related
+  parkReducer, //all parks related
+  ratingReducer, //all review and rating related
+  favoritesReducer, //all favorites related
 });
 
 export default rootReducer;

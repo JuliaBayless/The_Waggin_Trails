@@ -57,6 +57,13 @@ export default function AddDogParkForm(props) {
     history.push('/DogParkList')
   }//end handSubmitNewPark
 
+  //on add park click, fetch new dog park and push to dog park list
+  const handleClick = () => {
+    dispatch({type: 'FETCH_ALL_DOG_PARKS'})
+    { history.push('/DogParkList') }
+  }
+
+
 // rename selected tags variable
 let userSelectedTags = userSelectedTagsReducer.addTagsToDogPark
 
@@ -119,7 +126,7 @@ let userSelectedTags = userSelectedTagsReducer.addTagsToDogPark
                 type="submit">Add Park</Button>
               <Button
                 variant="outlined"
-                onClick={() => { history.push('/FavoriteHomePage') }}>Cancel</Button>
+                onClick={() => {handleClick()}}>Cancel</Button>
             </Grid>
           </form>
         </Grid>
