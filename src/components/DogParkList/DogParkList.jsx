@@ -18,7 +18,6 @@ export default function DogParkList(props) {
     dispatch({type: 'FETCH_ALL_DOG_PARKS'})
   }, [])
 
-console.log(DogParkList)
   return (
     <Container>
                 <h1>Dog Park List</h1>

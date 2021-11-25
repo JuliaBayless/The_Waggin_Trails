@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { Container, Paper } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import LogOutButton from '../LogOutButton/LogOutButton'
-import FavoritesItem from '../FavoritesItems/FavoritesItems'
+import FavoritesItem from './FavoritesItems'
 
 
 
@@ -23,7 +23,7 @@ function FavoriteHomePage() {
 
   //filtering out the fav dog parks by the isFav boolean value
   let favDogParks = DogParkList.allDogParksInDB.filter(park => park.isFav === true)
- 
+ console.log('======FAVHOMPAGE', DogParkList)
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>

@@ -37,7 +37,7 @@ export default function Favorite({ dogParkId, favArray, user }) {
       }
 
 
-    console.log('======== FAVS ==', dogParkId, user, favArray)
+    // console.log('======== FAVS ==', dogParkId, user, favArray)
     //when value it toggled to TRUE, insert row into favorites table
     const handleToggleTrue = () => {
         dispatch({

@@ -71,12 +71,7 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
             </Stack>
             <ButtonGroup
                 sx={{ display: 'flex', justifyContent: 'right', mt: '40px' }}>
-                <Button
-                    variant="contained"
-                    color="error"
-                    onClick={() => {editTags}}>
-                    Return
-                </Button>
+ 
             </ButtonGroup>
         </Container>
     );
