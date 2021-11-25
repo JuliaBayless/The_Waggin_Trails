@@ -69,7 +69,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
-   
+   console.log('===========', newTags, parkTags.specificTags, dogParkDetails)
     return (
         <>
             <Grid item xs={10}>

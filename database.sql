@@ -13,14 +13,14 @@ CREATE TABLE "user" (
 
 
 
--- CREATE TABLE "favorites-junction-table" (
--- 	"id" serial NOT NULL,
--- 	"user_id" int NOT NULL ON DELETE CASCADE,
--- 	"dog_park_id" int NOT NULL ON DELETE CASCADE,
--- 	CONSTRAINT "favorites-junction-table_pk" PRIMARY KEY ("id")
--- ) WITH (
---   OIDS=FALSE
--- );
+CREATE TABLE "favorites-junction-table" (
+	"id" serial NOT NULL,
+	"user_id" int NOT NULL,
+	"dog_park_id" int NOT NULL,
+	CONSTRAINT "favorites-junction-table_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
 
 
 
@@ -69,6 +69,8 @@ CREATE TABLE "ratings" (
   OIDS=FALSE
 );
 
+ALTER TABLE "favorites-junction-table" ADD CONSTRAINT "favorites-junction-table_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
+ALTER TABLE "favorites-junction-table" ADD CONSTRAINT "favorites-junction-table_fk1" FOREIGN KEY ("dog_park_id") REFERENCES "dog_parks"("id") ON DELETE CASCADE;
 
 ALTER TABLE "dog_park_tags" ADD CONSTRAINT "dog_park_tags_fk0" FOREIGN KEY ("dog_park_id") REFERENCES "dog_parks"("id");
 ALTER TABLE "dog_park_tags" ADD CONSTRAINT "dog_park_tags_fk1" FOREIGN KEY ("tag_id") REFERENCES "tags"("id");
