@@ -9,9 +9,9 @@ import { styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
+import Favorites from '../Favorites/Favorites';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,6 +41,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     const dispatch = useDispatch();
     //set useState for toggle
     const [toggleViewEdit, setToggleViewEdit] = useState(true)
+    
 
     //call the tags
     useEffect(() => {
@@ -60,7 +61,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     //function to toggle fav boolean value
     const toggleFavBoolean = () => {
         dispatch({
-            type: 'TOGGLE_ISFAV_BOOLEAN_VALUE',
+            type: 'INSERT_INTO_FAV_TABLE',
             payload: dogParkDetails.id
         })
 
@@ -77,11 +78,8 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             </Grid>
             <Grid item xs={2}>
 
-                {}
-                <FavoriteIcon
-                sx={{ color: pink[300] }}
-                onClick={toggleFavBoolean}
-                        />
+               <Favorites dogParkDetails={dogParkDetails.id}/>
+               
             </Grid>
 
             <Grid item xs={12}>
