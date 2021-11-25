@@ -35,9 +35,9 @@ router.get('/favoriteDP', (req, res) => {
 
   //grab the info from dog_parks
   let queryText = `
-      SELECT * FROM "ratings" 
-      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "ratings".dog_park_id
-      WHERE "ratings".user_id = $1;
+      SELECT * FROM "favorites-junction-table" 
+      FULL OUTER JOIN "dog_parks" ON "dog_parks".id = "favorites-junction-table".dog_park_id
+      WHERE "favorites-junction-table".user_id = $1;
       `;
 
 

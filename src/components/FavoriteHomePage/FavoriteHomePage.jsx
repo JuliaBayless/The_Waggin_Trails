@@ -22,8 +22,8 @@ function FavoriteHomePage() {
   }, [])
 
   //filtering out the fav dog parks by the isFav boolean value
-  let favDogParks = DogParkList.allDogParksInDB.filter(park => park.isFav === true)
- console.log('======FAVHOMPAGE', DogParkList)
+  let favDogParks = DogParkList.allDogParksInDB
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
