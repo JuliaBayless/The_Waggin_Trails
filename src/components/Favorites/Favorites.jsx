@@ -21,19 +21,19 @@ export default function Favorite({ dogParkId }) {
 
     //when value it toggled to TRUE, insert row into favorites table
     const handleToggleTrue = () => {
-        // dispatch({
-        //     type: 'ADD_TO_FAVORITES_TABLE',
-        //     payload: dogParkId
-        // })
+        dispatch({
+            type: 'ADD_TO_FAVORITES_TABLE',
+            payload: {dog_park_id : dogParkId}
+        })
         setToggleFav(true)
     }
 
     //when value it toggled to FALSE, insert row into favorites table
     const handleToggleFalse = () => {
-        // dispatch({
-        //     type: 'DELETE_FROM_FAVORITES_TABLE',
-        //     payload: dogParkId
-        // })
+        dispatch({
+            type: 'DELETE_FROM_FAVORITES_TABLE',
+            payload: {dog_park_id : dogParkId }
+        })
         setToggleFav(false)
     }
     console.log('=============', toggleFav, dogParkId)

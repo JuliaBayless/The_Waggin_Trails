@@ -6,8 +6,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 //--------FAVORITES ROUTER -----
 
 //GET all favs
-router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('IN GET /tagList');
+router.get('/',  (req, res) => {
+    console.log('IN GET /favorites');
     console.log('is authenticated?', req.isAuthenticated());
   
     //grab all from favs tables
@@ -28,10 +28,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 
 // POST a row to favorites table
-router.post('/', rejectUnauthenticated, (req, res) => {
+router.post('/',  (req, res) => {
     // POST route code here
-    console.log('THIS IS POST FAVORITES', req.body);
-    console.log('is authenticated?', req.isAuthenticated());
+    console.log('THIS IS POST FAVORITES', req.body, req.user);
   
     //grab the tags specific to each dog park
     let queryText = `
@@ -52,7 +51,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 
   // DELETE from fav table
-  router.delete('/', rejectUnauthenticated, (req, res) => {
+  router.delete('/',  (req, res) => {
     console.log('This is what we are deleting -->', req.body);
   
     //query text to delete a tag 

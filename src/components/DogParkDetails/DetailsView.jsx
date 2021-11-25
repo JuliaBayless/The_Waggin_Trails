@@ -67,7 +67,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
 
     } //end toggleFavBoolean
     
-    let dogParkId = dogParkDetails.id
+    let dogParkId = dogParkDetails.dog_park_id
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
    console.log('===========', newTags, parkTags.specificTags, dogParkDetails)
