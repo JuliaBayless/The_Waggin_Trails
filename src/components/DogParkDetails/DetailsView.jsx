@@ -67,7 +67,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
 
     } //end toggleFavBoolean
     
-    
+    let dogParkId = dogParkDetails.id
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
    console.log('===========', newTags, parkTags.specificTags, dogParkDetails)
@@ -78,7 +78,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             </Grid>
             <Grid item xs={2}>
 
-               <Favorites dogParkDetails={dogParkDetails.id}/>
+               <Favorites dogParkId={dogParkId}/>
                
             </Grid>
 
