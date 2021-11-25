@@ -5,13 +5,14 @@ import axios from 'axios';
 function* fetchAllFavorites() {
     // get genre from the DB as response
     try {
-        const response = yield axios.get(`/api/tagList`);
+        const response = yield axios.get(`/api/favorites`);
+        console.log('=====FETCHFAV', response)
         yield put({
-            type: 'SET_All_TAGS',
+            type: 'SET_All_FAVORITES',
             payload: response.data
         });
     } catch (error) {
-        yield put({ type: 'ERROR_IN_SET_All_TAGS' })
+        yield put({ type: 'ERROR_IN_FETCH_FAVORITE' })
         console.log(error);
     }
 } //end fetchAllTags
@@ -19,27 +20,28 @@ function* fetchAllFavorites() {
 //POST to favorites
 function* addToFavorites(action) {
     try {
-        axios.post('/api/parkTags', action.payload)
+        console.log('=======ADDFAV', action.payload)
+        axios.post('/api/favorites', action.payload)
         // reset reducer  
         yield put({
-            type: 'FETCH_DOG_PARK_TAGS'
+            type: 'FETCH_ALL_FROM_FAVORITES_TABLE'
         })
     } catch {
         console.log('error');
-        yield put({ type: 'ERROR_IN_ADD_TAG_IN_EDIT_MODE' })
+        yield put({ type: 'ERROR_IN_ADD_FAVORITE' })
     }
 } //end toggleIsFav
 
 //DELETE from Favorites
 function* deleteFavorite(action) {
-    console.log('IN DELETE SAGA', action.payload)
+    console.log('=======DELETEFAV', action.payload)
     try {
-        axios.delete(`/api/parkTags`, {
+        axios.delete(`/api/favorites`, {
             data: action.payload
         })
     } catch {
         console.log('error');
-        yield put({ type: 'ERROR_IN_DELETE_TAG_IN_EDIT_MODE' })
+        yield put({ type: 'ERROR_IN_DELETE_FAVORITE' })
     }
 }//end addTagInEditMode
 
