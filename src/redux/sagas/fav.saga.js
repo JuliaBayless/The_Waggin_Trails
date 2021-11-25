@@ -16,8 +16,6 @@ function* fetchAllFavorites() {
     }
 } //end fetchAllTags
 
-
-
 //POST to favorites
 function* addToFavorites(action) {
     try {
@@ -33,7 +31,7 @@ function* addToFavorites(action) {
 } //end toggleIsFav
 
 //DELETE from Favorites
-function* deleteTagInEditMode(action) {
+function* deleteFavorite(action) {
     console.log('IN DELETE SAGA', action.payload)
     try {
         axios.delete(`/api/parkTags`, {
@@ -45,8 +43,11 @@ function* deleteTagInEditMode(action) {
     }
 }//end addTagInEditMode
 
+
 function* Favorites() {
     yield takeLatest('ADD_TO_FAVORITES_TABLE', addToFavorites); 
-    yield takeLatest('ADD_TO_FAVORITES_TABLE', addToFavorites); 
-    yield takeLatest('ADD_TO_FAVORITES_TABLE', addToFavorites); 
+    yield takeLatest('DELETE_FROM_FAVORITES_TABLE', deleteFavorite); 
+    yield takeLatest('FETCH_ALL_FROM_FAVORITES_TABLE', fetchAllFavorites); 
 }
+
+export default Favorites;

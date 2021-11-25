@@ -99,28 +99,28 @@ router.put('/:id', (req, res) => {
 }); //end PUT
 
 
-//route to toggle favorite
-router.put('/isFav/:id', (req, res) => {
-  const idToUpdate = req.params.id
-  console.log('This is what we are Updating -->', idToUpdate);
-  console.log('user', req.user);
+// //route to toggle favorite
+// router.put('/isFav/:id', (req, res) => {
+//   const idToUpdate = req.params.id
+//   console.log('This is what we are Updating -->', idToUpdate);
+//   console.log('user', req.user);
 
-  //user can update their rating
+//   //user can update their rating
 
-  let queryText = `UPDATE "ratings"
-  SET "isFav"= NOT "isFav" 
-  WHERE "dog_park_id" = $1 AND "user_id" = $2;`;
+//   let queryText = `UPDATE "ratings"
+//   SET "isFav"= NOT "isFav" 
+//   WHERE "dog_park_id" = $1 AND "user_id" = $2;`;
 
 
-  let values = [idToUpdate, req.user.id]
-  pool.query(queryText, values)
-    .then(respond => {
-      res.send(200);
-    }).catch(error => {
-      console.log('ERROR IN UPDATE', error);
-      res.sendStatus(500);
-    })
-}); //end PUT
+//   let values = [idToUpdate, req.user.id]
+//   pool.query(queryText, values)
+//     .then(respond => {
+//       res.send(200);
+//     }).catch(error => {
+//       console.log('ERROR IN UPDATE', error);
+//       res.sendStatus(500);
+//     })
+// }); //end PUT
 
 
 module.exports = router;
