@@ -27,7 +27,7 @@ router.get('/',  (req, res) => {
 
 
 // to add a row from junction table dog_park_tags
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   console.log('THIS IS POST parkTAGS', req.body);
   // console.log('is authenticated?', req.isAuthenticated());
@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
 
 
 //* to delete a row from junction table dog_park_tags
-router.delete('/', (req, res) => {
+router.delete('/', rejectUnauthenticated, (req, res) => {
   console.log('This is what we are deleting -->', req.body);
 
   //query text to delete a tag 
