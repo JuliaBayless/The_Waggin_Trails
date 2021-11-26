@@ -74,8 +74,8 @@ router.get('/:id', (req, res) => {
 }); //end GET
 
 
+ // POST route for adding a new dog park
 router.post('/', (req, res) => {
-  // POST route code here
   console.log('This is REQ.BODY', req.body, req.body.tag_id, 'THIS IS REQ.USER', req.user.id);
   // console.log('is authenticated?', req.isAuthenticated());
 

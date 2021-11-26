@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Container, Box } from '@material-ui/core';
 import {
-  CardActionArea, CardContent,
-  CardMedia, CardHeader, Card, Chip, Stack
+  CardActionArea, CardContent, CardMedia, 
+  CardHeader, Card, Chip, Stack, IconButton
 } from '@mui/material';
 import { pink } from '@mui/material/colors';
 import PetsIcon from '@mui/icons-material/Pets';
@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-
+import HeartIcon from '../HeartIcon/HeartIcon';
 // const useStyles = makeStyles(() => ({
 //   image:{
 //       height: "150px",
@@ -21,6 +21,8 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 export default function DogParkItem({ dogPark }) {
   // const { image } = useStyles();
+  const user = useSelector(store => store.user);
+  const favorites = useSelector(store => store.favoritesReducer)
   const dogParkTags = useSelector((store) => store.tagReducer);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,12 +36,14 @@ export default function DogParkItem({ dogPark }) {
     })
   }, [])
 
-
+//send user to details page with useParams
   const handleSubmitDetails = () => {
     history.push(`/dogParkDetails/${dogPark.id}`)
   }
 
-
+  //pass this variable to favorites to recognize
+  let dogParkId = dogPark.id
+  //filter the specific tags to this dog park
   let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
   return (
 
@@ -48,9 +52,15 @@ export default function DogParkItem({ dogPark }) {
       sx={{ height: 500, width: 300 }}>
       <CardActionArea>
         <CardHeader
+          onClick={() => { handleSubmitDetails(dogPark) }}
+          action={
+            <IconButton aria-label="settings">
+              <HeartIcon dogParkId={dogParkId} 
+               favArray={favorites.favorites} 
+               user={user.id} />
+            </IconButton>}
           title={dogPark.name}
           subheader={dogPark.location}
-          onClick={() => { handleSubmitDetails(dogPark) }}
         />
         <Box display='flex' flexGrow={1}>
         </Box>
@@ -61,7 +71,6 @@ export default function DogParkItem({ dogPark }) {
           image={dogPark.image_url}
           alt={dogPark.name} />
         <CardContent>
-          <PetsIcon />
           <Box sx={{ margin: '10px' }}>
               <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
                 {newTags?.map(tag => {

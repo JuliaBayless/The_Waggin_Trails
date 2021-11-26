@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { Container, Paper } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import { positions } from '@mui/system';
-import DogParkItem from '../DogParkItem/DogParkItem'
+import DogParkItem from './DogParkItem'
 
 
 //component that parents the main dog list
