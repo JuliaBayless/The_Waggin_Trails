@@ -20,7 +20,7 @@ import HeartIcon from '../HeartIcon/HeartIcon';
 // }))
 
 export default function DogParkItem({ dogPark }) {
-  // const { image } = useStyles();
+ //stores and hooks
   const user = useSelector(store => store.user);
   const favorites = useSelector(store => store.favoritesReducer)
   const dogParkTags = useSelector((store) => store.tagReducer);
