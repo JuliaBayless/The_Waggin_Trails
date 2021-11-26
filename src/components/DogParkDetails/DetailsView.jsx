@@ -2,7 +2,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router";
 import { useEffect, useState } from 'react';
-import { Container, Paper, Box, makeStyles } from '@material-ui/core';
+import { Container, Paper, Box, makeStyles, Button } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import { Typography, Chip, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -10,7 +10,7 @@ import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
-import Favorites from '../Favorites/Favorites';
+import HeartIcon from '../HeartIcon/HeartIcon'
 
 
 const useStyles = makeStyles(theme => ({
@@ -72,9 +72,12 @@ export default function DogParkDetailsView({ dogParkDetails }) {
 
     } //end toggleFavBoolean
     
+    //change dog park id into var for props to pass to Fav component
     let dogParkId = dogParkDetails.dog_park_id
+    
     //filter out specific tags to dog park
     let newTags = parkTags.specificTags.filter(tag => tag.dog_park_id === dogParkDetails.dog_park_id)
+    
     return (
         <>
             <Grid item xs={10}>
@@ -82,7 +85,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             </Grid>
             <Grid item xs={2}>
 
-               <Favorites dogParkId={dogParkId} 
+               <HeartIcon dogParkId={dogParkId} 
                favArray={favorites.favorites} 
                user={user.id} />
                
@@ -108,10 +111,11 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
-                <ModeEditIcon 
-                onClick={() => handleToggleChange()}/>
                 {/* toggle for edit chip view */}
                 {toggleViewEdit ?
+                <>
+                <ModeEditIcon 
+                onClick={() => handleToggleChange()}/>
                 <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
                     {newTags?.map(tag => {
                         return (
@@ -123,8 +127,22 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                         )
                     })}
                 </Stack> 
+                </>
                     :
-                <ParkTagEditForm newTags={newTags} parkTags={parkTags} dogParkDetails={dogParkDetails.dog_park_id}/>
+                    <>
+                <ParkTagEditForm 
+                newTags={newTags} 
+                parkTags={parkTags} 
+                dogParkDetails={dogParkDetails.dog_park_id} />
+                
+                <Button
+                variant="contained"
+                color="error"
+                onClick={() => handleToggleChange()}
+                >
+                Return
+            </Button>
+            </>
                 }
             </Grid>
         </>
