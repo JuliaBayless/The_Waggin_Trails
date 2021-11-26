@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Container, Box } from '@material-ui/core';
 import {
-  CardActionArea, CardContent, CardMedia, 
+  CardActionArea, CardContent, CardMedia,
   CardHeader, Card, Chip, Stack, IconButton
 } from '@mui/material';
 import { pink } from '@mui/material/colors';
@@ -26,7 +26,7 @@ export default function DogParkItem({ dogPark }) {
   const dogParkTags = useSelector((store) => store.tagReducer);
   const dispatch = useDispatch();
   const history = useHistory();
- 
+
 
   //fetch all dog park ids
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function DogParkItem({ dogPark }) {
     })
   }, [])
 
-//send user to details page with useParams
+  //send user to details page with useParams
   const handleSubmitDetails = () => {
     history.push(`/dogParkDetails/${dogPark.id}`)
   }
@@ -50,35 +50,49 @@ export default function DogParkItem({ dogPark }) {
     <Card sx={{ maxWidth: 400 }}
       elevation={6}
       sx={{ height: 500, width: 300 }}>
-      <CardActionArea>
+      <CardActionArea
+        onClick={() => { handleSubmitDetails(dogPark) }}>
         <CardHeader
-          onClick={() => { handleSubmitDetails(dogPark) }}
+          // onClick={() => { handleSubmitDetails(dogPark) }}
+
           action={
-            <IconButton aria-label="settings">
-              <HeartIcon dogParkId={dogParkId} 
-               favArray={favorites.favorites} 
-               user={user.id} />
+            <IconButton
+              aria-label="settings"
+              onMouseDown={event => event.stopPropagation()}
+              onClick={event => {
+                event.stopPropagation();
+                event.preventDefault();
+              }}>
+              {/* call favorites component */}
+
+              <HeartIcon
+                dogParkId={dogParkId}
+                favArray={favorites.favorites}
+                user={user.id}
+              />
+
             </IconButton>}
+
           title={dogPark.name}
           subheader={dogPark.location}
         />
         <Box display='flex' flexGrow={1}>
         </Box>
         <CardMedia
-          onClick={() => { handleSubmitDetails(dogPark) }}
+          // onClick={() => { handleSubmitDetails(dogPark) }}
           component="img"
           sx={{ height: 150, width: 300 }}
           image={dogPark.image_url}
           alt={dogPark.name} />
         <CardContent>
           <Box sx={{ margin: '10px' }}>
-              <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                {newTags?.map(tag => {
-                  return (
-                    <Chip key={tag.id} color="success" label={tag.tag} />
-                  )
-                })}
-              </Stack> 
+            <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+              {newTags?.map(tag => {
+                return (
+                  <Chip key={tag.id} color="success" label={tag.tag} />
+                )
+              })}
+            </Stack>
           </Box>
         </CardContent>
       </CardActionArea>
