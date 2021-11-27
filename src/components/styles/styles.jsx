@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     
     
   //---------Details View------------------------------------------------------------------
-    
+
     root: {
         flexGrow: 1,
         width: '100%'
@@ -22,4 +22,12 @@ const useStyles = makeStyles({
     layout: {
         margin: '20px'
     }
-});
+
+    //tell heroku to make this priority styling
+}, {index: 1}); //end useStyles
+
+
+
+
+
+export default useStyles;

@@ -1,6 +1,9 @@
 import React from 'react';
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router";
+
+//MUI
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -13,10 +16,11 @@ import ListIcon from '@mui/icons-material/List';
 
 
 
+
 export default function FixedBottomNavigation() {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef(null);
-  
+  const history = useHistory();
 
  
 
@@ -30,13 +34,16 @@ export default function FixedBottomNavigation() {
         >
           <BottomNavigationAction 
           label="Add Park" 
-          icon={<AddCircleOutlineIcon />} />
+          icon={<AddCircleOutlineIcon />} 
+          onClick={() => history.push('/addParkForm') }/>
           <BottomNavigationAction 
           label="Favorites" 
-          icon={<FavoriteIcon />} />
+          icon={<FavoriteIcon />} 
+          onClick={() => history.push('/FavoriteHomePage') }/>
           <BottomNavigationAction 
           label="List of Dog Parks" 
-          icon={<ListIcon />} />
+          icon={<ListIcon />} 
+          onClick={() => history.push('/DogParkList') }/>
         </BottomNavigation>
   );
 }

@@ -13,23 +13,6 @@ import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
 import HeartIcon from '../HeartIcon/HeartIcon'
 import useStyles from '../styles/styles'
 
-// const useStyles = makeStyles(theme => ({
-//     root: {
-//         flexGrow: 1,
-//         width: '100%'
-//     },
-//     rowLayout: {
-//         display: 'flex',
-//         justifyContent: 'space-between',
-//         alignItems: 'center' // To be vertically aligned
-//     },
-//     iconLayout: {
-//         margin: '40px'
-//     },
-//     layout: {
-//         margin: '20px'
-//     }
-// }));
 
 
 
@@ -45,7 +28,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     const [toggleViewEdit, setToggleViewEdit] = useState(true)
     
 
-    //call the tags
+    //call the tags and favorites
     useEffect(() => {
         dispatch({
             type: 'FETCH_DOG_PARK_TAGS',
@@ -55,6 +38,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             })
     }, [])
 
+    //handle toggle to edit view for dog tag categories
     const handleToggleChange = () => {
         dispatch({
             type: 'FETCH_DOG_PARK_TAGS',
@@ -63,14 +47,14 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     }
 
 
-    //function to toggle fav boolean value
-    const toggleFavBoolean = () => {
-        dispatch({
-            type: 'INSERT_INTO_FAV_TABLE',
-            payload: dogParkDetails.id
-        })
+    // //function to toggle fav boolean value
+    // const toggleFavBoolean = () => {
+    //     dispatch({
+    //         type: 'INSERT_INTO_FAV_TABLE',
+    //         payload: dogParkDetails.id
+    //     })
 
-    } //end toggleFavBoolean
+    // } //end toggleFavBoolean
     
     //change dog park id into var for props to pass to Fav component
     let dogParkId = dogParkDetails.dog_park_id
