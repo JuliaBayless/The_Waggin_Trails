@@ -96,7 +96,8 @@ export default function Nav() {
           <Typography 
           variant="h6" 
           component="div" 
-          sx={{ flexGrow: 1 }}
+          onClick={handlePushHome}
+          sx={{ flexGrow: 1}}
           className={classes.logo}>
 
             The Waggin' Trails

@@ -6,7 +6,6 @@ const useStyles = makeStyles({
     //-------- Footer -----------------------------
 
     stickToBottom: {
-        backgroundColor: '#C03C3C',
         width: '100%',
         position: 'fixed',
         bottom: 0,
@@ -43,6 +42,8 @@ const useStyles = makeStyles({
         fontWeight: 600,
         textAlign: "left",
         color: "#FFFFFF",
+    },
+    test:{
         stroke: "black",
         strokeWidth: '1px',
     },
