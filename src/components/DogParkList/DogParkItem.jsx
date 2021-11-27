@@ -19,11 +19,11 @@ import HeartIcon from '../HeartIcon/HeartIcon';
 //   },
 // }))
 
-export default function DogParkItem({ dogPark }) {
+export default function DogParkItem({ dogPark, favArray, dogParkTags }) {
  //stores and hooks
   const user = useSelector(store => store.user);
-  const favorites = useSelector(store => store.favoritesReducer)
-  const dogParkTags = useSelector((store) => store.tagReducer);
+  // const favorites = useSelector(store => store.favoritesReducer)
+  // const dogParkTags = useSelector((store) => store.tagReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -31,9 +31,9 @@ export default function DogParkItem({ dogPark }) {
   //fetch all dog park ids
   useEffect(() => {
     console.log();
-    dispatch({
-      type: 'FETCH_DOG_PARK_TAGS',
-    })
+    // dispatch({
+    //   type: 'FETCH_DOG_PARK_TAGS',
+    // })
   }, [])
 
   //send user to details page with useParams
@@ -67,7 +67,8 @@ export default function DogParkItem({ dogPark }) {
 
               <HeartIcon
                 dogParkId={dogParkId}
-                favArray={favorites.favorites}
+                // favArray={favorites.favorites}
+                favArray={favArray}
                 user={user.id}
               />
 

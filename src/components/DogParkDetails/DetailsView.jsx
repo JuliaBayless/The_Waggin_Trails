@@ -5,9 +5,6 @@ import { useEffect, useState } from 'react';
 import { Container, Paper, Box, makeStyles, Button } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import { Typography, Chip, Stack } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { pink } from '@mui/material/colors';
-import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
 import HeartIcon from '../HeartIcon/HeartIcon'
@@ -46,15 +43,6 @@ export default function DogParkDetailsView({ dogParkDetails }) {
         setToggleViewEdit(!toggleViewEdit)
     }
 
-
-    // //function to toggle fav boolean value
-    // const toggleFavBoolean = () => {
-    //     dispatch({
-    //         type: 'INSERT_INTO_FAV_TABLE',
-    //         payload: dogParkDetails.id
-    //     })
-
-    // } //end toggleFavBoolean
     
     //change dog park id into var for props to pass to Fav component
     let dogParkId = dogParkDetails.dog_park_id
@@ -91,7 +79,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 {dogParkDetails.image_url === undefined ? "" : <img src={dogParkDetails.image_url} alt={dogParkDetails.name}
                 />}
             </Grid>
-            <Grid Item xs={12} className={classes.layout}>
+            <Grid item xs={12} className={classes.layout}>
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>

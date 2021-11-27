@@ -22,9 +22,6 @@ export default function Favorite({ dogParkId, favArray, user }) {
 
 
     useEffect(() => {
-        dispatch({
-            type: 'FETCH_ALL_FROM_FAVORITES_TABLE'
-        })
         changeToggleStatus()
       }, [])
   
