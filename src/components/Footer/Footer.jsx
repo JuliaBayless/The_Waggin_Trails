@@ -11,6 +11,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ListIcon from '@mui/icons-material/List';
+import { AppBar } from '@material-ui/core';
 
 //components
 import useStyles from '../styles/styles'
@@ -31,6 +32,7 @@ export default function FixedBottomNavigation() {
 
 
   return (
+    <AppBar>
     <BottomNavigation
       showLabels
       value={value}
@@ -52,27 +54,7 @@ export default function FixedBottomNavigation() {
         icon={<ListIcon />}
         onClick={() => history.push('/DogParkList')} />
     </BottomNavigation>
+    </AppBar>
   );
 }
 
-// function Footer() {
-
-
-//   return (
-//     <>
-
-//       <Link className="navLink" to="/addParkForm">
-//         Add a Park
-//       </Link>
-//       <Link className="navLink" to="/FavoriteHomePage">
-//         Home
-//       </Link>
-//       <Link className="navLink" to="/DogParkList">
-//         Dog Park List
-//       </Link>
-
-//     </>
-//   )
-// }
-
-// export default Footer;

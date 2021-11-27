@@ -71,6 +71,7 @@ CREATE TABLE "ratings" (
 
 ALTER TABLE "favorites-junction-table" ADD CONSTRAINT "favorites-junction-table_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
 ALTER TABLE "favorites-junction-table" ADD CONSTRAINT "favorites-junction-table_fk1" FOREIGN KEY ("dog_park_id") REFERENCES "dog_parks"("id") ON DELETE CASCADE;
+ALTER TABLE "favorites-junction-table" ADD CONSTRAINT UC_Favorite UNIQUE (user_id, dog_park_id);
 
 ALTER TABLE "dog_park_tags" ADD CONSTRAINT "dog_park_tags_fk0" FOREIGN KEY ("dog_park_id") REFERENCES "dog_parks"("id");
 ALTER TABLE "dog_park_tags" ADD CONSTRAINT "dog_park_tags_fk1" FOREIGN KEY ("tag_id") REFERENCES "tags"("id");
