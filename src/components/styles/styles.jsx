@@ -43,20 +43,22 @@ const useStyles = makeStyles({
         fontWeight: 600,
         textAlign: "left",
         color: "#FFFFFF",
+        stroke: "black",
+        strokeWidth: '1px',
     },
     menuButton: {
         fontFamily: "Open Sans, sans-serif",
         fontWeight: 700,
         size: "10px",
-        // marginLeft: "38px",
-        // marginRight: "10px"
      },
-     toolbar: {
+     logout: {
         display: "flex",
-        justifyContent: "space-between",
-        // marginRight: "50px"
+        justifyContent: "left",
+        marginLeft: "50px"
       },
-
+      boxMargin: {
+          marginBottom: "70px"
+      }
 
     //tell heroku to make this priority styling
 }, { index: 1 }); //end useStyles

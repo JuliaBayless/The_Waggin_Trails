@@ -76,8 +76,11 @@ export default function Nav() {
 
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+
+    <Box sx={{ flexGrow: 1 }} className={classes.boxMargin}>
+      <AppBar 
+      className={classes.header}
+      >
         <Toolbar>
           {user.id && <IconButton
 
@@ -90,7 +93,11 @@ export default function Nav() {
             <MenuIcon />
           </IconButton>}
 
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography 
+          variant="h6" 
+          component="div" 
+          sx={{ flexGrow: 1 }}
+          className={classes.logo}>
 
             The Waggin' Trails
 
@@ -105,16 +112,17 @@ export default function Nav() {
           {user.id && (
             <div>
               <IconButton
-                // size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
               >
                 <LogoutIcon
-                  onClick={handleLogOut} />
+                  onClick={handleLogOut} 
+                  className={classes.logout}/>
               </IconButton>
               <Menu
+                className={classes.menuButton}
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
@@ -129,7 +137,7 @@ export default function Nav() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handlePushForm}>Add A Park</MenuItem>
+                <MenuItem onClick={handlePushForm}>Add Park</MenuItem>
                 <MenuItem onClick={handlePushHome}>Favorites</MenuItem>
                 <MenuItem onClick={handlePushList}>List</MenuItem>
               </Menu>
@@ -140,34 +148,6 @@ export default function Nav() {
     </Box>
 
 
-
-    // <div className="nav">
-    //   <Link to="/home">
-    //     <h2 className="nav-title">The Waggin' Trails</h2>
-    //   </Link>
-    //   <div>
-    //     {/* If no user is logged in, show these links */}
-    //     {user.id === null &&
-    //       // If there's no user, show login/registration links
-    //       <Link className="navLink" to="/login">
-    //         Login / Register
-    //       </Link>
-    //     }
-
-    //     {/* If a user is logged in, show these links */}
-    //     {user.id && (
-    //       <>
-
-
-    //         <LogOutButton className="navLink" />
-    //       </>
-    //     )}
-
-    //     <Link className="navLink" to="/about">
-    //       About
-    //     </Link>
-    //   </div>
-    // </div>
   );
 }
 
