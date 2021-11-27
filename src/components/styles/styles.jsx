@@ -1,11 +1,17 @@
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
-    
-    
-    
-    
-  //---------Details View------------------------------------------------------------------
+
+
+    //------Footer -----------------------------
+
+    stickToBottom: {
+        width: '100%',
+        position: 'fixed',
+        bottom: 0,
+    },
+
+    //---------Details View------------------------------------------------------------------
 
     root: {
         flexGrow: 1,
@@ -23,8 +29,12 @@ const useStyles = makeStyles({
         margin: '20px'
     }
 
+
+
+
+
     //tell heroku to make this priority styling
-}, {index: 1}); //end useStyles
+}, { index: 1 }); //end useStyles
 
 
 
