@@ -1,30 +1,64 @@
 import React from 'react';
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ListIcon from '@mui/icons-material/List';
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
 
-function Footer() {
 
+
+
+export default function FixedBottomNavigation() {
+  const [value, setValue] = React.useState(0);
+  const ref = React.useRef(null);
+  
+
+ 
 
   return (
-    <>
-
-      <Link className="navLink" to="/addParkForm">
-        Add a Park
-      </Link>
-      <Link className="navLink" to="/FavoriteHomePage">
-        Home
-      </Link>
-      <Link className="navLink" to="/DogParkList">
-        Dog Park List
-      </Link>
-
-    </>
-  )
+        <BottomNavigation
+          showLabels
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        >
+          <BottomNavigationAction 
+          label="Add Park" 
+          icon={<AddCircleOutlineIcon />} />
+          <BottomNavigationAction 
+          label="Favorites" 
+          icon={<FavoriteIcon />} />
+          <BottomNavigationAction 
+          label="List of Dog Parks" 
+          icon={<ListIcon />} />
+        </BottomNavigation>
+  );
 }
 
-export default Footer;
+// function Footer() {
+
+
+//   return (
+//     <>
+
+//       <Link className="navLink" to="/addParkForm">
+//         Add a Park
+//       </Link>
+//       <Link className="navLink" to="/FavoriteHomePage">
+//         Home
+//       </Link>
+//       <Link className="navLink" to="/DogParkList">
+//         Dog Park List
+//       </Link>
+
+//     </>
+//   )
+// }
+
+// export default Footer;

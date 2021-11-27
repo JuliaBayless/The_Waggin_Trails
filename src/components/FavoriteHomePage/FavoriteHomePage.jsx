@@ -41,7 +41,6 @@ function FavoriteHomePage() {
                     })}
                 </Grid>
             </Container>
-            <LogOutButton className="btn" />
     </div>
   );
 }

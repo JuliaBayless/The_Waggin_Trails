@@ -11,30 +11,30 @@ import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
 import HeartIcon from '../HeartIcon/HeartIcon'
+import useStyles from '../styles/styles'
 
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        width: '100%'
-    },
-    rowLayout: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center' // To be vertically aligned
-    },
-    iconLayout: {
-        margin: '40px'
-    },
-    layout: {
-        margin: '20px'
-    }
-}));
+// const useStyles = makeStyles(theme => ({
+//     root: {
+//         flexGrow: 1,
+//         width: '100%'
+//     },
+//     rowLayout: {
+//         display: 'flex',
+//         justifyContent: 'space-between',
+//         alignItems: 'center' // To be vertically aligned
+//     },
+//     iconLayout: {
+//         margin: '40px'
+//     },
+//     layout: {
+//         margin: '20px'
+//     }
+// }));
 
 
 
 export default function DogParkDetailsView({ dogParkDetails }) {
-    const { root, rowLayout, iconLayout, layout } = useStyles();
+    const classes = useStyles();
     //grab park tags from the store
     const parkTags = useSelector((store) => store.tagReducer);
     const user = useSelector(store => store.user);
@@ -107,7 +107,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 {dogParkDetails.image_url === undefined ? "" : <img src={dogParkDetails.image_url} alt={dogParkDetails.name}
                 />}
             </Grid>
-            <Grid Item xs={12} className={layout}>
+            <Grid Item xs={12} className={classes.layout}>
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
