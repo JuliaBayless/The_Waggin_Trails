@@ -2,8 +2,21 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
 
+    //------- FavoritesItems --------//
 
-    //-------- Footer -----------------------------
+    cardLayout: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center' // To be vertically aligned
+    },
+    cardTitle: {
+        fontFamily: "Short Stack, sans-serif",
+        fontSize: "38px",
+        fontWeight: 600,
+    },
+
+
+    //-------- Footer ---------//
 
     stickToBottom: {
         width: '100%',
@@ -12,7 +25,7 @@ const useStyles = makeStyles({
     },
 
 
-    //--------- Details View------------------------------------------------------------------
+    //--------- Details View-----------//
 
     root: {
         flexGrow: 1,
@@ -31,7 +44,7 @@ const useStyles = makeStyles({
     },
 
 
-    //--------- Nav Bar --------------------------------------------------
+    //--------- Nav Bar ------------//
 
     header: {
         backgroundColor: "#C03C3C",
@@ -43,23 +56,20 @@ const useStyles = makeStyles({
         textAlign: "left",
         color: "#FFFFFF",
     },
-    test:{
-        stroke: "black",
-        strokeWidth: '1px',
-    },
     menuButton: {
         fontFamily: "Open Sans, sans-serif",
         fontWeight: 700,
         size: "10px",
-     },
-     logout: {
+    },
+    logout: {
         display: "flex",
         justifyContent: "left",
         marginLeft: "50px"
-      },
-      boxMargin: {
-          marginBottom: "70px"
-      }
+    },
+    // pushes away from the nav bar
+    boxMargin: {
+        marginBottom: "70px"
+    }
 
     //tell heroku to make this priority styling
 }, { index: 1 }); //end useStyles
