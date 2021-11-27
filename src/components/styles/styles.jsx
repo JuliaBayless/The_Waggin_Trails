@@ -9,6 +9,10 @@ const useStyles = makeStyles({
         width: '100%',
         position: 'fixed',
         bottom: 0,
+        backgroundColor: '#C03C3C'
+    },
+    designBar: {
+        backgroundColor: '#C03C3C',
     },
 
     //---------Details View------------------------------------------------------------------

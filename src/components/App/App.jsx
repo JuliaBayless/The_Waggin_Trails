@@ -63,7 +63,7 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/FavoriteHomePage"
+            path="/home"
           >
             <FavoriteHomePage />
           </ProtectedRoute>
@@ -104,7 +104,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
               :
               // Otherwise, show the login page
               <LoginPage />
@@ -119,7 +119,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
               :
               // Otherwise, show the registration page
               <RegisterPage />
@@ -134,7 +134,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
@@ -146,11 +146,12 @@ function App() {
           <Route>
             <h1>404</h1>
           </Route>
-
-
         </Switch>
+
         <footer>&copy; Prime Digital Academy</footer>
-        <Footer />
+        {user.id &&
+          <Footer />}
+      
       </div>
     </Router>
   );

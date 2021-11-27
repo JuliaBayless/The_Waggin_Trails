@@ -1,11 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
 import { useSelector } from 'react-redux';
 
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  makeStyles,
+  Button,
+} from "@material-ui/core";
+import { positions } from "@mui/system";
+
+//import components
+import LogOutButton from '../LogOutButton/LogOutButton';
+import './Nav.css';
+import useStyles from '../styles/styles';
+
+// data containing routes for header links
+const headersData = [
+  {
+      label: "Home",
+      href: "/",
+  },
+  {
+      label: "Log Out",
+      href: "/AddMovie",
+  },
+]
+
+
+
+
 function Nav() {
+  const classes = useStyles();
+
+  //stores
   const user = useSelector((store) => store.user);
+
+
 
   return (
     <div className="nav">
