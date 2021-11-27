@@ -19,6 +19,10 @@ function LoginForm() {
           password: password,
         },
       });
+      dispatch({type: 'FETCH_FAV_DOG_PARKS'})
+      dispatch({
+        type: 'FETCH_DOG_PARK_TAGS',
+      })
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }

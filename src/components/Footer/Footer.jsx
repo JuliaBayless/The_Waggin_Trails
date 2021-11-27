@@ -1,30 +1,85 @@
 import React from 'react';
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router";
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+//MUI
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ListIcon from '@mui/icons-material/List';
+import { AppBar, useScrollTrigger, Slide } from '@material-ui/core';
 
-function Footer() {
+//components
+import useStyles from '../styles/styles'
+
+
+
+
+export default function FixedBottomNavigation() {
+  //hooks
+  const history = useHistory();
+  const classes = useStyles();
+
+  const [value, setValue] = React.useState(1);
+  const ref = React.useRef(null);
+
+
+  interface Props {
+    children: React.ReactElement;
+  }
+
+  function HideOnScroll({ children }: Props) {
+    const trigger = useScrollTrigger();
+
+    return (
+      <Slide appear={false} direction={'down'} in={!trigger}>
+        {children}
+      </Slide>
+
+    )
+  }
 
 
   return (
-    <>
-
-      <Link className="navLink" to="/addParkForm">
-        Add a Park
-      </Link>
-      <Link className="navLink" to="/FavoriteHomePage">
-        Home
-      </Link>
-      <Link className="navLink" to="/DogParkList">
-        Dog Park List
-      </Link>
-
-    </>
-  )
+    <HideOnScroll>
+      <AppBar>
+        <BottomNavigation
+          showLabels
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          className={classes.stickToBottom}
+          sx={{
+            "& .MuiBottomNavigationAction-root":{
+              color:"#OOOOOO"
+            },  "& .Mui-selected, .Mui-selected > svg": {
+              color: "#C03C3C"
+            }
+            
+          }}>
+          <BottomNavigationAction
+            label="Add Park"
+            icon={<AddCircleOutlineIcon />}
+            onClick={() => history.push('/addParkForm')} />
+         
+          <BottomNavigationAction
+            label="Favorites"
+            icon={<FavoriteIcon />}
+            onClick={() => history.push('/home')} />
+          
+          <BottomNavigationAction
+            label="List of Dog Parks"
+            icon={<ListIcon />}
+            onClick={() => history.push('/DogParkList')} />
+        
+        </BottomNavigation>
+      </AppBar>
+    </HideOnScroll>
+  );
 }
 
-export default Footer;

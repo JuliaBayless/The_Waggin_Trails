@@ -5,36 +5,16 @@ import { useEffect, useState } from 'react';
 import { Container, Paper, Box, makeStyles, Button } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import { Typography, Chip, Stack } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { pink } from '@mui/material/colors';
-import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
 import HeartIcon from '../HeartIcon/HeartIcon'
+import useStyles from '../styles/styles'
 
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        width: '100%'
-    },
-    rowLayout: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center' // To be vertically aligned
-    },
-    iconLayout: {
-        margin: '40px'
-    },
-    layout: {
-        margin: '20px'
-    }
-}));
 
 
 
 export default function DogParkDetailsView({ dogParkDetails }) {
-    const { root, rowLayout, iconLayout, layout } = useStyles();
+    const classes = useStyles();
     //grab park tags from the store
     const parkTags = useSelector((store) => store.tagReducer);
     const user = useSelector(store => store.user);
@@ -45,7 +25,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
     const [toggleViewEdit, setToggleViewEdit] = useState(true)
     
 
-    //call the tags
+    //call the tags and favorites
     useEffect(() => {
         dispatch({
             type: 'FETCH_DOG_PARK_TAGS',
@@ -55,6 +35,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
             })
     }, [])
 
+    //handle toggle to edit view for dog tag categories
     const handleToggleChange = () => {
         dispatch({
             type: 'FETCH_DOG_PARK_TAGS',
@@ -62,15 +43,6 @@ export default function DogParkDetailsView({ dogParkDetails }) {
         setToggleViewEdit(!toggleViewEdit)
     }
 
-
-    //function to toggle fav boolean value
-    const toggleFavBoolean = () => {
-        dispatch({
-            type: 'INSERT_INTO_FAV_TABLE',
-            payload: dogParkDetails.id
-        })
-
-    } //end toggleFavBoolean
     
     //change dog park id into var for props to pass to Fav component
     let dogParkId = dogParkDetails.dog_park_id
@@ -107,7 +79,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 {dogParkDetails.image_url === undefined ? "" : <img src={dogParkDetails.image_url} alt={dogParkDetails.name}
                 />}
             </Grid>
-            <Grid Item xs={12} className={layout}>
+            <Grid item xs={12} className={classes.layout}>
                 <Typography variant="h5" gutterBottom component="div" >
                     {dogParkDetails.description}
                 </Typography>
