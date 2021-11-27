@@ -3,19 +3,17 @@ import { makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
 
 
-    //------Footer -----------------------------
+    //-------- Footer -----------------------------
 
     stickToBottom: {
+        backgroundColor: '#C03C3C',
         width: '100%',
         position: 'fixed',
         bottom: 0,
-        backgroundColor: '#C03C3C'
-    },
-    designBar: {
-        backgroundColor: '#C03C3C',
     },
 
-    //---------Details View------------------------------------------------------------------
+
+    //--------- Details View------------------------------------------------------------------
 
     root: {
         flexGrow: 1,
@@ -31,10 +29,37 @@ const useStyles = makeStyles({
     },
     layout: {
         margin: '20px'
-    }
+    },
 
 
+    //--------- Nav Bar --------------------------------------------------
 
+    header: {
+        backgroundColor: "#C03C3C",
+        // paddingRight: "79px",
+        // paddingLeft: "118px",
+        // paddingBottom: "5px",
+        // paddingTop: "5px",
+        position: "fixed",
+    },
+    logo: {
+        fontFamily: "Short Stack, sans-serif",
+        fontWeight: 600,
+        textAlign: "left",
+        color: "#FFFFFF",
+    },
+    menuButton: {
+        fontFamily: "Open Sans, sans-serif",
+        fontWeight: 700,
+        size: "10px",
+        // marginLeft: "38px",
+        // marginRight: "10px"
+     },
+     toolbar: {
+        display: "flex",
+        justifyContent: "space-between",
+        // marginRight: "50px"
+      },
 
 
     //tell heroku to make this priority styling

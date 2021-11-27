@@ -16,6 +16,7 @@ export default function DogParkList(props) {
 
   useEffect(() => {
     dispatch({type: 'FETCH_ALL_DOG_PARKS'})
+  
   }, [])
 
   return (

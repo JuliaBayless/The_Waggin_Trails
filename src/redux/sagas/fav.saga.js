@@ -6,7 +6,6 @@ function* fetchAllFavorites() {
     // get genre from the DB as response
     try {
         const response = yield axios.get(`/api/favorites`);
-        console.log('=====FETCHFAV', response)
         yield put({
             type: 'SET_All_FAVORITES',
             payload: response.data
@@ -20,7 +19,6 @@ function* fetchAllFavorites() {
 //POST to favorites
 function* addToFavorites(action) {
     try {
-        console.log('=======ADDFAV', action.payload)
         axios.post('/api/favorites', action.payload)
         // reset reducer  
         yield put({
@@ -34,7 +32,6 @@ function* addToFavorites(action) {
 
 //DELETE from Favorites
 function* deleteFavorite(action) {
-    console.log('=======DELETEFAV', action.payload)
     try {
         axios.delete(`/api/favorites`, {
             data: action.payload
