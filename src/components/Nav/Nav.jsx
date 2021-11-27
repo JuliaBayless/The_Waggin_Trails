@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router";
 
 import {
   AppBar,
@@ -31,16 +32,19 @@ import useStyles from '../styles/styles';
 
 
 export default function Nav() {
+  //hooks
   const classes = useStyles();
+  const history = useHistory();
 
   //stores
   const user = useSelector((store) => store.user);
 
-  const [auth, setAuth] = React.useState(true);
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
+    
   };
 
   const handleMenu = (event) => {
@@ -49,9 +53,25 @@ export default function Nav() {
 
   const handleClose = () => {
     setAnchorEl(null);
-    console.log('in Handle close')
+  }
+
+  //send user home
+  const handlePushList = () => {
+    setAnchorEl(null);
+    history.push('/DogParkList')
   };
 
+  //send user to list
+  const handlePushHome = () => {
+    setAnchorEl(null);
+    history.push('/home')
+  };
+
+//send use to form
+  const handlePushForm = () => {
+    setAnchorEl(null);
+    history.push('/addParkForm')
+  };
 
   //BreakPOints
   const theme = useTheme();
@@ -63,18 +83,23 @@ export default function Nav() {
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
       <Toolbar>
-        <IconButton
+       {user.id && <IconButton
        
           edge="start"
           color="inherit"
           aria-label="menu"
+          onClick={handleMenu}
           sx={{ mr: 2 }}
         >
           <MenuIcon />
-        </IconButton>
+        </IconButton> }
+        
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Photos
+     
+          The Waggin' Trails
+         
         </Typography>
+        
         {user.id === null &&
           // If there's no user, show login/registration links
           <Link className="navLink" to="/login">
@@ -88,7 +113,7 @@ export default function Nav() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleMenu}
+              
               color="inherit"
             >
               <AccountCircle />
@@ -108,8 +133,9 @@ export default function Nav() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handlePushForm}>Add A Park</MenuItem>
+              <MenuItem onClick={handlePushHome}>Favorites</MenuItem>
+              <MenuItem onClick={handlePushList}>List</MenuItem>
             </Menu>
           </div>
         )}
