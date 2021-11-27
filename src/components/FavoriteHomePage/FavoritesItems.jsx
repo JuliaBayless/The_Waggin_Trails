@@ -14,21 +14,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartIcon from '../HeartIcon/HeartIcon';
 
 //component for each card on the favorites page
-export default function FavoritesItem({ favPark }) {
- //stores and hooks
-  const user = useSelector(store => store.user);
-  const favorites = useSelector(store => store.favoritesReducer)
-  const dogParkTags = useSelector((store) => store.tagReducer);
+export default function FavoritesItem({ favPark, dogParkTags, user, favorites }) {
+ 
+  //hooks
   const dispatch = useDispatch();
   const history = useHistory();
-
-
-  //fetch all dog park tags
-  useEffect(() => {
-    dispatch({
-      type: 'FETCH_DOG_PARK_TAGS',
-    })
-  }, [])
 
 
   //send users to details view with a useParams hook
@@ -64,6 +54,7 @@ export default function FavoritesItem({ favPark }) {
                 dogParkId={dogParkId}
                 favArray={favorites.favorites}
                 user={user.id}
+
               />
 
             </IconButton>}

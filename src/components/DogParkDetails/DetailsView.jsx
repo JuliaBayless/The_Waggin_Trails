@@ -5,9 +5,6 @@ import { useEffect, useState } from 'react';
 import { Container, Paper, Box, makeStyles, Button } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import { Typography, Chip, Stack } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { pink } from '@mui/material/colors';
-import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
 import HeartIcon from '../HeartIcon/HeartIcon'

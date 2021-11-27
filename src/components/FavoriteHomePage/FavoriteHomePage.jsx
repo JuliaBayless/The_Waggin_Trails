@@ -10,15 +10,22 @@ import FavoritesItem from './FavoritesItems'
 
 //this component returns only favorites
 function FavoriteHomePage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const user = useSelector((store) => store.user);
+ 
+  //hooks
   const history = useHistory();
   const dispatch = useDispatch();
-  const DogParkList = useSelector((store) => store.parkReducer);
 
+  //stores
+  const DogParkList = useSelector((store) => store.parkReducer);
+  const dogParkTags = useSelector((store) => store.tagReducer);
+  const user = useSelector((store) => store.user);
+  const favorites = useSelector(store => store.favoritesReducer)
 
   useEffect(() => {
     dispatch({type: 'FETCH_FAV_DOG_PARKS'})
+    dispatch({
+      type: 'FETCH_DOG_PARK_TAGS',
+    })
   }, [])
 
   //filtering out the fav dog parks by the isFav boolean value
@@ -35,7 +42,11 @@ function FavoriteHomePage() {
                     {favDogParks.map(favPark => {
                         return (
                             <Grid item key={favPark.id} xs={12} sm={6} md={5} lg={4}>
-                                <FavoritesItem favPark={favPark}/>
+                                <FavoritesItem 
+                                favPark={favPark} 
+                                dogParkTags={dogParkTags} 
+                                user={user} 
+                                favorites={favorites}/>
                             </Grid>
                         )
                     })}

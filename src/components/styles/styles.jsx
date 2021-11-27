@@ -36,10 +36,6 @@ const useStyles = makeStyles({
 
     header: {
         backgroundColor: "#C03C3C",
-        // paddingRight: "79px",
-        // paddingLeft: "118px",
-        // paddingBottom: "5px",
-        // paddingTop: "5px",
         position: "fixed",
     },
     logo: {
