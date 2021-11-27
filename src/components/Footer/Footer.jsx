@@ -24,7 +24,7 @@ export default function FixedBottomNavigation() {
   const history = useHistory();
   const classes = useStyles();
 
-  // const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(1);
   const ref = React.useRef(null);
 
 
@@ -49,24 +49,34 @@ export default function FixedBottomNavigation() {
       <AppBar>
         <BottomNavigation
           showLabels
-          // value={value}
-          // onChange={(event, newValue) => {
-          //   setValue(newValue);
-          // }}
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
           className={classes.stickToBottom}
-        >
+          sx={{
+            "& .MuiBottomNavigationAction-root":{
+              color:"#OOOOOO"
+            },  "& .Mui-selected, .Mui-selected > svg": {
+              color: "#C03C3C"
+            }
+            
+          }}>
           <BottomNavigationAction
             label="Add Park"
             icon={<AddCircleOutlineIcon />}
             onClick={() => history.push('/addParkForm')} />
+         
           <BottomNavigationAction
             label="Favorites"
             icon={<FavoriteIcon />}
             onClick={() => history.push('/home')} />
+          
           <BottomNavigationAction
             label="List of Dog Parks"
             icon={<ListIcon />}
             onClick={() => history.push('/DogParkList')} />
+        
         </BottomNavigation>
       </AppBar>
     </HideOnScroll>
