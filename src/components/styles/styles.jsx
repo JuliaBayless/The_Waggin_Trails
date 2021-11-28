@@ -2,12 +2,18 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
 
+    //---------- Chips ---------//
+
+    chipsLayout: {
+        margin: "2px",
+    },
+
     //------- FavoritesItems --------//
 
     cardLayout: {
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center' // To be vertically aligned
+        alignItems: 'center', // To be vertically aligned 
     },
     cardTitle: {
         fontFamily: "Short Stack, sans-serif",

@@ -2,10 +2,14 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router";
 import { useEffect, useState } from 'react';
+
+//styles
 import { Container, Paper, Box, makeStyles, Button } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import { Typography, Chip, Stack } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+
+// components
 import ParkTagEditForm from '../ParkTagEditForm/ParkTagEditForm';
 import HeartIcon from '../HeartIcon/HeartIcon'
 import useStyles from '../styles/styles'
@@ -88,13 +92,13 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 <>
                 <ModeEditIcon 
                 onClick={() => handleToggleChange()}/>
-                <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
+                <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
                     {newTags?.map(tag => {
                         return (
                             <Chip
                                 key={tag.id}
-                                // sx={{margin: '10px'}} Not working!
                                 color="success"
+                                className={classes.chipsLayout}
                                 label={tag.tag} />
                         )
                     })}

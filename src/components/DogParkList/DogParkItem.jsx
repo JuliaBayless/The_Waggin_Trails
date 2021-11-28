@@ -12,29 +12,22 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+
+//components
 import HeartIcon from '../HeartIcon/HeartIcon';
-// const useStyles = makeStyles(() => ({
-//   image:{
-//       height: "150px",
-//   },
-// }))
+import useStyles from "../styles/styles";
+
 
 export default function DogParkItem({ dogPark, favArray, dogParkTags }) {
- //stores and hooks
+  //stores 
   const user = useSelector(store => store.user);
-  // const favorites = useSelector(store => store.favoritesReducer)
-  // const dogParkTags = useSelector((store) => store.tagReducer);
+
+  //hooks
   const dispatch = useDispatch();
   const history = useHistory();
+  const classes = useStyles();
 
-
-  //fetch all dog park ids
-  useEffect(() => {
-    console.log();
-    // dispatch({
-    //   type: 'FETCH_DOG_PARK_TAGS',
-    // })
-  }, [])
 
   //send user to details page with useParams
   const handleSubmitDetails = () => {
@@ -47,14 +40,18 @@ export default function DogParkItem({ dogPark, favArray, dogParkTags }) {
   let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === dogPark.id)
   return (
 
-    <Card sx={{ maxWidth: 400 }}
+    <Card
+      className={classes.cardLayout}
       elevation={6}
-      sx={{ height: 500, width: 300 }}>
+    >
       <CardActionArea
         onClick={() => { handleSubmitDetails(dogPark) }}>
         <CardHeader
-          // onClick={() => { handleSubmitDetails(dogPark) }}
-
+          title={dogPark.name}
+          subheader={dogPark.location}
+          avatar={
+            <LocationOnIcon />
+          }
           action={
             <IconButton
               aria-label="settings"
@@ -73,24 +70,41 @@ export default function DogParkItem({ dogPark, favArray, dogParkTags }) {
               />
 
             </IconButton>}
-
-          title={dogPark.name}
-          subheader={dogPark.location}
+          // inline style
+          sx={{
+            "& .MuiCardHeader-title": {
+              fontFamily: "poppins, sans-serif",
+              fontSize: "20px",
+              color: "#OOOOOO",
+              textAlign: "center",
+              marginRight: "10px",
+            },
+            "& .MuiCardHeader-subheader": {
+              fontFamily: "luckiest-guy, sans-serif",
+              fontSize: "12px",
+              textAlign: "center",
+              marginRight: "20px",
+            }
+          }}
         />
-        <Box display='flex' flexGrow={1}>
-        </Box>
         <CardMedia
-          // onClick={() => { handleSubmitDetails(dogPark) }}
           component="img"
-          sx={{ height: 150, width: 300 }}
+          sx={{ height: 150, width: 400 }}
           image={dogPark.image_url}
           alt={dogPark.name} />
         <CardContent>
           <Box sx={{ margin: '10px' }}>
-            <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+          <Typography>
+            Park Status & Offerings:
+          </Typography>
+            <Stack direction="row" sx={{ display: 'flex',  flexWrap: 'wrap' }}>
               {newTags?.map(tag => {
                 return (
-                  <Chip key={tag.id} color="success" label={tag.tag} />
+                  <Chip
+                    key={tag.id}
+                    color="success"
+                    label={tag.tag}
+                    className={classes.chipsLayout} />
                 )
               })}
             </Stack>

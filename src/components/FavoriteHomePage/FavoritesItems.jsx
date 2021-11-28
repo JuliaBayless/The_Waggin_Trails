@@ -11,8 +11,6 @@ import {
 import { pink } from '@mui/material/colors';
 import PetsIcon from '@mui/icons-material/Pets';
 import Typography from '@mui/material/Typography';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 //components
@@ -42,10 +40,9 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
   return (
     <Card
       className={classes.cardLayout}
-      // sx={{ maxWidth: 500, height: 500, width: 300 }}
-      elevation={6}
-      onClick={handleSubmitDetails} >
-      <CardActionArea>
+      elevation={6} >
+      <CardActionArea
+        onClick={handleSubmitDetails}>
         <CardHeader
           title={favPark.name}
           subheader={favPark.location}
@@ -87,24 +84,29 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
 
           }}
         />  {/*Header ends here*/}
-        <Box display='flex' flexGrow={1}>
-        </Box>
         <CardMedia
           component="img"
-          sx={{ height: 150, width: 300 }}
+          sx={{ height: 150, width: 400 }}
           image={favPark.image_url}
           alt={favPark.name} />
         <CardContent>
+        <Box sx={{ margin: '10px' }}>
           <Typography>
-            Park Status & Offerings
+            Park Status & Offerings:
           </Typography>
-          <Stack direction="row" sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+          <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
             {newTags?.map(tag => {
               return (
-                <Chip key={tag.id} color="success" label={tag.tag} />
+                <Chip
+                  key={tag.id}
+                  color="success"
+                  className={classes.chipsLayout}
+                  label={tag.tag}
+                />
               )
             })}
           </Stack>
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>
