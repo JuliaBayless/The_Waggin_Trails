@@ -52,6 +52,7 @@ export default function DogParkList(props) {
         sx={{ flexGrow: 1 }} 
         container spacing={4}
         className={classes.listContainer}>
+          
         {DogParkList.allDogParksInDB?.map(dogPark => {
           return (
             <Grid item key={dogPark.id} xs={12} sm={6} md={5} lg={4}>

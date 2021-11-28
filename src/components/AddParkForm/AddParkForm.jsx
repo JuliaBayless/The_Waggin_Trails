@@ -6,9 +6,9 @@ import { useHistory } from "react-router";
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { MenuItem, TextareaAutosize, Button, Input } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
-import { Paper, Box, makeStyles, Typography } from '@material-ui/core';
+import { Paper, Box, makeStyles, Typography, Container } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -93,16 +93,20 @@ export default function AddDogParkForm(props) {
   let userSelectedTags = userSelectedTagsReducer.addTagsToDogPark
 
   return (
-    <>
-      <Typography variant="h5" sx={{ mt: '10px', mb: '40px' }}>
-        Add a New Dog Park Here</Typography>
-      <Grid
-        container spacing={2}
-        direction="column"
-        justify="space-evenly"
-        alignItems="center">
-        <Grid item xs={12}>
-          <form onSubmit={handleSubmitNewPark}>
+    <Container sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
+      <div className={classes.paper}>
+        <form onSubmit={handleSubmitNewPark}>
+          <Grid container 
+          spacing={2}
+            direction="column"
+            justify="space-evenly"
+            alignItems="center">
+            <Grid item xs={12}>
+              <Typography variant="h5" sx={{ margin: '20px' }}>
+                Add a New Dog Park Here</Typography>
+
+            </Grid>
+
             <Grid item xs={12}>
               <TextField
                 className={classes.inputs}
@@ -173,9 +177,10 @@ export default function AddDogParkForm(props) {
                 variant="outlined"
                 onClick={() => { handleClick() }}>Cancel</Button>
             </Grid>
-          </form>
-        </Grid>
-      </Grid>
-    </>
+
+          </Grid>
+      </form>
+    </div>
+    </Container >
   );
 }

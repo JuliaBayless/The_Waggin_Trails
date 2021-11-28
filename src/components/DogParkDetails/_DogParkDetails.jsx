@@ -2,6 +2,8 @@ import { HashRouter as Router, Route, Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router";
 import { useEffect, useState } from 'react';
+
+//styles
 import { Container, Paper, Box, makeStyles } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -15,53 +17,41 @@ import { pink } from '@mui/material/colors';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+
+//component
 import DogParkDetailsView from './DetailsView';
 import DogParkDetailsEditView from './EditView';
 import ParkTagEditForm from "../ParkTagEditForm/ParkTagEditForm";
+import useStyles from '../styles/styles';
 
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        width: '100%'
-    },
-    rowLayout: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center' // To be vertically aligned
-    },
-    iconLayout: {
-        margin: '40px'
-    },
-    layout: {
-        margin: '20px'
-    }
-})); 
 
 
 
 //view of specific dog park with edit and delete admin views
 export default function dogParkDetails() {
-    //grabbing the stores
-    const parkReducer = useSelector((store) => store.parkReducer);
-    //making the variable easier to drill in to.
-    const userId = useSelector((store) => store.user);
-
     //hooks and state
     const dispatch = useDispatch();
     const history = useHistory();
     const { dp_id } = useParams();
+    const classes = useStyles();
+
+    //grabbing the stores
+    const parkReducer = useSelector((store) => store.parkReducer);
+    const userId = useSelector((store) => store.user);
+
+    //local state for edit mode
     const [toggleViewEdit, setToggleViewEdit] = useState(true)
 
-    //styles
-    const { root, rowLayout, iconLayout, layout } = useStyles();
+
 
     useEffect(() => {
-        
+
         dispatch({
-            type: 'FETCH_DOG_PARK_DETAIL_VIEW', payload: dp_id })
+            type: 'FETCH_DOG_PARK_DETAIL_VIEW', payload: dp_id
+        })
         dispatch({ type: 'FETCH_ALL_TAGS' })
-        dispatch({type: 'FETCH_AVERAGE_RATING', payload: dp_id })
+        dispatch({ type: 'FETCH_AVERAGE_RATING', payload: dp_id })
     }, [])
 
 
@@ -79,15 +69,17 @@ export default function dogParkDetails() {
         setToggleViewEdit(!toggleViewEdit)
     } //end editPageMode
 
-    
+
     // let dogParkDetails = parkReducer.allDogParksInDB.filter(park => park.id === dp_id)
     // console.log(dogParkDetails)
     let dogParkDetails = parkReducer.dogParkDetails
-    
+
     return (
-        <>
-        
-            <Grid container spacing={2} >
+
+            <Container justifyContent="center"
+            sx={{ flexGrow: 1 }} 
+            container spacing={4}
+            className={classes.listContainer}>
 
                 {/* toggle the edit view */}
                 {toggleViewEdit ?
@@ -97,19 +89,23 @@ export default function dogParkDetails() {
 
                 {/* buttons appear for administrators */}
                 {userId.access_level > 0 &&
+                      <Paper 
+                      elevation={6} 
+                      className={classes.paper}
+                      sx={{ border: 1 }}>
                     <ButtonGroup
-                    sx={{ display: 'flex', justifyContent: 'center', mt: '20px', marginLeft:'40px' }}>
+                        sx={{ display: 'flex', justifyContent: 'center', mt: '20px', marginLeft: '40px' }}>
                         <Grid item xs={12}>
-                        <ModeEditIcon
+                            <ModeEditIcon
                                 onClick={editPageMode} />
                             <DeleteForeverRoundedIcon
-                                sx={{marginLeft:'30px'}}
+                                sx={{ marginLeft: '30px' }}
                                 onClick={deleteDogPark} />
                         </Grid>
                     </ButtonGroup>
-                    }
-            </Grid>
-        </>
+                </Paper>
+                }
+            </Container>
     )
 
 }//end dogPark Details

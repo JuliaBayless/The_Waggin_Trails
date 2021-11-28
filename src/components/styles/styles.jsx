@@ -99,8 +99,17 @@ const useStyles = makeStyles({
     },
 
     //-------- Login Page -----//
-
-
+    //do you have a profile?
+    profile: {
+        fontFamily: "oxygen, sans-serif",
+        backgroundColor: "#fefefe",
+        border: "1px solid black",
+        fontSize: "20px",
+        fontWeight: "700",
+        marginRight: "215px",
+        marginTop: "50px",
+        marginLeft: "20px"
+    },
 
 
     //--------- Nav Bar ------------//
@@ -158,16 +167,13 @@ const useStyles = makeStyles({
         marginRight: "235px",
         marginTop: "20px",
     },
-    profile: {
-        fontFamily: "oxygen, sans-serif",
-        backgroundColor: "#fefefe",
-        border: "1px solid black",
-        fontSize: "20px",
-        fontWeight: "700",
-        marginRight: "215px",
-        marginTop: "50px",
-        marginLeft: "20px"
-    },
+    paper: {
+        width: "90%",
+        height: "75%",
+        backgroundColor: '#FFFFFF',
+        marginLeft: "20px",
+        // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    }
     //tell heroku to make this priority styling
 }, { index: 1 }); //end useStyles
 
