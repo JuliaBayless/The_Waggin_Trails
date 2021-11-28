@@ -42,7 +42,7 @@ function ParkTagsForm() {
         <Typography variant="h5" sx={{ mt: '40px', mb: '40px' }}>
           Add Tags
         </Typography>
-        <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+        <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px'}}>
           {parkTags.allTags?.map((parkTag) => (
             <ParkTagChips 
             key={parkTag.id} 

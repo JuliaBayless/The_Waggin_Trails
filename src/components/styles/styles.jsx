@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     //---------- Chips ---------//
 
     chipsLayout: {
-        margin: "2px",
+        margin: "4px",
     },
 
     //------ FavoritesHome --------//
