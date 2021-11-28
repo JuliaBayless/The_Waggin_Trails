@@ -96,10 +96,11 @@ export default function AddDogParkForm(props) {
     <Container sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
       <div className={classes.paper}>
         <form onSubmit={handleSubmitNewPark}>
-          <Grid container 
-          spacing={2}
+          <Grid container
+            spacing={2}
             direction="column"
             justify="space-evenly"
+            component="paper"
             alignItems="center">
             <Grid item xs={12}>
               <Typography variant="h5" sx={{ margin: '20px' }}>
@@ -121,7 +122,9 @@ export default function AddDogParkForm(props) {
                 onChange={(event) =>
                   setDogPark({ ...dogPark, name: event.target.value })}
                 sx={{
-
+                  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "green"
+                  },
                 }}
               />
             </Grid>
@@ -137,6 +140,11 @@ export default function AddDogParkForm(props) {
                 value={dogPark.location}
                 onChange={(event) =>
                   setDogPark({ ...dogPark, location: event.target.value })}
+                sx={{
+                  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "green"
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -151,6 +159,11 @@ export default function AddDogParkForm(props) {
                 value={dogPark.description}
                 onChange={(event) =>
                   setDogPark({ ...dogPark, description: event.target.value })}
+                sx={{
+                  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "green"
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -165,22 +178,32 @@ export default function AddDogParkForm(props) {
                 value={dogPark.image_url}
                 onChange={(event) =>
                   setDogPark({ ...dogPark, image_url: event.target.value })}
+                sx={{
+                  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "green"
+                  },
+                }}
               />
             </Grid>
             <ParkTagsForm />
 
             <Grid item xs={12}>
               <Button
-                variant="outlined"
-                type="submit">Add Park</Button>
+                color="secondary"
+                variant="contained"
+                size="large"
+                type="submit"
+                className={classes.addParkBtn}>
+                Add Park</Button>
               <Button
                 variant="outlined"
+                size="large"
                 onClick={() => { handleClick() }}>Cancel</Button>
             </Grid>
 
           </Grid>
-      </form>
-    </div>
+        </form>
+      </div>
     </Container >
   );
 }

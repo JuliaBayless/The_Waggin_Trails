@@ -10,6 +10,10 @@ const useStyles = makeStyles({
         margin: "10px",
         display: 'block',
     },
+    addParkBtn: {
+        marginBottom: "20px",
+        margin: "20px"
+    },
 
     //---------- Chips ---------//
 
