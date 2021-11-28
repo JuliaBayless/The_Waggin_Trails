@@ -77,9 +77,11 @@ const useStyles = makeStyles({
     },
     logo: {
         fontFamily: "Short Stack, sans-serif",
+        fontSize: "14px",
         fontWeight: 600,
-        textAlign: "left",
+        textAlign: "center",
         color: "#FFFFFF",
+        width: "100px",
     },
     menuButton: {
         fontFamily: "Open Sans, sans-serif",
@@ -89,7 +91,7 @@ const useStyles = makeStyles({
     logout: {
         display: "flex",
         justifyContent: "left",
-        marginLeft: "50px"
+        marginLeft: "160px",
     },
     // pushes away from the nav bar
     boxMargin: {
