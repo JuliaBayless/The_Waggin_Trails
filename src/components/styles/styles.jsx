@@ -172,11 +172,10 @@ const useStyles = makeStyles({
         marginTop: "20px",
     },
     paper: {
-        width: "90%",
-        height: "75%",
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         backgroundColor: '#FFFFFF',
-        marginLeft: "20px",
-        // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     }
     //tell heroku to make this priority styling
 }, { index: 1 }); //end useStyles

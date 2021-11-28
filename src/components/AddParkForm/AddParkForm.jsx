@@ -102,8 +102,8 @@ export default function AddDogParkForm(props) {
             justify="space-evenly"
             component="paper"
             alignItems="center">
-            <Grid item xs={12}>
-              <Typography variant="h5" sx={{ margin: '20px' }}>
+            <Grid item xs={12} sx={{ mt: '10px', mb: '10px' }}>
+              <Typography variant="h5" >
                 Add a New Dog Park Here</Typography>
 
             </Grid>
