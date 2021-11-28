@@ -96,7 +96,11 @@ export default function AddDogParkForm(props) {
     <>
       <Typography variant="h5" sx={{ mt: '10px', mb: '40px' }}>
         Add a New Dog Park Here</Typography>
-      <Grid container spacing={2} >
+      <Grid
+        container spacing={2}
+        direction="column"
+        justify="space-evenly"
+        alignItems="center">
         <Grid item xs={12}>
           <form onSubmit={handleSubmitNewPark}>
             <Grid item xs={12}>

@@ -84,7 +84,7 @@ export default function Nav() {
       className={classes.header}
       >
         <Toolbar>
-          {user.id && <IconButton
+         <IconButton
 
             edge="start"
             color="inherit"
@@ -98,7 +98,7 @@ export default function Nav() {
           width="50px"
         
         />
-          </IconButton>}
+          </IconButton>
 
           <Typography 
           variant="h6" 

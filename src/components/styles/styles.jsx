@@ -5,7 +5,7 @@ const useStyles = makeStyles({
     //-------AddParkForm -------//
     inputs: {
         width: "300px",
-        marginTop: "20px",
+        marginTop: "50px",
         marginBottom: "20px",
         margin: "10px",
         display: 'block',
