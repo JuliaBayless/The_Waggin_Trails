@@ -8,6 +8,12 @@ const useStyles = makeStyles({
         margin: "2px",
     },
 
+    //------ FavoritesHome --------//
+
+    welcome: {
+
+    },
+
     //------- FavoritesItems --------//
 
     cardLayout: {

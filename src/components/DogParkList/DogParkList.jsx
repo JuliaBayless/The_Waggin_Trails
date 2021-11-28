@@ -24,12 +24,8 @@ export default function DogParkList(props) {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_DOG_PARKS' })
-    dispatch({
-      type: 'FETCH_ALL_FROM_FAVORITES_TABLE'
-    })
-    dispatch({
-      type: 'FETCH_DOG_PARK_TAGS',
-    })
+    dispatch({ type: 'FETCH_ALL_FROM_FAVORITES_TABLE' })
+    dispatch({ type: 'FETCH_DOG_PARK_TAGS' })
   }, [])
 
   return (
