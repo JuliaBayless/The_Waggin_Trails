@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router";
-import { Container, Paper } from '@material-ui/core';
+
+//styles
+import { Container, Paper, Typography } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import { positions } from '@mui/system';
-import DogParkItem from './DogParkItem'
 
+//components
+import DogParkItem from './DogParkItem'
+import useStyles from '../styles/styles';
 
 //component that parents the main dog list
 export default function DogParkList(props) {
@@ -13,6 +17,7 @@ export default function DogParkList(props) {
   //hooks
   const history = useHistory();
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   //stores
   const DogParkList = useSelector((store) => store.parkReducer);
@@ -30,9 +35,12 @@ export default function DogParkList(props) {
 
   return (
     <Container>
-      <h1>Dog Park List</h1>
-      <Grid container justifyContent="center"
-        sx={{ flexGrow: 1 }} container spacing={4}>
+      <Typography variant='h1' className={classes.headerFav}>Dog Park List</Typography>
+      <Grid container 
+      justifyContent="center"
+        sx={{ flexGrow: 1 }} 
+        container spacing={4}
+        className={classes.listContainer}>
         {DogParkList.allDogParksInDB?.map(dogPark => {
           return (
             <Grid item key={dogPark.id} xs={12} sm={6} md={5} lg={4}>

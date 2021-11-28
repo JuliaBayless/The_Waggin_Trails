@@ -19,18 +19,18 @@ const useStyles = makeStyles({
         fontFamily: "oxygen",
         fontSize: "38px",
     },
-    favHeader: {
-        backgroundColor: 'white',
-        position: '-webkit-sticky',
-        position: 'sticky',
-        top: "20px",
-        bottom: "20px", 
-        paddingTop: '40px',
-        paddingBottom: '40px',
-        zIndex: "5",
-    },
+    // favHeader: {
+    //     backgroundColor: 'white',
+    //     position: 'fixed',
+    //     top: "20px",
+       
+    //     paddingTop: '40px',
+    //     paddingBottom: '40px',
+    //     width: "100%",
+    // },
     listContainer: {
-        height: "20px"
+        height: "20px",
+        paddingTop: "20px"
     },
 
     //------- FavoritesItems --------//

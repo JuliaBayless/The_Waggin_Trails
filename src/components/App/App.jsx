@@ -152,7 +152,7 @@ function App() {
           </Route>
         </Switch>
 
-        <footer>&copy; Prime Digital Academy</footer>
+        
         {user.id &&
           <Footer />}
       

@@ -42,7 +42,7 @@ function FavoriteHomePage() {
   return (
     <>
       <div 
-      className={classes.favHeader}
+      // className={classes.favHeader}
       >
         <Typography
           className={classes.welcome}>
