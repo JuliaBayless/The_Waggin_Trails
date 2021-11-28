@@ -11,8 +11,21 @@ const useStyles = makeStyles({
     //------ FavoritesHome --------//
 
     welcome: {
-
+        fontFamily: "oxygen, open-sans",
+        marginLeft: "8px",
+        fontSize: "20px",
     },
+    headerFav: {
+        fontFamily: "oxygen",
+        fontSize: "38px",
+        textAlign: "center",
+    },
+    // favHeader: {
+    //     position: "fixed",
+    //     backgroundColor: "#FFFFFF",
+    //     width: "100%",
+    //     margin: "10px",
+    // },
 
     //------- FavoritesItems --------//
 

@@ -49,6 +49,7 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
           avatar={
             <LocationOnIcon />
           }
+          
           action={
             <IconButton
               aria-label="settings"
@@ -89,6 +90,7 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
           sx={{ height: 150, width: 400 }}
           image={favPark.image_url}
           alt={favPark.name} />
+         
         <CardContent>
         <Box sx={{ margin: '10px' }}>
           <Typography>
@@ -108,7 +110,7 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
           </Stack>
           </Box>
         </CardContent>
-      </CardActionArea>
+        </CardActionArea>
     </Card>
   );
 }

@@ -9,10 +9,11 @@ import {
   Typography
 } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
+import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined'
 
 //components
 import FavoritesItem from './FavoritesItems'
-
+import useStyles from '../styles/styles';
 
 
 //this component returns only favorites
@@ -21,6 +22,7 @@ function FavoriteHomePage() {
   //hooks
   const history = useHistory();
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   //stores
   const DogParkList = useSelector((store) => store.parkReducer);
@@ -39,11 +41,21 @@ function FavoriteHomePage() {
 
   return (
     <>
-      <Paper className="container">
-        <Typography>Welcome, {user.username}!</Typography>
-      </Paper>
+      <div 
+      // className={classes.favHeader}
+      >
+        <Typography
+          className={classes.welcome}>
+          Welcome, {user.username}!
+        </Typography>
+        <Typography
+          variant="h1"
+          className={classes.headerFav}>
+          Favorites
+          {/* <PetsOutlinedIcon /> */}
+        </Typography>
+      </div>
       <Container>
-        <h1>Favorite Dog Parks</h1>
         <Grid container justifyContent="center"
           sx={{ flexGrow: 1 }} spacing={4}>
           {favDogParks.map(favPark => {

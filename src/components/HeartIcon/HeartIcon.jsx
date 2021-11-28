@@ -54,7 +54,7 @@ export default function Favorite({ dogParkId, favArray, user }) {
     }
 
     return (
-        <>
+        <div>
             {toggleFav ?
                 <FavoriteIcon
                     fontSize="large"
@@ -66,6 +66,6 @@ export default function Favorite({ dogParkId, favArray, user }) {
                     sx={{ color: pink[300] }}
                     onClick={handleToggleTrue} />
             }
-        </>
+        </div>
     )
 } //end Favorites
