@@ -27,8 +27,11 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import "@fontsource/short-stack"
-
+import "@fontsource/short-stack";
+import "@fontsource/luckiest-guy";
+import "@fontsource/poppins/500.css";
+import "@fontsource/oxygen"
+import "@fontsource/open-sans"
 
 
 function App() {
@@ -38,7 +41,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-  }, [dispatch]);
+  }, []);
 
   return (
     <Router>
@@ -149,7 +152,7 @@ function App() {
           </Route>
         </Switch>
 
-        <footer>&copy; Prime Digital Academy</footer>
+        
         {user.id &&
           <Footer />}
       

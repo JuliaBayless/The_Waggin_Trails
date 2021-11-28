@@ -8,8 +8,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 //GET ALL DOG PARKS
 router.get('/', (req, res) => {
-  console.log('IN GET /ratings');
-  console.log('THIS IS PARAMS', req.params.AvgId);
+  console.log('IN GET /ratings', );
 
   // console.log('is authenticated?', req.isAuthenticated());
 
@@ -18,7 +17,20 @@ router.get('/', (req, res) => {
     SELECT * FROM "dog_parks";
     `;
 
-  pool.query(queryText)
+  let params= [queryText]
+
+  //for search bar, insert this query
+  if(req.query.search) {
+    queryText = `
+    SELECT * FROM "dog_parks" 
+    WHERE "name" ILIKE $1 ORDER BY "name" ASC;
+    `;
+
+    params = [queryText, [`%${req.query.search}%`]];    
+  }
+
+  //spread params for search bar or regular GET
+  pool.query(...params)
     .then((result) => {
       res.send(result.rows);
     }).catch((error) => {

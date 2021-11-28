@@ -2,8 +2,52 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
 
+    //---------- Chips ---------//
 
-    //-------- Footer -----------------------------
+    chipsLayout: {
+        margin: "2px",
+    },
+
+    //------ FavoritesHome --------//
+
+    welcome: {
+        fontFamily: "oxygen, open-sans",
+        marginLeft: "8px",
+        fontSize: "20px",
+    },
+    headerFav: {
+        fontFamily: "oxygen",
+        fontSize: "38px",
+    },
+    // favHeader: {
+    //     backgroundColor: 'white',
+    //     position: 'fixed',
+    //     top: "20px",
+       
+    //     paddingTop: '40px',
+    //     paddingBottom: '40px',
+    //     width: "100%",
+    // },
+    listContainer: {
+        height: "20px",
+        paddingTop: "20px"
+    },
+
+    //------- FavoritesItems --------//
+
+    cardLayout: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center', // To be vertically aligned 
+    },
+    cardTitle: {
+        fontFamily: "Short Stack, sans-serif",
+        fontSize: "38px",
+        fontWeight: 600,
+    },
+
+
+    //-------- Footer ---------//
 
     stickToBottom: {
         width: '100%',
@@ -12,7 +56,7 @@ const useStyles = makeStyles({
     },
 
 
-    //--------- Details View------------------------------------------------------------------
+    //--------- Details View-----------//
 
     root: {
         flexGrow: 1,
@@ -31,7 +75,7 @@ const useStyles = makeStyles({
     },
 
 
-    //--------- Nav Bar --------------------------------------------------
+    //--------- Nav Bar ------------//
 
     header: {
         backgroundColor: "#C03C3C",
@@ -39,27 +83,26 @@ const useStyles = makeStyles({
     },
     logo: {
         fontFamily: "Short Stack, sans-serif",
+        fontSize: "16px",
         fontWeight: 600,
-        textAlign: "left",
+        textAlign: "center",
         color: "#FFFFFF",
-    },
-    test:{
-        stroke: "black",
-        strokeWidth: '1px',
+        width: "120px",
     },
     menuButton: {
         fontFamily: "Open Sans, sans-serif",
         fontWeight: 700,
         size: "10px",
-     },
-     logout: {
+    },
+    logout: {
         display: "flex",
         justifyContent: "left",
-        marginLeft: "50px"
-      },
-      boxMargin: {
-          marginBottom: "70px"
-      }
+        marginLeft: "140px",
+    },
+    // pushes away from the nav bar
+    boxMargin: {
+        marginBottom: "70px"
+    }
 
     //tell heroku to make this priority styling
 }, { index: 1 }); //end useStyles
