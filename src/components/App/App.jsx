@@ -31,6 +31,7 @@ import "@fontsource/short-stack";
 import "@fontsource/luckiest-guy";
 import "@fontsource/poppins/500.css";
 import "@fontsource/oxygen"
+import "@fontsource/oxygen/700.css"
 import "@fontsource/open-sans"
 
 

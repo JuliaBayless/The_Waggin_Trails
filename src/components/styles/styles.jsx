@@ -147,7 +147,7 @@ const useStyles = makeStyles({
       
     },
     blackBtn: {
-        fontFamily: "Open Sans, sans-serif",
+        fontFamily: "oxygen, sans-serif",
         fontSize: "16px",
         marginRight: "215px",
         marginTop: "20px",
@@ -158,7 +158,16 @@ const useStyles = makeStyles({
         marginRight: "235px",
         marginTop: "20px",
     },
-
+    profile: {
+        fontFamily: "oxygen, sans-serif",
+        backgroundColor: "#fefefe",
+        border: "1px solid black",
+        fontSize: "20px",
+        fontWeight: "700",
+        marginRight: "215px",
+        marginTop: "50px",
+        marginLeft: "20px"
+    },
     //tell heroku to make this priority styling
 }, { index: 1 }); //end useStyles
 

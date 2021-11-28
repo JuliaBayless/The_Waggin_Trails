@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 //styles
-import { Button } from '@material-ui/core';
+import { Button, Paper, Typography } from '@material-ui/core';
 
 //component
 import LoginForm from '../LoginForm/LoginForm';
@@ -22,6 +22,9 @@ function LoginPage() {
       <LoginForm />
 
       <center>
+          <Typography className={classes.profile}>
+            Don't have a profile?
+          </Typography>
         <Button
           color="secondary"
           variant="contained"
