@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 //sagas for all stuff park related here
@@ -78,6 +78,16 @@ function* editThisDogPark(action) {
 }//end editThisGodPark
 
 
+//search for dog parks
+function* searchDataBase(action) {
+  try {
+    const response = yield axios.get(`/api/dogParks?search=${action.payload}`);
+    yield put({ type: 'SET_All_DOG_PARKS', payload: response.data });
+  } catch {
+    console.log('search by title error in searchMovies', err);
+  }
+}
+
 //listeners for actions
 function* dogParkSaga() {
   yield takeLatest('ADD_NEW_DOG_PARK', addNewDogPark);
@@ -86,6 +96,7 @@ function* dogParkSaga() {
   yield takeLatest('EDIT_THIS_DOG_PARK', editThisDogPark);
   yield takeLatest('FETCH_DOG_PARK_DETAIL_VIEW', fetchSpecificDogPark)
   yield takeLatest('FETCH_FAV_DOG_PARKS', fetchFavDogParks);
+  yield takeEvery('SEARCH_FOR_DOG_PARK', searchDataBase);
 }
 
 

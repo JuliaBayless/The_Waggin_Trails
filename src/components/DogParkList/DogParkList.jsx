@@ -8,8 +8,10 @@ import Grid from '@mui/material/Grid';
 import { positions } from '@mui/system';
 
 //components
-import DogParkItem from './DogParkItem'
+import DogParkItem from './DogParkItem';
 import useStyles from '../styles/styles';
+import SearchBar from '../searchBar/searchBar';
+import { Search } from '@mui/icons-material';
 
 //component that parents the main dog list
 export default function DogParkList(props) {
@@ -34,8 +36,17 @@ export default function DogParkList(props) {
   }, [])
 
   return (
+
+
+
     <Container>
-      <Typography variant='h1' className={classes.headerFav}>Dog Park List</Typography>
+
+      <SearchBar />
+
+      <Typography variant='h1' 
+      className={classes.headerFav}>
+        Dog Park List
+        </Typography>
       <Grid container 
       justifyContent="center"
         sx={{ flexGrow: 1 }} 

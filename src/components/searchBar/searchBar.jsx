@@ -18,16 +18,16 @@ export default function SearchBar() {
   // 
  
   useEffect(() => {
-    dispatch({ type: 'SEARCH_MOVIE_TITLE', payload: search });
+    dispatch({ type: 'SEARCH_FOR_DOG_PARK', payload: search });
   }, [search]);
 
-  
+
   return (
     <TextField
       sx={{ m: '10px', width: '300px' }}
       type="text"
       required
-      variant="standard"
+      variant="outlined"
       label="Search"
       size="small"
       value={search}
