@@ -83,11 +83,12 @@ const useStyles = makeStyles({
     },
     logo: {
         fontFamily: "Short Stack, sans-serif",
-        fontSize: "16px",
+        fontSize: "18px",
         fontWeight: 600,
         textAlign: "center",
         color: "#FFFFFF",
-        width: "120px",
+       
+        // width: "120px",
     },
     menuButton: {
         fontFamily: "Open Sans, sans-serif",
@@ -96,8 +97,8 @@ const useStyles = makeStyles({
     },
     logout: {
         display: "flex",
-        justifyContent: "left",
-        marginLeft: "140px",
+        justifyContent: "right",
+        marginLeft: "40px",
     },
     // pushes away from the nav bar
     boxMargin: {

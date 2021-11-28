@@ -96,14 +96,14 @@ export default function Nav() {
             <img
           src={dog}
           width="50px"
-          // style={{ marginRight: "12px" }}
+        
         />
           </IconButton>}
 
           <Typography 
           variant="h6" 
           component="div" 
-          onClick={handlePushHome}
+          onClick={handleMenu}
           sx={{ flexGrow: 1}}
           className={classes.logo}>
 
