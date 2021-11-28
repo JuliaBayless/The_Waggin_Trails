@@ -151,8 +151,13 @@ const useStyles = makeStyles({
         fontSize: "16px",
         marginRight: "215px",
         marginTop: "20px",
-    }
-
+    },
+    redBtnRegister: {
+        fontFamily: "oxygen, sans-serif",
+        fontSize: "18px",
+        marginRight: "235px",
+        marginTop: "20px",
+    },
 
     //tell heroku to make this priority styling
 }, { index: 1 }); //end useStyles

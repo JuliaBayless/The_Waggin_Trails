@@ -1,25 +1,38 @@
 import React from 'react';
-
 import { useHistory } from 'react-router-dom';
+
+//styles
+import { Button } from '@material-ui/core';
+
+//component
 import RegisterForm from '../RegisterForm/RegisterForm';
+import useStyles from '../styles/styles';
+
 
 function RegisterPage() {
-  const history = useHistory();
+   //hooks
+   const history = useHistory();
+   const classes = useStyles();
+
+
 
   return (
     <div>
       <RegisterForm />
 
       <center>
-        <button
-          type="button"
-          className="btn btn_asLink"
+         <Button
+          color="secondary"
+          variant="contained"
+          size="large"
+          type="submit"
+          className={classes.redBtnRegister}
           onClick={() => {
             history.push('/login');
           }}
         >
           Login
-        </button>
+        </Button>
       </center>
     </div>
   );
