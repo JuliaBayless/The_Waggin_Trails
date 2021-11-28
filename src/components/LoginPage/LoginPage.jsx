@@ -6,6 +6,7 @@ import { Paper, Container, Button } from '@material-ui/core';
 import Image from './ben-collins.jpg';
 import LoginForm from '../LoginForm/LoginForm';
 import './LoginPage.css';
+import useStyles from '../styles/styles';
 
 
 const styles = {
@@ -26,8 +27,9 @@ const styles = {
 
 
 function LoginPage() {
+  //hooks
   const history = useHistory();
-
+  const classes = useStyles();
 
 
   return (
@@ -36,7 +38,11 @@ function LoginPage() {
 
       <center>
         <Button
-          type="button"
+          color="secondary"
+          variant="contained"
+          size="large"
+          type="submit"
+          className={classes.blackBtn}
           onClick={() => {
             history.push('/registration');
           }}

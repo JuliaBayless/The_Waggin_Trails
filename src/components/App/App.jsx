@@ -20,7 +20,7 @@ import DogParkList from '../DogParkList/DogParkList';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import DogParkDetails from '../DogParkDetails/_DogParkDetails';
-
+import { createTheme, ThemeProvider } from '@material-ui/core'
 
 //style imports
 import '@fontsource/roboto/300.css';
@@ -34,6 +34,20 @@ import "@fontsource/oxygen"
 import "@fontsource/open-sans"
 
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#C03C3C",
+    },
+    secondary: {
+      main: "#000000",
+    },
+  },
+});
+
+
+
+
 function App() {
   const dispatch = useDispatch();
 
@@ -44,6 +58,7 @@ function App() {
   }, []);
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div>
         <Nav />
@@ -158,6 +173,7 @@ function App() {
       
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { Paper, Container, Button, TextField } from '@material-ui/core';
+import { Typography } from '@mui/material';
+
+//components
+import useStyles from '../styles/styles';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  //stores
   const errors = useSelector(store => store.errors);
+
+  //hooks
   const dispatch = useDispatch();
+  const classes = useStyles();
+
 
   const login = (event) => {
     event.preventDefault();
@@ -19,7 +30,7 @@ function LoginForm() {
           password: password,
         },
       });
-      dispatch({type: 'FETCH_FAV_DOG_PARKS'})
+      dispatch({ type: 'FETCH_FAV_DOG_PARKS' })
       dispatch({
         type: 'FETCH_DOG_PARK_TAGS',
       })
@@ -29,39 +40,48 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form  onSubmit={login}>
-      <h2>Login</h2>
+    <form onSubmit={login}>
+      <h1
+        className={classes.LoginHeader}>
+        Login
+      </h1>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
+        <TextField
+          className={classes.LogInput}
+          type="text"
+          placeholder="username"
+          variant="outlined"
+          required
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
       </div>
       <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
+        <TextField
+          className={classes.LogInput}
+          type="password"
+          placeholder="password"
+          variant="outlined"
+          required
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button
+          color="primary"
+          variant="contained"
+          size="large"
+          type="submit"
+          className={classes.redBtn}>
+          Submit
+          </Button>
       </div>
     </form>
   );
