@@ -19,6 +19,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import useStyles from '../styles/styles';
+import dog from './dog-breed-tail.png'
+
 
 
 
@@ -90,7 +92,12 @@ export default function Nav() {
             onClick={handleMenu}
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <img
+          src={dog}
+          width="50px"
+          // style={{ marginRight: "12px" }}
+        />
           </IconButton>}
 
           <Typography 

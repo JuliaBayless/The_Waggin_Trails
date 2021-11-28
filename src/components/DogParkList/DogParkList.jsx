@@ -41,12 +41,12 @@ export default function DogParkList(props) {
 
     <Container>
 
-      <SearchBar />
 
       <Typography variant='h1' 
       className={classes.headerFav}>
         Dog Park List
         </Typography>
+        <SearchBar />
       <Grid container 
       justifyContent="center"
         sx={{ flexGrow: 1 }} 
