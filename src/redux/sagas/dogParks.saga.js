@@ -67,8 +67,9 @@ function* deleteThisDogPark(action) {
 
 //admin edit dog park route
 function* editThisDogPark(action) {
+  console.log('========', action.payload)
   try {
-    axios.put(`/api/dogParks/${action.payload.id}`, action.payload)
+    axios.put(`/api/dogParks/${action.payload.dog_park_id}`, action.payload)
     //FETCH the new DB
     yield put({ type: 'FETCH_ALL_DOG_PARKS' });
   } catch (error) {

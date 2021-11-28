@@ -28,10 +28,8 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
     const history = useHistory();
 
 
-    const handleEditSubmit = () => {
+    const handleEditSubmit = (event) => {
         event.preventDefault();
-        console.log('edit dog park', dogParkEdit)
-
         //send this stuff to edit this park
         dispatch({
             type: 'EDIT_THIS_DOG_PARK',
