@@ -42,7 +42,7 @@ function FavoriteHomePage() {
   return (
     <>
       <div 
-      // className={classes.favHeader}
+      className={classes.favHeader}
       >
         <Typography
           className={classes.welcome}>
@@ -55,7 +55,8 @@ function FavoriteHomePage() {
           {/* <PetsOutlinedIcon /> */}
         </Typography>
       </div>
-      <Container>
+      <Container 
+      className={classes.listContainer}>
         <Grid container justifyContent="center"
           sx={{ flexGrow: 1 }} spacing={4}>
           {favDogParks.map(favPark => {

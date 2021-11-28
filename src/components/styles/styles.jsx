@@ -18,14 +18,20 @@ const useStyles = makeStyles({
     headerFav: {
         fontFamily: "oxygen",
         fontSize: "38px",
-        textAlign: "center",
     },
-    // favHeader: {
-    //     position: "fixed",
-    //     backgroundColor: "#FFFFFF",
-    //     width: "100%",
-    //     margin: "10px",
-    // },
+    favHeader: {
+        backgroundColor: 'white',
+        position: '-webkit-sticky',
+        position: 'sticky',
+        top: "20px",
+        bottom: "20px", 
+        paddingTop: '40px',
+        paddingBottom: '40px',
+        zIndex: "5",
+    },
+    listContainer: {
+        height: "20px"
+    },
 
     //------- FavoritesItems --------//
 
@@ -77,11 +83,11 @@ const useStyles = makeStyles({
     },
     logo: {
         fontFamily: "Short Stack, sans-serif",
-        fontSize: "14px",
+        fontSize: "16px",
         fontWeight: 600,
         textAlign: "center",
         color: "#FFFFFF",
-        width: "100px",
+        width: "120px",
     },
     menuButton: {
         fontFamily: "Open Sans, sans-serif",
@@ -91,7 +97,7 @@ const useStyles = makeStyles({
     logout: {
         display: "flex",
         justifyContent: "left",
-        marginLeft: "160px",
+        marginLeft: "140px",
     },
     // pushes away from the nav bar
     boxMargin: {
