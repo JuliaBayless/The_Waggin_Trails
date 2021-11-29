@@ -25,9 +25,12 @@ const useStyles = makeStyles({
     //--------- Details View -----------//
 
     detailsHeader: {
-        fontFamily: "oxygen, open-sans",
+        fontFamily: "montserrat, open-sans",
         fontSize: "40px",
         textAlign:"center"
+    },
+    subHeader: {
+        fontFamily: "montserrat, open-sans",
     },
     root: {
         flexGrow: 1,
@@ -56,15 +59,6 @@ const useStyles = makeStyles({
         fontFamily: "oxygen",
         fontSize: "38px",
     },
-    // favHeader: {
-    //     backgroundColor: 'white',
-    //     position: 'fixed',
-    //     top: "20px",
-
-    //     paddingTop: '40px',
-    //     paddingBottom: '40px',
-    //     width: "100%",
-    // },
     listContainer: {
         height: "20px",
         paddingTop: "20px"

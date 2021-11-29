@@ -93,23 +93,32 @@ export default function dogParkDetails() {
 
                 {/* buttons appear for administrators */}
                 {userId.access_level > 0 &&
-                    <Paper
-                        elevation={6}
-                        className={classes.paper}
-                        sx={{ border: 1 }}>
+                <>
+                <Grid item xs={12}
+                 sx={{ 
+                     display: 'flex', justifyContent: 'right', 
+                     width: '90%', mt: '10px' 
+                     }}>
+                <Typography className={classes.subHeader}>
+                     Admin Use Only*
+                </Typography>
+                </Grid>
+                <Grid item xs={12}
+                 sx={{ 
+                     display: 'flex', justifyContent: 'right', 
+                     width: '90%',
+                     }}>
                         <ButtonGroup
-                            sx={{ display: 'flex', justifyContent: 'center', mt: '20px', marginLeft: '40px' }}>
-                            <Grid item xs={12}>
+                            sx={{ display: 'flex', justifyContent: 'center', mb: "30px" }}>
                                 <ModeEditIcon
                                     onClick={editPageMode} />
                                 <DeleteForeverRoundedIcon
                                     sx={{ marginLeft: '30px' }}
                                     onClick={deleteDogPark} />
-                            </Grid>
                         </ButtonGroup>
-                    </Paper>
+                    </Grid>
+                    </>
                 }
-
             </Grid>
         </div>
     </Container >

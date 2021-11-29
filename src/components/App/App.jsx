@@ -33,7 +33,7 @@ import "@fontsource/poppins/500.css";
 import "@fontsource/oxygen"
 import "@fontsource/oxygen/700.css"
 import "@fontsource/open-sans"
-import "@fontsource/fira-sans"
+import "@fontsource/montserrat"
 
 
 const theme = createTheme({

@@ -57,10 +57,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
 
     return (
         <>
-            <Grid item
-                xs={10}
-            //  sx={{ mt: '10px', mb: '10px', display: 'flex', justifyContent: 'center' }}
-            >
+            <Grid item xs={10}>
                 <h1
                     className={classes.detailsHeader}>
                     {dogParkDetails.name}
@@ -92,15 +89,15 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                     display: 'flex', justifyContent: 'center',
                     textAlign: 'center', width: '70%'
                 }}>
-                <Typography variant="h5">
+                <Typography variant="h5" 
+                className={classes.subHeader}>
                     Description
                 </Typography>
             </Grid>
 
             <Grid item xs={12}
                 sx={{
-                    display: 'flex', justifyContent: 'center',
-                    textAlign: 'center', width: '90%'
+                    display: 'flex', justifyContent: 'center', width: '90%'
                 }}>
                 <Typography variant="subtitle1" gutterBottom component="div" >
                     {dogParkDetails.description}
@@ -113,11 +110,12 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                     <Grid item xs={12}
                         sx={{
                             display: 'flex', justifyContent: 'center',
-                            width: '90%', gap: '10px'
+                            width: '90%', gap: '10px', mr: '30px'
                         }}>
                         <ModeEditIcon
                             onClick={() => handleToggleChange()} />
-                        <Typography variant="h5">
+                        <Typography variant="h5"
+                        className={classes.subHeader}>
                             Edit Tags
                         </Typography>
                     </Grid>
@@ -126,9 +124,9 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                             display: 'flex', justifyContent: 'center',
                             width: '90%', mt: '-15px'
                         }}>
-                          <Typography variant="body2">
+                        <Typography variant="body2">
                             Help keep the parks up to date
-                        </Typography>  
+                        </Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Stack direction="row"
@@ -147,18 +145,25 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                 </>
                 :
                 <>
-                    <ParkTagEditForm
-                        newTags={newTags}
-                        parkTags={parkTags}
-                        dogParkDetails={dogParkDetails.dog_park_id} />
-
-                    <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => handleToggleChange()}
-                    >
-                        Return
-                    </Button>
+                    <Grid item xs={12}>
+                        <ParkTagEditForm
+                            newTags={newTags}
+                            parkTags={parkTags}
+                            dogParkDetails={dogParkDetails.dog_park_id} />
+                    </Grid>
+                    <Grid item xs={12}
+                    sx={{ 
+                        display: 'flex', flexWrap: 'wrap', 
+                        justifyContent: 'left', width: '90%', m: '15px'
+                        }}>
+                        <Button
+                            size="large"
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => handleToggleChange()}>
+                            Return
+                        </Button>
+                    </Grid>
                 </>
             }
 
