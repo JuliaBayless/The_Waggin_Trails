@@ -1,10 +1,8 @@
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from "react-router";
 import { useEffect, useState } from 'react';
 
 //styles
-import { Container, Paper, Box, makeStyles, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 import { Typography, Chip, Stack } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';

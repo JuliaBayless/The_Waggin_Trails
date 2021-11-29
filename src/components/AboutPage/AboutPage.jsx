@@ -1,17 +1,27 @@
 import React from 'react';
 
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
+//style
+import { Container, Typography  } from '@material-ui/core';
+
+//component
+import useStyles from '../styles/styles';
+
+
 
 function AboutPage() {
+  //hooks
+  const classes = useStyles();
+
+
   return (
-    <div className="container">
-      <div>
+    <Container
+      sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
+      <div className={classes.paper}>
+
         <p>This about page is for anyone to read!</p>
+
       </div>
-    </div>
+    </Container>
   );
 }
 
