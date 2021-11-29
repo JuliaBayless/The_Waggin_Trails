@@ -47,7 +47,7 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                     <Grid item xs={12} sx={{ mt: '20px', ml: '10px', mb: '20px' }}>
                         <Typography variant="h5"
                             className={classes.subHeader}>
-                            Edit Tags
+                            Edit Dog Park
                         </Typography>
                     </Grid>
                     <Grid item xs={12}

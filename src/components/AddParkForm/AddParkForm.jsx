@@ -108,6 +108,11 @@ export default function AddDogParkForm(props) {
 
             </Grid>
 
+            <Grid item xs={12}
+              sx={{ display: 'flex', justifyContent: 'center', width: '90%' }}>
+              <InputLabel>Name</InputLabel>
+            </Grid>
+
             <Grid item xs={12}>
               <TextField
                 className={classes.inputs}
@@ -128,6 +133,15 @@ export default function AddDogParkForm(props) {
                 }}
               />
             </Grid>
+
+            <Grid item xs={12}
+              sx={{
+                display: 'flex', justifyContent: 'center',
+                width: '90%', mt: '20px'
+              }}>
+              <InputLabel>Location</InputLabel>
+            </Grid>
+
             <Grid item xs={12}>
               <TextField
                 className={classes.inputs}
@@ -147,6 +161,15 @@ export default function AddDogParkForm(props) {
                 }}
               />
             </Grid>
+
+            <Grid item xs={12}
+              sx={{
+                display: 'flex', justifyContent: 'center',
+                width: '90%', mt: '20px'
+              }}>
+              <InputLabel>Park Description</InputLabel>
+            </Grid>
+
             <Grid item xs={12}>
               <TextField
                 className={classes.inputs}
@@ -166,6 +189,15 @@ export default function AddDogParkForm(props) {
                 }}
               />
             </Grid>
+
+            <Grid item xs={12}
+              sx={{
+                display: 'flex', justifyContent: 'center',
+                width: '90%', mt: '20px'
+              }}>
+              <InputLabel>Image URL</InputLabel>
+            </Grid>
+
             <Grid item xs={12}>
               <TextField
                 className={classes.inputs}
