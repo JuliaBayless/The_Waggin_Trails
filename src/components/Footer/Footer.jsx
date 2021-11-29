@@ -60,7 +60,6 @@ export default function FixedBottomNavigation() {
             },  "& .Mui-selected, .Mui-selected > svg": {
               color: "#C03C3C"
             }
-            
           }}>
           <BottomNavigationAction
             label="Add Park"

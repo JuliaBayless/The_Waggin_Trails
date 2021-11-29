@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch, } from 'react-redux';
 import { useHistory } from "react-router";
+
+//styles
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { MenuItem, TextareaAutosize, Button, Input } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
 import { Paper, Box, makeStyles } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 
-const useStyles = makeStyles(theme => ({
-    iconLayout: {
-        margin: '40px'
-    },
-    layout: {
-        margin: '20px'
-    }
-}));
-
+//components
+import useStyles from '../styles/styles';
 
 
 
 export default function DogParkDetailsEditView({ dogParkDetails }) {
+    //local sate holding park info
     const [dogParkEdit, setDogParkEdit] = useState(dogParkDetails)
-    const { iconLayout, layout } = useStyles();
+
+    //hooks
+    const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -41,10 +39,24 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
 
     return (
         <>
-            <Grid container spacing={2}>
-                <form className={iconLayout}>
-                    <Grid item xs={12}>
+            <Grid container spacing={2}
+                direction="column"
+                justify="space-evenly"
+                alignItems="center">
+                <form className={classes.iconLayout}>
+                    <Grid item xs={12} sx={{ mt: '20px', ml: '10px', mb: '20px' }}>
+                        <Typography variant="h5"
+                            className={classes.subHeader}>
+                            Edit Dog Park
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12}
+                        sx={{ display: 'flex', justifyContent: 'center', width: '90%' }}>
+                        <InputLabel>Name</InputLabel>
+                    </Grid>
+                    <Grid item xs={12} sx={{ mt: '20px', ml: '10px' }}>
                         <TextField
+                            className={classes.inputs}
                             required
                             id="standard-multiline-static"
                             label="Name"
@@ -56,10 +68,24 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                             value={dogParkEdit.name}
                             onChange={(event) =>
                                 setDogParkEdit({ ...dogParkEdit, name: event.target.value })}
+                            sx={{
+                                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "green"
+                                },
+                            }}
                         />
-                        <Grid item xs={12}>
-                        </Grid>
+                        {/* <Grid item xs={12} sx={{ mt: '20px', ml: '10px' }}> */}
+                    </Grid>
+                    <Grid item xs={12}
+                        sx={{ 
+                            display: 'flex', justifyContent: 'center', 
+                            width: '90%', mt: '20px' 
+                            }}>
+                        <InputLabel>Location</InputLabel>
+                    </Grid>
+                    <Grid item xs={12} sx={{ mt: '20px', ml: '10px' }}>
                         <TextField
+                            className={classes.inputs}
                             required
                             id="standard-multiline-static"
                             label="Location"
@@ -70,10 +96,24 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                             value={dogParkEdit.location}
                             onChange={(event) =>
                                 setDogParkEdit({ ...dogParkEdit, location: event.target.value })}
+                            sx={{
+                                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "green"
+                                },
+                            }}
                         />
-                        <Grid item xs={12}>
-                        </Grid>
+                        {/* <Grid item xs={12} sx={{ mt: '20px', ml: '10px' }}> */}
+                    </Grid>
+                    <Grid item xs={12}
+                        sx={{
+                            display: 'flex', justifyContent: 'center',
+                            width: '90%', mt: '20px'
+                        }}>
+                        <InputLabel>Image URL</InputLabel>
+                    </Grid>
+                    <Grid item xs={12} sx={{ mt: '20px', ml: '10px' }}>
                         <TextField
+                            className={classes.inputs}
                             required
                             id="standard-multiline-static"
                             label="Image Url"
@@ -85,11 +125,25 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                             value={dogParkEdit.image_url}
                             onChange={(event) =>
                                 setDogParkEdit({ ...dogParkEdit, image_url: event.target.value })}
+                            sx={{
+                                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "green"
+                                },
+                            }}
                         />
-                        <Grid item xs={12}>
-                        </Grid>
+                        {/* <Grid item xs={12} sx={{ mt: '20px', ml: '10px' }}> */}
+                    </Grid>
+                    <Grid item xs={12}
+                        sx={{
+                            display: 'flex', justifyContent: 'center',
+                            width: '90%', mt: '20px'
+                        }}>
+                        <InputLabel>Park Description</InputLabel>
+                    </Grid>
+                    <Grid item xs={12} sx={{ mt: '20px', ml: '10px' }}>
                         <TextField
                             required
+                            className={classes.inputs}
                             id="standard-multiline-static"
                             label="Description"
                             multiline
@@ -100,11 +154,18 @@ export default function DogParkDetailsEditView({ dogParkDetails }) {
                             value={dogParkEdit.description}
                             onChange={(event) =>
                                 setDogParkEdit({ ...dogParkEdit, description: event.target.value })}
+                            sx={{
+                                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: "green"
+                                },
+                            }}
                         />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sx={{ mt: '20px', ml: '10px' }}>
                         <Button
-                            variant="outlined"
+                            size="large"
+                            color="secondary"
+                            variant="contained"
                             onClick={handleEditSubmit}>Submit Edit</Button>
                     </Grid>
 

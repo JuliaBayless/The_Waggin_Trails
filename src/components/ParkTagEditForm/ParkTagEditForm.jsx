@@ -32,8 +32,8 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
     // delete park tag from reducer
     const deleteParkTag = (parkTag) => {
         console.log('==In DELETE==', parkTag.id, dogParkDetails)
-        dispatch({  
-            type: 'DELETE_TAG_IN_EDIT_MODE', 
+        dispatch({
+            type: 'DELETE_TAG_IN_EDIT_MODE',
             payload: {
                 tag_id: parkTag.id,
                 dog_park_id: dogParkDetails
@@ -44,8 +44,8 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
     //add park tag to reducer 
     const addParkTag = (parkTag) => {
         console.log('==In ADD==', parkTag, dogParkDetails)
-        dispatch({  
-            type: 'ADD_TAG_IN_EDIT_MODE', 
+        dispatch({
+            type: 'ADD_TAG_IN_EDIT_MODE',
             payload: {
                 tag_id: parkTag.id,
                 dog_park_id: dogParkDetails
@@ -59,20 +59,20 @@ function ParkTagEditForm({ newTags, dogParkDetails }) {
             <Typography variant="h6">
                 Update Tags
             </Typography>
-            <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <Stack direction="row"
+                sx={{
+                    display: 'flex', flexWrap: 'wrap',
+                    justifyContent: 'center', gap: '10px'
+                }}>
                 {parkTags.allTags?.map((parkTag) => (
                     <ParkTagEditChip
                         key={parkTag.id}
                         parkTag={parkTag}
                         deleteParkTag={deleteParkTag}
-                        addParkTag={addParkTag} 
-                        newTags={newTags}/>
+                        addParkTag={addParkTag}
+                        newTags={newTags} />
                 ))}
             </Stack>
-            <ButtonGroup
-                sx={{ display: 'flex', justifyContent: 'right', mt: '40px' }}>
- 
-            </ButtonGroup>
         </Container>
     );
 }

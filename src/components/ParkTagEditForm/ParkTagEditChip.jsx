@@ -35,13 +35,13 @@ function ParkTagEditChip({ deleteParkTag, parkTag, addParkTag, newTags }) {
             {chipStatus ?
                 <Chip
                     color="success"
-                    // className={classes.chipsLayout}
+                    className={classes.chipsLayout}
                     label={parkTag.tag}
                     onClick={() => { setChipStatus(!chipStatus), deleteParkTag(parkTag) }}
                 /> :
                 <Chip
                     label={parkTag.tag}
-                    // className={classes.chipsLayout}
+                    className={classes.chipsLayout}
                     onClick={() => { setChipStatus(!chipStatus), addParkTag(parkTag) }}
                 />
             }

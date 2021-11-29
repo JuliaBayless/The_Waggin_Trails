@@ -39,10 +39,11 @@ function ParkTagsForm() {
 
   return (
     <Container sx={{ mt: '20px', display: 'flex', justifyContent: 'center', flexDirection: 'column', }}>
-        <Typography variant="h5" sx={{ mt: '40px', mb: '40px' }}>
+        <Typography variant="h5" sx={{display: 'flex', justifyContent: 'center'}}>
           Add Tags
         </Typography>
-        <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+        <Stack direction="row" 
+        sx={{ mt: '20px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px'}}>
           {parkTags.allTags?.map((parkTag) => (
             <ParkTagChips 
             key={parkTag.id} 
