@@ -75,11 +75,15 @@ export default function dogParkDetails() {
     let dogParkDetails = parkReducer.dogParkDetails
 
     return (
-
-            <Container justifyContent="center"
-            sx={{ flexGrow: 1 }} 
-            container spacing={4}
-            className={classes.listContainer}>
+        <Container 
+        sx={{ mt: '30px', display: 'flex', justifyContent: 'center' }}>
+            <div className={classes.paper}>
+            <Grid container
+                spacing={2}
+                direction="column"
+                justify="space-evenly"
+                component="paper"
+                alignItems="center">
 
                 {/* toggle the edit view */}
                 {toggleViewEdit ?
@@ -89,23 +93,26 @@ export default function dogParkDetails() {
 
                 {/* buttons appear for administrators */}
                 {userId.access_level > 0 &&
-                      <Paper 
-                      elevation={6} 
-                      className={classes.paper}
-                      sx={{ border: 1 }}>
-                    <ButtonGroup
-                        sx={{ display: 'flex', justifyContent: 'center', mt: '20px', marginLeft: '40px' }}>
-                        <Grid item xs={12}>
-                            <ModeEditIcon
-                                onClick={editPageMode} />
-                            <DeleteForeverRoundedIcon
-                                sx={{ marginLeft: '30px' }}
-                                onClick={deleteDogPark} />
-                        </Grid>
-                    </ButtonGroup>
-                </Paper>
+                    <Paper
+                        elevation={6}
+                        className={classes.paper}
+                        sx={{ border: 1 }}>
+                        <ButtonGroup
+                            sx={{ display: 'flex', justifyContent: 'center', mt: '20px', marginLeft: '40px' }}>
+                            <Grid item xs={12}>
+                                <ModeEditIcon
+                                    onClick={editPageMode} />
+                                <DeleteForeverRoundedIcon
+                                    sx={{ marginLeft: '30px' }}
+                                    onClick={deleteDogPark} />
+                            </Grid>
+                        </ButtonGroup>
+                    </Paper>
                 }
-            </Container>
+
+            </Grid>
+        </div>
+    </Container >
     )
 
 }//end dogPark Details

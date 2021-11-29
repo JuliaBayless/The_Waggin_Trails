@@ -42,17 +42,17 @@ export default function DogParkList(props) {
     <Container>
 
 
-      <Typography variant='h1' 
-      className={classes.headerFav}>
+      <Typography variant='h1'
+        className={classes.headerFav}>
         Dog Park List
-        </Typography>
-        <SearchBar />
-      <Grid container 
-      justifyContent="center"
-        sx={{ flexGrow: 1 }} 
+      </Typography>
+      <SearchBar />
+      <Grid container
+        justifyContent="center"
+        sx={{ flexGrow: 1 }}
         container spacing={4}
         className={classes.listContainer}>
-          
+
         {DogParkList.allDogParksInDB?.map(dogPark => {
           return (
             <Grid item key={dogPark.id} xs={12} sm={6} md={5} lg={4}>

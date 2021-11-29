@@ -6,6 +6,7 @@
   "dependencies": {
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
+    "@fontsource/fira-sans": "^4.5.0",
     "@fontsource/luckiest-guy": "^4.5.0",
     "@fontsource/open-sans": "^4.5.2",
     "@fontsource/oxygen": "^4.5.0",

@@ -21,6 +21,30 @@ const useStyles = makeStyles({
         margin: "4px",
     },
 
+
+    //--------- Details View -----------//
+
+    detailsHeader: {
+        fontFamily: "oxygen, open-sans",
+        fontSize: "40px",
+        textAlign:"center"
+    },
+    root: {
+        flexGrow: 1,
+        width: '100%'
+    },
+    rowLayout: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center' // To be vertically aligned
+    },
+    iconLayout: {
+        margin: '40px'
+    },
+    layout: {
+        margin: '20px'
+    },
+
     //------ FavoritesHome --------//
 
     welcome: {
@@ -68,24 +92,6 @@ const useStyles = makeStyles({
         bottom: 0,
     },
 
-
-    //--------- Details View -----------//
-
-    root: {
-        flexGrow: 1,
-        width: '100%'
-    },
-    rowLayout: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center' // To be vertically aligned
-    },
-    iconLayout: {
-        margin: '40px'
-    },
-    layout: {
-        margin: '20px'
-    },
 
     //-------- Login Form -----//
 
