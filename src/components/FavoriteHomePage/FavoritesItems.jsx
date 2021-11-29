@@ -9,6 +9,7 @@ import {
   CardMedia, CardHeader, Card, Chip, Stack, Typography
 } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { red } from '@mui/material/colors';
 
 //components
 import HeartIcon from '../HeartIcon/HeartIcon';
@@ -31,7 +32,7 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
 
   //pass this variable to favorites to recognize
   let dogParkId = favPark.id
-
+  const color = red[900]
   //filter the specific tags to this dog park
   let newTags = dogParkTags.specificTags.filter(tag => tag.dog_park_id === favPark.id)
   return (
@@ -46,7 +47,7 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
           avatar={
             <LocationOnIcon />
           }
-          
+
           action={
             <IconButton
               aria-label="settings"
@@ -87,27 +88,36 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
           sx={{ height: 150, width: 400 }}
           image={favPark.image_url}
           alt={favPark.name} />
-         
+
         <CardContent>
-        <Box sx={{ margin: '10px' }}>
-          <Typography>
-            Park Status & Offerings:
-          </Typography>
-          <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            {newTags?.map(tag => {
-              return (
-                <Chip
-                  key={tag.id}
-                  color="success"
-                  className={classes.chipsLayout}
-                  label={tag.tag}
-                />
-              )
-            })}
-          </Stack>
+          <Box sx={{ margin: '10px' }}>
+            <Typography>
+              Park Status & Offerings:
+            </Typography>
+            <Stack direction="row" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+              {newTags?.map(tag => {
+                if (tag.tag_id > 17) {
+                  return (
+                    <Chip
+                      key={tag.id}
+                      color='success'
+                      className={classes.chipsLayout}
+                      label={tag.tag}
+                    />)
+                } else {
+                  return (
+                    <Chip
+                      key={tag.id}
+                      color="success"
+                      className={classes.chipsLayout}
+                      label={tag.tag}
+                    />)
+                }
+              })}
+            </Stack>
           </Box>
         </CardContent>
-        </CardActionArea>
+      </CardActionArea>
     </Card>
   );
 }
