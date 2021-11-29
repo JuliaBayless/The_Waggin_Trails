@@ -5,13 +5,13 @@ import { useHistory } from "react-router";
 //styles
 import { Container, Paper, Typography } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
-import { positions } from '@mui/system';
+
 
 //components
 import DogParkItem from './DogParkItem';
 import useStyles from '../styles/styles';
 import SearchBar from '../searchBar/searchBar';
-import { Search } from '@mui/icons-material';
+
 
 //component that parents the main dog list
 export default function DogParkList(props) {

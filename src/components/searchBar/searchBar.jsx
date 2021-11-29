@@ -2,7 +2,9 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 //styles
-import { TextField } from '@mui/material';
+import { TextField, IconButton } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { InputAdornment } from '@mui/material'
 
 //components
 import useStyles from '../styles/styles'
@@ -24,16 +26,27 @@ export default function SearchBar() {
 
 
   return (
-    <TextField
-      sx={{ m: '10px', width: '300px' }}
-      className={classes.searchInput}
-      type="text"
-      required
-      variant="outlined"
-      label="Search"
-      size="small"
-      value={search}
-      onChange={(event) => setSearch(event.target.value)}
-    />
+    <>
+      <TextField
+        sx={{ m: '10px', width: '300px' }}
+        className={classes.searchInput}
+        type="text"
+        required
+        variant="outlined"
+        label="Search"
+        size="small"
+        value={search}
+        onChange={(event) => setSearch(event.target.value)}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment>
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
+            </InputAdornment>
+          )
+        }}
+      />
+    </>
   );
 }
