@@ -21,13 +21,12 @@ const useStyles = makeStyles({
         margin: "4px",
     },
 
-
     //--------- Details View -----------//
 
     detailsHeader: {
         fontFamily: "montserrat, open-sans",
         fontSize: "40px",
-        textAlign:"center"
+        textAlign: "center"
     },
     subHeader: {
         fontFamily: "montserrat, open-sans",
@@ -41,6 +40,15 @@ const useStyles = makeStyles({
         justifyContent: 'space-between',
         alignItems: 'center' // To be vertically aligned
     },
+    iconLayout: {
+        margin: '40px'
+    },
+    layout: {
+        margin: '20px'
+    },
+
+    //--------- Details View -----------//
+   
     iconLayout: {
         margin: '40px'
     },
@@ -157,7 +165,7 @@ const useStyles = makeStyles({
         fontSize: "18px",
         marginLeft: "20px",
         marginTop: "10px",
-      
+
     },
     blackBtn: {
         fontFamily: "oxygen, sans-serif",
