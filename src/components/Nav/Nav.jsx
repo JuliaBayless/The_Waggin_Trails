@@ -76,6 +76,10 @@ export default function Nav() {
     history.push('/addParkForm')
   };
 
+  const handlePushAbout = () => {
+    setAnchorEl(null);
+    history.push('/about')
+  }
 
   return (
 
@@ -148,6 +152,7 @@ export default function Nav() {
                 <MenuItem onClick={handlePushForm}>Add Park</MenuItem>
                 <MenuItem onClick={handlePushHome}>Favorites</MenuItem>
                 <MenuItem onClick={handlePushList}>List</MenuItem>
+                <MenuItem onClick={handlePushAbout}>About</MenuItem>
               </Menu>
             </div>
           )}

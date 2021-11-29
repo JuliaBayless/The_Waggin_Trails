@@ -1,11 +1,8 @@
 import React from 'react';
 import './Footer.css';
-import { Link } from 'react-router-dom';
 import { useHistory } from "react-router";
 
 //MUI
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';

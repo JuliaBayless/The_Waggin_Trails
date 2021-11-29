@@ -17,13 +17,16 @@ import useStyles from '../styles/styles'
 
 
 export default function DogParkDetailsView({ dogParkDetails }) {
-    const classes = useStyles();
+
     //grab park tags from the store
     const parkTags = useSelector((store) => store.tagReducer);
     const user = useSelector(store => store.user);
     const favorites = useSelector(store => store.favoritesReducer)
+
     //grab hooks
     const dispatch = useDispatch();
+    const classes = useStyles();
+
     //set useState for toggle
     const [toggleViewEdit, setToggleViewEdit] = useState(true)
 

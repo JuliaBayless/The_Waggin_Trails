@@ -23,6 +23,7 @@ import DogParkDetails from '../DogParkDetails/_DogParkDetails';
 import { createTheme, ThemeProvider } from '@material-ui/core'
 
 //style imports
+import { Typography, Container } from '@material-ui/core';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -34,6 +35,7 @@ import "@fontsource/oxygen"
 import "@fontsource/oxygen/700.css"
 import "@fontsource/open-sans"
 import "@fontsource/montserrat"
+import useStyles from '../styles/styles';
 
 
 const theme = createTheme({
@@ -52,8 +54,11 @@ const theme = createTheme({
 
 
 function App() {
+  //hooks
   const dispatch = useDispatch();
+  const classes = useStyles();
 
+  //stores
   const user = useSelector(store => store.user);
 
   useEffect(() => {
@@ -159,14 +164,33 @@ function App() {
               <Redirect to="/home" />
               :
               // Otherwise, show the Landing page
-              <LandingPage />
+              <LoginPage />
+              // <LandingPage />
             }
           </Route>
 
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <Container
+            sx={{ 
+              display: 'flex', justifyContent: 'center', width: '90%' 
+            }}>
+            <Typography
+            variant='h1'
+            className={classes.subHeader}
+            >404</Typography>
+             <Typography
+            variant='h5'
+            className={classes.subHeader}>
+              Opps... 
+            </Typography>
+            <Typography
+            variant='h5'
+            className={classes.subHeader}>
+              Something went wrong!
+            </Typography>
+            </Container>
           </Route>
         </Switch>
 

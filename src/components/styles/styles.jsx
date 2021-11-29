@@ -47,7 +47,7 @@ const useStyles = makeStyles({
         margin: '20px'
     },
 
-    //--------- Details View -----------//
+    //--------- Details Edit View -----------//
    
     iconLayout: {
         margin: '40px'
@@ -158,6 +158,12 @@ const useStyles = makeStyles({
     searchInput: {
         backgroundColor: "#FFFFFF",
     },
+
+    //-------- searchBar -----//
+        halp: {
+            
+        },
+
     //-------- Use everywhere -----//
 
     redBtn: {

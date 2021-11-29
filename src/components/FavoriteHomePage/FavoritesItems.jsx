@@ -3,14 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
 //styling
-import { Container, Box } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import {
   CardActionArea, CardContent, IconButton,
-  CardMedia, CardHeader, Card, Chip, Stack
+  CardMedia, CardHeader, Card, Chip, Stack, Typography
 } from '@mui/material';
-import { pink } from '@mui/material/colors';
-import PetsIcon from '@mui/icons-material/Pets';
-import Typography from '@mui/material/Typography';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 //components

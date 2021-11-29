@@ -3,13 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router";
 
 //styles
-import {
-  Container,
-  Paper,
-  Typography
-} from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
-import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined'
 
 //components
 import FavoritesItem from './FavoritesItems'

@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { Container, Box } from '@material-ui/core';
+
+//styles
+import { Box } from '@material-ui/core';
 import {
   CardActionArea, CardContent, CardMedia,
-  CardHeader, Card, Chip, Stack, IconButton
+  CardHeader, Card, Chip, Stack, IconButton, Typography
 } from '@mui/material';
-import { pink } from '@mui/material/colors';
-import PetsIcon from '@mui/icons-material/Pets';
-import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 //components

@@ -4,18 +4,11 @@ import { useHistory } from "react-router";
 
 //styles
 import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { Button } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
-import { Paper, Box, makeStyles, Typography, Container } from '@material-ui/core';
+import { Typography, Container } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
+
 
 //components
 import ParkTagsForm from '../ParkTagsForm/ParkTagsForm';
@@ -24,6 +17,7 @@ import useStyles from '../styles/styles';
 
 //FORM to add a dog park. Calls Park Tag Form for dog tags associated with parks
 export default function AddDogParkForm(props) {
+  
   //hooks
   const history = useHistory();
   const dispatch = useDispatch();
