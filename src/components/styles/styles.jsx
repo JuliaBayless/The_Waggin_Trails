@@ -46,7 +46,18 @@ const useStyles = makeStyles({
     layout: {
         margin: '20px'
     },
-
+    noFavs: {
+        fontFamily: "oxygen, sans-serif",
+        backgroundColor: "#fefefe",
+        border: "1px solid black",
+        fontSize: "24px",
+        fontWeight: "700",
+        textAlign: 'center',
+        marginRight: "20%",
+        marginTop: "20px",
+        marginLeft: "20%",
+        padding: "20px"
+    },
     //--------- Details Edit View -----------//
    
     iconLayout: {
@@ -157,12 +168,7 @@ const useStyles = makeStyles({
     //-------- searchBar -----//
     searchInput: {
         backgroundColor: "#FFFFFF",
-    },
-
-    //-------- searchBar -----//
-        halp: {
-            
-        },
+    },  
 
     //-------- Use everywhere -----//
 

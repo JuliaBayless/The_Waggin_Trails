@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router";
 
 //styles
-import { Container, Typography } from '@material-ui/core';
+import {
+  Container,
+  Typography
+} from '@material-ui/core';
 import Grid from '@mui/material/Grid';
 
 //components
@@ -36,7 +39,7 @@ function FavoriteHomePage() {
 
   return (
     <>
-      <div 
+      <div
       // className={classes.favHeader}
       >
         <Typography
@@ -50,23 +53,33 @@ function FavoriteHomePage() {
           {/* <PetsOutlinedIcon /> */}
         </Typography>
       </div>
-      <Container 
-      className={classes.listContainer}>
-        <Grid container justifyContent="center"
-          sx={{ flexGrow: 1 }} spacing={4}>
-          {favDogParks.map(favPark => {
-            return (
-              <Grid item key={favPark.id} xs={12} sm={6} md={5} lg={4}>
-                <FavoritesItem
-                  favPark={favPark}
-                  dogParkTags={dogParkTags}
-                  user={user}
-                  favorites={favorites} />
-              </Grid>
-            )
-          })}
-        </Grid>
-      </Container>
+      {favDogParks.length > 0 ?
+        <Container
+          className={classes.listContainer}>
+          <Grid container justifyContent="center"
+            sx={{ flexGrow: 1 }} spacing={4}>
+            {favDogParks.map(favPark => {
+              return (
+                <Grid item key={favPark.id} xs={12} sm={6} md={5} lg={4}>
+                  <FavoritesItem
+                    favPark={favPark}
+                    dogParkTags={dogParkTags}
+                    user={user}
+                    favorites={favorites} />
+                </Grid>
+              )
+            })}
+          </Grid>
+        </Container>
+        :
+       
+              <Typography
+                variant="h1"
+                className={classes.noFavs}>
+                Select some favorites by heading to the list page
+                {/* <PetsOutlinedIcon /> */}
+              </Typography>
+      }
     </>
   );
 }
