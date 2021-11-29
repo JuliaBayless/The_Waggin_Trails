@@ -28,11 +28,13 @@ function FavoriteHomePage() {
   const user = useSelector((store) => store.user);
   const favorites = useSelector(store => store.favoritesReducer)
 
+  const [ render, setRender ] = useState(favorites)
+
   //fetch this tags and fav parks
   useEffect(() => {
     dispatch({ type: 'FETCH_FAV_DOG_PARKS' })
     dispatch({ type: 'FETCH_DOG_PARK_TAGS' })
-  }, [])
+  }, [render])
 
   //filtering out the fav dog parks by the isFav boolean value
   let favDogParks = DogParkList.allDogParksInDB

@@ -32,6 +32,14 @@ export default function AddDogParkForm(props) {
     tag_id: ''
   }
 
+  const dummyPresentationData = {
+    name: 'Arlington Off-Leash Dog Park',
+    location: 'Arlington Ave E, St Paul, MN 55130',
+    description: 'Take your dog to romp and run at this popular St. Paul off-leash area. The ground is covered in wood chips, making it extra easy to clean up after your pooch. Play fetch with Fido in the open “commons” area, or just stroll and enjoy the scenery. Be sure to bring a jug of water along for four-legged friends to share. Other features include fencing, trees/wooded areas, benches, and picnic tables.',
+    image_url: 'https://4.bp.blogspot.com/-IUJ-2hu5U_Q/V5KGMH-ZkoI/AAAAAAAAHOE/xqkwCpJvmNoOh8zCSrmpheTMoST71JBewCLcB/s1600/%25C2%25A9StPaul-ArlingtonArkwrightDogPark-Millie.jpg',
+    tag_id: ''
+  }
+
   //fetch tags on page load
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_TAGS' })
@@ -42,6 +50,7 @@ export default function AddDogParkForm(props) {
   let userSelectedTagsReducer = useSelector((store) => store.parkReducer)
   const [dogPark, setDogPark] = useState(dogParkDummyData);
   const [dogParkError, setDogParkError] = useState(false);
+ 
 
 
   const handleSubmitNewPark = (event) => {
@@ -82,6 +91,10 @@ export default function AddDogParkForm(props) {
     { history.push('/DogParkList') }
   }
 
+  const handlePresentationData = () => {
+    setDogPark(dummyPresentationData)
+  }
+
 
   // rename selected tags variable
   let userSelectedTags = userSelectedTagsReducer.addTagsToDogPark
@@ -97,7 +110,8 @@ export default function AddDogParkForm(props) {
             component="paper"
             alignItems="center">
             <Grid item xs={12} sx={{ mt: '10px', mb: '10px' }}>
-              <Typography variant="h5" >
+              <Typography variant="h5"
+               onClick={handlePresentationData}>
                 Add a New Dog Park Here</Typography>
 
             </Grid>

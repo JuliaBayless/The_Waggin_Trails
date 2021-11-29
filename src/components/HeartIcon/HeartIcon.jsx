@@ -16,16 +16,17 @@ export default function Favorite({ dogParkId, favArray, user }) {
 
     //useState for toggleFav
     const [toggleFav, setToggleFav] = useState(false)
-
+    const [render, setRender] = useState(favArray)
 
     useEffect(() => {
         changeToggleStatus()
-      }, [])
+      }, [render])
   
       const changeToggleStatus = () => {
           for (let fav of favArray) {
               if (fav.user_id === user && fav.dog_park_id === dogParkId) {
                   setToggleFav(true)
+                  setRender(fav.dog_park_id)
               }
           }
       }
