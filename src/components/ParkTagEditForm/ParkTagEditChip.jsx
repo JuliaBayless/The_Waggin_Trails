@@ -12,7 +12,7 @@ function ParkTagEditChip({ deleteParkTag, parkTag, addParkTag, newTags }) {
     const classes = useStyles();
 
     const [chipStatus, setChipStatus] = useState(false)
-    const [stateStatus, setState] = useState('')
+    const [stateStatus, setStateStatus] = useState('')
 
 
 
@@ -25,6 +25,7 @@ function ParkTagEditChip({ deleteParkTag, parkTag, addParkTag, newTags }) {
         for (let tag of newTags) {
             if (tag.tag_id === parkTag.id) {
                 setChipStatus(true)
+                
             }
         }
     }

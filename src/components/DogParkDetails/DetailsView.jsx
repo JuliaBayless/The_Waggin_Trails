@@ -133,13 +133,23 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                         <Stack direction="row"
                             sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', mb: '10px' }}>
                             {newTags?.map(tag => {
-                                return (
-                                    <Chip
+                                if (tag.tag_id > 17) {
+                                    return (
+                                      <Chip
+                                        key={tag.id}
+                                        color='error'
+                                        className={classes.chipsLayout}
+                                        label={tag.tag}
+                                      />)
+                                  } else {
+                                    return (
+                                      <Chip
                                         key={tag.id}
                                         color="success"
                                         className={classes.chipsLayout}
-                                        label={tag.tag} />
-                                )
+                                        label={tag.tag}
+                                      />)
+                                  }
                             })}
                         </Stack>
                     </Grid>
