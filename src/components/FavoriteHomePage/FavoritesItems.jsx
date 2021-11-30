@@ -100,7 +100,7 @@ export default function FavoritesItem({ favPark, dogParkTags, user, favorites })
                   return (
                     <Chip
                       key={tag.id}
-                      color='success'
+                      color='error'
                       className={classes.chipsLayout}
                       label={tag.tag}
                     />)
