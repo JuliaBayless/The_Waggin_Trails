@@ -3,6 +3,11 @@ import { makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
 
     //------- AddParkForm -------//
+    about: {
+        paddingBottom: "20px",
+    },
+
+    //------- AddParkForm -------//
     inputs: {
         width: "300px",
         marginTop: "50px",
@@ -59,7 +64,7 @@ const useStyles = makeStyles({
         padding: "20px"
     },
     //--------- Details Edit View -----------//
-   
+
     iconLayout: {
         margin: '40px'
     },
@@ -168,7 +173,7 @@ const useStyles = makeStyles({
     //-------- searchBar -----//
     searchInput: {
         backgroundColor: "#FFFFFF",
-    },  
+    },
 
     //-------- Use everywhere -----//
 

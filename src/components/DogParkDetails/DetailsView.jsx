@@ -131,7 +131,7 @@ export default function DogParkDetailsView({ dogParkDetails }) {
                     </Grid>
                     <Grid item xs={12}>
                         <Stack direction="row"
-                            sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
+                            sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', mb: '10px' }}>
                             {newTags?.map(tag => {
                                 return (
                                     <Chip
