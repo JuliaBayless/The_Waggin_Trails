@@ -96,7 +96,7 @@ export default function Nav() {
             onClick={handleMenu}
             sx={{ mr: 2 }}
           >
-            {/* <MenuIcon /> */}
+           {user.id && <MenuIcon />}
             <img
           src={dog}
           width="50px"
@@ -120,6 +120,7 @@ export default function Nav() {
             <Link className="navLink" to="/login">
               Login / Register
             </Link>
+            
           }
           {user.id && (
             <div>

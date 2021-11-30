@@ -163,7 +163,7 @@ const useStyles = makeStyles({
     logout: {
         display: "flex",
         justifyContent: "right",
-        marginLeft: "40px",
+        marginLeft: "24px",
     },
     // pushes away from the nav bar
     boxMargin: {
