@@ -95,13 +95,23 @@ export default function DogParkItem({ dogPark, favArray, dogParkTags }) {
           </Typography>
             <Stack direction="row" sx={{ display: 'flex',  flexWrap: 'wrap' }}>
               {newTags?.map(tag => {
-                return (
-                  <Chip
-                    key={tag.id}
-                    color="success"
-                    label={tag.tag}
-                    className={classes.chipsLayout} />
-                )
+                if (tag.tag_id > 17) {
+                  return (
+                    <Chip
+                      key={tag.id}
+                      color='error'
+                      className={classes.chipsLayout}
+                      label={tag.tag}
+                    />)
+                } else {
+                  return (
+                    <Chip
+                      key={tag.id}
+                      color="success"
+                      className={classes.chipsLayout}
+                      label={tag.tag}
+                    />)
+                }
               })}
             </Stack>
           </Box>

@@ -41,7 +41,7 @@ export default function dogParkDetails() {
             type: 'FETCH_DOG_PARK_DETAIL_VIEW', payload: dp_id
         })
         dispatch({ type: 'FETCH_ALL_TAGS' })
-        dispatch({ type: 'FETCH_AVERAGE_RATING', payload: dp_id })
+        // dispatch({ type: 'FETCH_AVERAGE_RATING', payload: dp_id })
     }, [])
 
 
