@@ -30,7 +30,7 @@ function AboutPage() {
               }}>
               <Typography
                 variant='h4'
-                className={classes.subHeader}>
+                className={classes.top}>
                 About this App
               </Typography>
             </Grid>
@@ -93,7 +93,7 @@ function AboutPage() {
               </Typography>
             </Grid>
             <Grid item sx={12}
-            className={classes.about}
+            className={classes.aboutBottom}
               sx={{
                 display: 'flex', justifyContent: 'center', width: '90%'
               }}>

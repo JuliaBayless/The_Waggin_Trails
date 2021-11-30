@@ -2,9 +2,16 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
 
-    //------- AddParkForm -------//
+    //------- About -------//
+    top: {
+        fontFamily: "montserrat, open-sans",
+        paddingTop: '20px'
+    },
     about: {
         paddingBottom: "20px",
+    },
+    aboutBottom: {
+        paddingBottom: "80px",
     },
 
     //------- AddParkForm -------//
