@@ -24,10 +24,14 @@ Visit the app here: https://waggintrails.herokuapp.com/
 
 ## Screenshots
 
-![Log In Page](documentation/images/LogInWagginTrails.png)
-![Favorites List](documentation/images/FavoritesList.png)
-![List Page with Search Bar](documentation/images/SearchBar.png)
-![Edit Dog Tags](documentation/images/EditDogTags.png)
+<img src= "documentation/images/LogInWagginTrails.png" alt="Log In Page" width="200" height="300">
+
+<img src= "documentation/images/FavoritesList.png" alt="Favorites List" width="220" height="300">
+
+<img src= "documentation/images/SearchBar.png" alt="List Page with Search Bar" width="180" height="300">
+
+<img src= "documentation/images/EditDogTags.png" alt="Edit Dog Tags" width="210" height="300">
+
 
 
 ## Built With
